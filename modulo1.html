@@ -429,14 +429,14 @@
             display: none;
         }
 
-        .quiz-feedback.correct {
+        .quiz-feedback.correct-view {
             background: rgba(39, 174, 96, 0.15);
             color: #27ae60;
             display: block;
             border-left: 4px solid var(--success);
         }
 
-        .quiz-feedback.incorrect {
+        .quiz-feedback.incorrect-view {
             background: rgba(231, 76, 60, 0.15);
             color: #c0392b;
             display: block;
@@ -537,7 +537,7 @@
             height: 100%;
             background: var(--accent);
             border-radius: 10px;
-            width: 15%;
+            width: 0%;
             transition: width 0.4s ease;
         }
 
@@ -764,7 +764,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="progress-text"><span id="progressPercent">15</span>% completado</div>
+            <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
         </div>
 
         <div class="section-indicator">
@@ -1300,8 +1300,8 @@
                     <div class="quiz-option" data-correct="false">D) Elaborar planes de prevención para la empresa implicada</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Correcto! La pericia complementa el conocimiento del juez en materias técnicas que exceden su formación jurídica, sin sustituir su función jurisdiccional.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. Recuerda que la pericia tiene carácter auxiliar: complementa el conocimiento del juez en materias técnicas, pero no sustituye su función de valorar jurídicamente la prueba.</div>
+                <div class="quiz-feedback feedback-correct">¡Correcto! La pericia complementa el conocimiento del juez en materias técnicas que exceden su formación jurídica, sin sustituir su función jurisdiccional.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. Recuerda que la pericia tiene carácter auxiliar: complementa el conocimiento del juez en materias técnicas, pero no sustituye su función de valorar jurídicamente la prueba.</div>
             </div>
             
             <div class="quiz-container">
@@ -1313,8 +1313,8 @@
                     <div class="quiz-option" data-correct="false">D) Puede investigar circunstancias ajenas al caso si considera que son relevantes</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Exacto! El perito solo puede dictaminar sobre materias de su especialidad formativa. Un perito de Seguridad, por ejemplo, no debe emitir conclusiones sobre diagnóstico médico o cuantificación de daños psíquicos.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. Recuerda que el perito debe respetar sus límites profesionales: solo puede dictaminar sobre materias de su especialidad, su análisis se circunscribe a los hechos del procedimiento, no sustituye al juez en la valoración jurídica, y valora conforme a la normativa vigente en el momento de los hechos.</div>
+                <div class="quiz-feedback feedback-correct">¡Exacto! El perito solo puede dictaminar sobre materias de su especialidad formativa. Un perito de Seguridad, por ejemplo, no debe emitir conclusiones sobre diagnóstico médico o cuantificación de daños psíquicos.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. Recuerda que el perito debe respetar sus límites profesionales: solo puede dictaminar sobre materias de su especialidad, su análisis se circunscribe a los hechos del procedimiento, no sustituye al juez en la valoración jurídica, y valora conforme a la normativa vigente en el momento de los hechos.</div>
             </div>
             
             <div class="quiz-container">
@@ -1326,8 +1326,8 @@
                     <div class="quiz-option" data-correct="false">D) Permite al perito emitir opiniones personales sin necesidad de fundamentarlas en datos objetivos</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Muy bien! La sana crítica combina la libertad del juez para apreciar la prueba con la exigencia de que su valoración esté lógicamente motivada y fundamentada. Por eso, el dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. La sana crítica (art. 348 LEC) combina libertad de apreciación judicial con la exigencia de motivación lógica y fundamentada. El dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
+                <div class="quiz-feedback feedback-correct">¡Muy bien! La sana crítica combina la libertad del juez para apreciar la prueba con la exigencia de que su valoración esté lógicamente motivada y fundamentada. Por eso, el dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. La sana crítica (art. 348 LEC) combina libertad de apreciación judicial con la exigencia de motivación lógica y fundamentada. El dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
             </div>
             
             <div class="highlight" style="margin-top: 2rem;">
@@ -1336,7 +1336,7 @@
         </section>
 
         <div class="module-nav">
-            <button class="module-btn" disabled>← Anterior</button>
+            <button class="module-btn" id="prevModule">← Volver al Panel</button>
             <button class="module-btn" id="nextModule">Siguiente Módulo →</button>
         </div>
 
@@ -1361,7 +1361,7 @@
             const totalSections = sections.length;
             
             function updateProgress() {
-                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                const progress = Math.round((currentSectionIndex / (totalSections - 1)) * 100);
                 progressFill.style.width = `${progress}%`;
                 progressPercent.textContent = progress;
             }
@@ -1430,8 +1430,8 @@
             quizContainers.forEach(container => {
                 const options = container.querySelectorAll('.quiz-option');
                 const button = container.querySelector('.quiz-btn');
-                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
-                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.feedback-correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.feedback-incorrect');
                 
                 // Reset feedback on option selection
                 options.forEach(option => {
@@ -1441,8 +1441,8 @@
                         // Add selected class to clicked option
                         this.classList.add('selected');
                         // Hide feedback
-                        feedbackCorrect.style.display = 'none';
-                        feedbackIncorrect.style.display = 'none';
+                        feedbackCorrect.classList.remove('correct-view');
+                        feedbackIncorrect.classList.remove('incorrect-view');
                         // Enable button
                         button.disabled = false;
                     });
@@ -1458,8 +1458,8 @@
                     // Show feedback
                     if(isCorrect) {
                         selectedOption.classList.add('correct');
-                        feedbackCorrect.style.display = 'block';
-                        feedbackIncorrect.style.display = 'none';
+                        feedbackCorrect.classList.add('correct-view');
+                        feedbackIncorrect.classList.remove('incorrect-view');
                     } else {
                         selectedOption.classList.add('incorrect');
                         // Show correct answer
@@ -1468,8 +1468,8 @@
                                 opt.classList.add('correct');
                             }
                         });
-                        feedbackCorrect.style.display = 'none';
-                        feedbackIncorrect.style.display = 'block';
+                        feedbackCorrect.classList.remove('correct-view');
+                        feedbackIncorrect.classList.add('incorrect-view');
                     }
                     
                     // Disable button and options after answer
@@ -1480,9 +1480,13 @@
                 });
             });
             
-            // Next module button
+            // Navigation buttons
+            document.getElementById('prevModule').addEventListener('click', function() {
+                window.location.href = 'curso.html';
+            });
+            
             document.getElementById('nextModule').addEventListener('click', function() {
-                alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 2: El Marco Procesal de la Peritación en Seguridad y Salud en el Trabajo.');
+                window.location.href = 'modulo2.html';
             });
             
             // Initialize progress

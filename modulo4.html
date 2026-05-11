@@ -83,8 +83,8 @@
         .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
         .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
         .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
-        .quiz-feedback.correct { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
-        .quiz-feedback.incorrect { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
+        .quiz-feedback.correct-view { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect-view { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
         .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
         .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
         .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
@@ -96,7 +96,7 @@
         .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
         .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
         .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
-        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 15%; transition: width 0.4s ease; }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 0%; transition: width 0.4s ease; }
         .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
         footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
         .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
@@ -142,7 +142,7 @@
         <div class="progress-container">
             <div class="progress-title">Tu progreso en el módulo</div>
             <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-            <div class="progress-text"><span id="progressPercent">15</span>% completado</div>
+            <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
         </div>
 
         <div class="section-indicator">
@@ -488,8 +488,8 @@
                     <div class="quiz-option" data-correct="false">D) No existe diferencia técnica en el enfoque pericial</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Correcto! El accidente implica análisis de exposición puntual y fallos inmediatos. La enfermedad profesional exige reconstruir historial de exposición, calcular dosis acumulada y evaluar condiciones a lo largo de meses o años.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. La distinción clave es temporal y clínica: el accidente es agudo/instantáneo, mientras que la enfermedad profesional es crónica/progresiva con larga latencia, requiriendo reconstrucción retrospectiva de la dosis acumulada.</div>
+                <div class="quiz-feedback feedback-correct">¡Correcto! El accidente implica análisis de exposición puntual y fallos inmediatos. La enfermedad profesional exige reconstruir historial de exposición, calcular dosis acumulada y evaluar condiciones a lo largo de meses o años.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. La distinción clave es temporal y clínica: el accidente es agudo/instantáneo, mientras que la enfermedad profesional es crónica/progresiva con larga latencia, requiriendo reconstrucción retrospectiva de la dosis acumulada.</div>
             </div>
             
             <div class="quiz-container">
@@ -501,8 +501,8 @@
                     <div class="quiz-option" data-correct="false">D) La temperatura máxima corporal permitida en ambientes calurosos</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Exacto! El VLB se mide en sangre, orina o aire exhalado. Constituye la prueba de absorción real y demuestra que el contaminante ha superado las barreras de protección, llegando al organismo del trabajador.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. El VLB (Valor Límite Biológico) cuantifica el agente o sus metabolitos en matrices biológicas. Demuestra la exposición interna real y valida el fallo de los sistemas de protección respiratoria o dérmica.</div>
+                <div class="quiz-feedback feedback-correct">¡Exacto! El VLB se mide en sangre, orina o aire exhalado. Constituye la prueba de absorción real y demuestra que el contaminante ha superado las barreras de protección, llegando al organismo del trabajador.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. El VLB (Valor Límite Biológico) cuantifica el agente o sus metabolitos en matrices biológicas. Demuestra la exposición interna real y valida el fallo de los sistemas de protección respiratoria o dérmica.</div>
             </div>
             
             <div class="quiz-container">
@@ -514,8 +514,8 @@
                     <div class="quiz-option" data-correct="false">D) El uso de mascarillas FFP2 en lugar de FFP3</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Muy bien! La ley obliga a ofrecer inmunización gratuita a los expuestos. Si la empresa no documenta esta oferta y el trabajador la rechaza expresamente, se considera negligencia preventiva en caso de contagio.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. La falta de oferta documentada de vacunación gratuita (Anexo VI RD 664/1997) constituye prueba técnica de negligencia. Los EPIs son relevantes, pero la omisión de la oferta vacunal es el incumplimiento específico sancionado.</div>
+                <div class="quiz-feedback feedback-correct">¡Muy bien! La ley obliga a ofrecer inmunización gratuita a los expuestos. Si la empresa no documenta esta oferta y el trabajador la rechaza expresamente, se considera negligencia preventiva en caso de contagio.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. La falta de oferta documentada de vacunación gratuita (Anexo VI RD 664/1997) constituye prueba técnica de negligencia. Los EPIs son relevantes, pero la omisión de la oferta vacunal es el incumplimiento específico sancionado.</div>
             </div>
             
             <div class="highlight" style="margin-top: 2rem;">
@@ -545,7 +545,7 @@
             const totalSections = sections.length;
             
             function updateProgress() {
-                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                const progress = Math.round((currentSectionIndex / (totalSections - 1)) * 100);
                 progressFill.style.width = `${progress}%`;
                 progressPercent.textContent = progress;
             }
@@ -581,15 +581,15 @@
             quizContainers.forEach(container => {
                 const options = container.querySelectorAll('.quiz-option');
                 const button = container.querySelector('.quiz-btn');
-                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
-                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.feedback-correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.feedback-incorrect');
                 
                 options.forEach(option => {
                     option.addEventListener('click', function() {
                         options.forEach(opt => opt.classList.remove('selected'));
                         this.classList.add('selected');
-                        feedbackCorrect.style.display = 'none';
-                        feedbackIncorrect.style.display = 'none';
+                        feedbackCorrect.classList.remove('correct-view');
+                        feedbackIncorrect.classList.remove('incorrect-view');
                         button.disabled = false;
                     });
                 });
@@ -600,21 +600,21 @@
                     const isCorrect = selectedOption.dataset.correct === 'true';
                     if(isCorrect) {
                         selectedOption.classList.add('correct');
-                        feedbackCorrect.style.display = 'block';
-                        feedbackIncorrect.style.display = 'none';
+                        feedbackCorrect.classList.add('correct-view');
+                        feedbackIncorrect.classList.remove('incorrect-view');
                     } else {
                         selectedOption.classList.add('incorrect');
                         options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
-                        feedbackCorrect.style.display = 'none';
-                        feedbackIncorrect.style.display = 'block';
+                        feedbackCorrect.classList.remove('correct-view');
+                        feedbackIncorrect.classList.add('incorrect-view');
                     }
                     button.disabled = true;
                     options.forEach(opt => opt.style.pointerEvents = 'none');
                 });
             });
             
-            document.getElementById('prevModule').addEventListener('click', function() { alert('En un entorno real, este botón te llevaría al Módulo 3: Peritación de la Práctica Preventiva: Seguridad en el Trabajo.'); });
-            document.getElementById('nextModule').addEventListener('click', function() { alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 5: Peritación de la Práctica Preventiva: Ergonomía y Psicosociología en el Trabajo.'); });
+            document.getElementById('prevModule').addEventListener('click', function() { window.location.href = 'modulo3.html'; });
+            document.getElementById('nextModule').addEventListener('click', function() { window.location.href = 'modulo5.html'; });
             
             const glossaryTerms = document.querySelectorAll('.glossary-term');
             glossaryTerms.forEach(term => {
