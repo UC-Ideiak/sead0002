@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Peritación de la Práctica Preventiva: Seguridad en el Trabajo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sketch-border: 3px dashed #5a6b8c;
+            --sketch-border-light: 2px dashed #8a9ab6;
+            --primary: #4a6fa5;
+            --secondary: #6b8dbe;
+            --accent: #e67e5a;
+            --background: #f8f9fc;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6b8c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            background-image: radial-gradient(var(--sketch-border-light) 1px, transparent 1px), radial-gradient(var(--sketch-border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            padding-bottom: 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header {
+            text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;
+            border: var(--sketch-border); background: var(--card-bg);
+            border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px); z-index: 0;
+        }
+        header * { position: relative; z-index: 1; }
+        h1 { font-family: 'Kalam', cursive; font-size: 3.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-family: 'Kalam', cursive; font-size: 1.8rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 400; }
+        .intro-text { max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: var(--text-light); }
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; margin: 0.5rem; border: 2px dashed white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); background: rgba(255, 255, 255, 0.85); border-radius: 8px; position: sticky; top: 1rem; z-index: 100; box-shadow: var(--shadow); }
+        .nav-btn { background: white; border: 2px solid var(--secondary); padding: 0.7rem 1.4rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.1rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2); }
+        .nav-btn:hover, .nav-btn.active { background: var(--secondary); color: white; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3); }
+        section { margin-bottom: 2.5rem; border: var(--sketch-border); background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); display: none; animation: fadeIn 0.4s ease; }
+        section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-family: 'Kalam', cursive; font-size: 2.4rem; color: var(--primary); margin: 0 0 1.5rem 0; padding-bottom: 0.8rem; border-bottom: 2px dashed var(--secondary); font-weight: 700; }
+        h3 { font-family: 'Kalam', cursive; font-size: 1.9rem; color: var(--secondary); margin: 1.8rem 0 1rem; font-weight: 600; }
+        p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .definition-card { border-left: 4px solid var(--accent); background: rgba(230, 126, 90, 0.08); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; position: relative; }
+        .definition-card::before { content: "💡"; position: absolute; left: -15px; top: -10px; background: var(--accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; border: 2px solid white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .definition-card strong { color: var(--primary); font-weight: 600; }
+        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.8rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        .info-table th { background: var(--primary); color: white; font-family: 'Kalam', cursive; font-size: 1.3rem; padding: 1.1rem 1.4rem; text-align: left; font-weight: 600; }
+        .info-table td { padding: 1rem 1.4rem; border-bottom: 1px dashed var(--sketch-border-light); }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table tr:nth-child(even) { background: rgba(90, 107, 140, 0.04); }
+        .info-table tr:hover { background: rgba(107, 141, 190, 0.08); }
+        .accordion { margin: 1.5rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; }
+        .accordion-header { background: var(--secondary); color: white; padding: 1.1rem 1.5rem; font-family: 'Kalam', cursive; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .accordion-header:hover { background: var(--primary); }
+        .accordion-header::after { content: "+"; font-size: 1.8rem; font-weight: 300; }
+        .accordion-header.active::after { content: "−"; }
+        .accordion-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: rgba(255, 255, 255, 0.9); }
+        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
+        .glossary-term { border-bottom: 2px dashed var(--accent); cursor: help; position: relative; font-weight: 500; color: var(--primary); }
+        .glossary-term:hover::after { content: attr(data-definition); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.95rem; width: 280px; text-align: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px dashed white; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .quiz-container { background: rgba(107, 141, 190, 0.08); border: var(--sketch-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .quiz-question { font-weight: 600; margin-bottom: 1.2rem; font-size: 1.15rem; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+        .quiz-option { padding: 0.9rem 1.4rem; background: white; border: 2px solid var(--secondary); border-radius: 8px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.8rem; }
+        .quiz-option:hover { background: rgba(107, 141, 190, 0.1); transform: translateX(3px); }
+        .quiz-option.selected { background: var(--secondary); color: white; border-color: var(--primary); }
+        .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
+        .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
+        .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
+        .quiz-feedback.correct { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
+        .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
+        .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .key-point { background: white; border: var(--sketch-border-light); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition); }
+        .key-point:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2); }
+        .key-point-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .key-point h4 { font-family: 'Kalam', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; font-weight: 600; }
+        .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
+        .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
+        .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 15%; transition: width 0.4s ease; }
+        .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
+        footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
+        .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+        .module-btn { background: white; border: var(--sketch-border); padding: 1rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: var(--shadow); flex: 1; max-width: 200px; }
+        .module-btn:hover { background: var(--secondary); color: white; transform: translate(-3px, -3px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25); }
+        .module-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .sketch-box { position: relative; border: var(--sketch-border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; background: white; box-shadow: var(--shadow); }
+        .highlight { background: rgba(74, 111, 165, 0.08); border-left: 4px solid var(--primary); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .highlight strong { color: var(--primary); }
+        .example-box { background: rgba(230, 126, 90, 0.1); border: 2px dashed var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
+        .example-box::before { content: "Ejemplo ilustrativo"; position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 0.2rem 1rem; border-radius: 20px; font-family: 'Kalam', cursive; font-size: 0.95rem; font-weight: 600; }
+        .section-indicator { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem 0; }
+        .indicator-dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d9e6; cursor: pointer; transition: var(--transition); border: 2px solid var(--secondary); }
+        .indicator-dot.active { background: var(--accent); transform: scale(1.2); }
+        .indicator-dot:hover { background: var(--secondary); }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; } .subtitle { font-size: 1.5rem; } .nav-container { flex-direction: column; align-items: center; } .nav-btn { width: 100%; max-width: 300px; } section { padding: 1.5rem; } h2 { font-size: 2.1rem; } h3 { font-size: 1.7rem; } .info-table { font-size: 0.95rem; } .info-table th, .info-table td { padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Peritación de la Práctica Preventiva: Seguridad en el Trabajo</h1>
+            <div class="subtitle">Módulo 3</div>
+            <p class="intro-text">Aprende a aplicar la normativa de seguridad en el trabajo para investigar accidentes, evaluar condiciones materiales y redactar informes periciales con rigor técnico. Este módulo te introduce en el análisis de lugares de trabajo, maquinaria, riesgo eléctrico y manipulación de cargas.</p>
+            <div>
+                
+                <span class="badge">⏱️ Duración: 50 horas</span>
+                
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="intro">🏠 Inicio</button>
+            <button class="nav-btn" data-section="foundations">📚 Fundamentos</button>
+            <button class="nav-btn" data-section="workplaces">🏭 Lugares de Trabajo</button>
+            <button class="nav-btn" data-section="machinery">⚙️ Maquinaria</button>
+            <button class="nav-btn" data-section="electrical">⚡ Riesgo Eléctrico</button>
+            <button class="nav-btn" data-section="loads">📦 Manutención de Cargas</button>
+            <button class="nav-btn" data-section="atex">🔥 ATEX e Incendios</button>
+            <button class="nav-btn" data-section="methods">🔍 Metodologías</button>
+            <button class="nav-btn" data-section="evidence">📋 Evidencia Técnica</button>
+            <button class="nav-btn" data-section="report">📝 Dictamen en Seguridad</button>
+            <button class="nav-btn" data-section="future">🤖 Nuevos Horizontes</button>
+            <button class="nav-btn" data-section="quiz">✅ Autoevaluación</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-title">Tu progreso en el módulo</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text"><span id="progressPercent">10</span>% completado</div>
+        </div>
+
+        <div class="section-indicator">
+            <div class="indicator-dot active" data-section="intro"></div>
+            <div class="indicator-dot" data-section="foundations"></div>
+            <div class="indicator-dot" data-section="workplaces"></div>
+            <div class="indicator-dot" data-section="machinery"></div>
+            <div class="indicator-dot" data-section="electrical"></div>
+            <div class="indicator-dot" data-section="loads"></div>
+            <div class="indicator-dot" data-section="atex"></div>
+            <div class="indicator-dot" data-section="methods"></div>
+            <div class="indicator-dot" data-section="evidence"></div>
+            <div class="indicator-dot" data-section="report"></div>
+            <div class="indicator-dot" data-section="future"></div>
+            <div class="indicator-dot" data-section="quiz"></div>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="intro" class="active">
+            <h2>¡Bienvenido al Módulo 3!</h2>
+            <p>En los módulos anteriores aprendiste qué es un <span class="glossary-term" data-definition="Profesional con titulación oficial en PRL que aporta conocimientos técnicos para ayudar al juez a resolver cuestiones técnicas.">perito judicial</span> y cómo funciona el marco procesal. Ahora daremos el paso a la práctica: aplicarás la normativa de seguridad en el trabajo para investigar accidentes y redactar informes periciales con rigor técnico.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo del módulo:</strong> Analizar y aplicar la normativa vigente en prevención de riesgos laborales en relación con la especialidad de Seguridad en el trabajo, y ser capaz de realizar informes periciales fundamentados en evidencia técnica verificable.
+            </div>
+
+            <h3>¿Qué aprenderás en este módulo?</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🏗️</div>
+                    <h4>Lugares de trabajo</h4>
+                    <p>Evaluar condiciones de espacios, pavimentos, iluminación y protección de aberturas conforme al RD 486/1997</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚙️</div>
+                    <h4>Maquinaria y equipos</h4>
+                    <p>Verificar resguardos, dispositivos de seguridad y procedimientos de consignación (LOTO)</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚡</div>
+                    <h4>Riesgo eléctrico</h4>
+                    <p>Identificar contactos directos/indirectos y medidas de protección conforme al RD 614/2001</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📦</div>
+                    <h4>Manutención de cargas</h4>
+                    <p>Aplicar el RD 487/1997 para evaluar manipulación manual y equipos de elevación</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔥</div>
+                    <h4>ATEX e incendios</h4>
+                    <p>Clasificar zonas explosivas y evaluar fuentes de ignición no eléctricas</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔍</div>
+                    <h4>Metodologías de investigación</h4>
+                    <p>Aplicar SCRA y Árbol de Causas para determinar causalidad técnico-legal</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Nota para estudiantes:</strong> Este módulo es intensivo en normativa técnica. No memorices artículos: enfócate en comprender la lógica preventiva detrás de cada requisito. El perito no cita leyes, aplica principios de seguridad.
+            </div>
+        </section>
+
+        <!-- FUNDAMENTOS -->
+        <section id="foundations">
+            <h2>Fundamentos Legales y Técnicos en Seguridad Laboral</h2>
+            <p>La seguridad en el trabajo analiza las condiciones materiales susceptibles de provocar accidentes laborales: impactos, atrapamientos, caídas, contactos eléctricos. La actividad pericial contrasta las condiciones observadas en el escenario del siniestro con el estándar normativo exigible en el momento del suceso.</p>
+            
+            <div class="definition-card">
+                <strong>Marco normativo de referencia:</strong> La Ley 31/1995 de Prevención de Riesgos Laborales establece el deber de protección empresarial. De esta norma derivan disposiciones de desarrollo técnico que configuran exigencias mínimas ineludibles para la peritación.
+            </div>
+
+            <h3>Principio rector de la peritación en seguridad</h3>
+            <p>El análisis pericial no se limita a constatar la existencia de un riesgo, sino que debe:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Reconstruir retrospectivamente las condiciones materiales en el momento del accidente</li>
+                <li>Validar la idoneidad de las medidas preventivas implementadas por la empresa</li>
+                <li>Dictaminar sobre la eficacia real de los controles técnicos y organizativos</li>
+                <li>Establecer el nexo causal entre deficiencias preventivas y el daño producido</li>
+            </ul>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Tipologías de accidentes analizables en seguridad</h4>
+                <table class="info-table">
+                    <thead><tr><th>Tipo de accidente</th><th>Condiciones materiales típicas</th><th>Normativa de referencia</th></tr></thead>
+                    <tbody>
+                        <tr><td>Caídas a distinto nivel</td><td>Ausencia de barandillas, puntos de anclaje, superficies resbaladizas</td><td>RD 486/1997 (lugares de trabajo)</td></tr>
+                        <tr><td>Atrapamientos por maquinaria</td><td>Resguardos inexistentes, dispositivos de seguridad anulados</td><td>RD 1215/1997 (equipos de trabajo)</td></tr>
+                        <tr><td>Contactos eléctricos</td><td>Falta de toma de tierra, diferenciales inoperativos, aislamiento deteriorado</td><td>RD 614/2001 (riesgo eléctrico)</td></tr>
+                        <tr><td>Sobreesfuerzos y caídas de cargas</td><td>Manipulación manual sin ayudas mecánicas, aparejos defectuosos</td><td>RD 487/1997 (manutención de cargas)</td></tr>
+                        <tr><td>Incendios y explosiones</td><td>Clasificación de zonas ATEX inadecuada, fuentes de ignición no controladas</td><td>RD 681/2003 (atmósferas explosivas)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- LUGARES DE TRABAJO -->
+        <section id="workplaces">
+            <h2>Condiciones de los Lugares y Espacios de Trabajo</h2>
+            <p>La evaluación pericial de espacios se rige por el <strong>Real Decreto 486/1997</strong>. El análisis verifica que la configuración de las instalaciones no constituya origen del riesgo materializado.</p>
+            
+            <h3>Parámetros de verificación en lugares de trabajo</h3>
+            <table class="info-table">
+                <thead><tr><th>Parámetro</th><th>Requisito Normativo</th><th>Objetivo Pericial</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Altura de techos</strong></td><td>Mínimo 3 metros en locales industriales</td><td>Constatar si el espacio limitado restringió movimientos defensivos</td></tr>
+                    <tr><td><strong>Superficie libre por trabajador</strong></td><td>Mínimo 2 m² libres</td><td>Evaluar hacinamiento como factor concurrente en el accidente</td></tr>
+                    <tr><td><strong>Pavimentos</strong></td><td>Antideslizantes según actividad (grasas, humedad)</td><td>Determinar adecuación del suelo al riesgo de caída específico</td></tr>
+                    <tr><td><strong>Protección de aberturas</strong></td><td>Barandillas rígidas ≥90 cm, listones intermedios, rodapiés</td><td>Verificar sistemas de protección colectiva primaria en alturas</td></tr>
+                    <tr><td><strong>Vías de circulación</strong></td><td>Dimensionamiento para cruce peatón-vehículo</td><td>Auditar señalización, apertura de puertas, ausencia de obstáculos</td></tr>
+                    <tr><td><strong>Iluminación</strong></td><td>Niveles en lux según exigencia visual de la tarea</td><td>Identificar falta de visibilidad como causa concurrente del siniestro</td></tr>
+                    <tr><td><strong>Condiciones termohigrométricas</strong></td><td>Parámetros que eviten fatiga o estrés térmico</td><td>Relacionar condiciones ambientales con errores humanos en la tarea</td></tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <p><strong>Caso práctico:</strong> Un trabajador cae desde una pasarela de mantenimiento de 2,5 metros. La barandilla existente mide 85 cm (5 cm por debajo del mínimo reglamentario) y carece de rodapié. El perito debe documentar: (1) la medición exacta de la barandilla, (2) la ausencia de rodapié como factor que permitió la caída de herramientas, y (3) si la iluminación del área era suficiente para percibir el borde de la pasarela.</p>
+            </div>
+
+            <div class="highlight">
+                <strong>Recuerda:</strong> El perito no solo verifica el cumplimiento numérico de la norma. Debe evaluar si la medida implementada era <em>eficaz</em> para prevenir el riesgo concreto que se materializó. Una barandilla de 90 cm mal anclada no cumple su función preventiva.
+            </div>
+        </section>
+
+        <!-- MAQUINARIA -->
+        <section id="machinery">
+            <h2>Equipos de Trabajo y Maquinaria</h2>
+            <p>El análisis técnico pericial de maquinaria se fundamenta en el <strong>Real Decreto 1215/1997</strong>, que regula la adecuación y uso seguro de equipos. La peritación verifica que los dispositivos de seguridad fueran funcionales en el momento del accidente.</p>
+            
+            <h3>Elementos críticos de evaluación en maquinaria</h3>
+            
+            <div class="accordion">
+                <div class="accordion-header">🛡️ Resguardos y dispositivos de seguridad</div>
+                <div class="accordion-content">
+                    <p><strong>Resguardos fijos:</strong> Requieren herramientas para su extracción. El perito verifica si estaban instalados y si su diseño impedía el acceso a zonas peligrosas.</p>
+                    <p><strong>Resguardos móviles con enclavamiento:</strong> Interrumpen el funcionamiento al abrirse. Se audita si el sistema de enclavamiento era funcional y si fue anulado intencionadamente.</p>
+                    <p><strong>Protecciones sensibles:</strong> Células fotoeléctricas, alfombras de presión. Se verifica su calibración, mantenimiento y respuesta ante intrusiones.</p>
+                    <p><strong>Sistemas de parada de emergencia:</strong> Deben ser accesibles, identificables y funcionales. El perito comprueba si fueron operativos en el momento del incidente.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">📄 Documentación técnica obligatoria</div>
+                <div class="accordion-content">
+                    <p><strong>Marcado CE:</strong> Presupone cumplimiento de estándares europeos de diseño. El perito verifica su presencia y autenticidad.</p>
+                    <p><strong>Declaración de Conformidad:</strong> Acredita evaluación de riesgos del fabricante. Se contrasta con los riesgos reales del puesto de trabajo.</p>
+                    <p><strong>Manual de instrucciones:</strong> Incluye usos previstos, limitaciones y procedimientos seguros. El perito evalúa si fue entregado al trabajador y si su contenido era comprensible.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">🔒 Procedimientos de consignación (LOTO)</div>
+                <div class="accordion-content">
+                    <p>El bloqueo/etiquetado (Lock-Out/Tag-Out) es crítico en tareas de mantenimiento. El perito verifica:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.8rem;">
+                        <li>Corte efectivo de todas las fuentes de energía (eléctrica, neumática, hidráulica)</li>
+                        <li>Bloqueo mecánico mediante candados individuales</li>
+                        <li>Señalización clara de la intervención en curso</li>
+                        <li>Verificación de ausencia de energía antes de iniciar tareas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Auditoría de mantenimiento preventivo</h4>
+                <table class="info-table">
+                    <thead><tr><th>Elemento a verificar</th><th>Pregunta pericial clave</th><th>Evidencia requerida</th></tr></thead>
+                    <tbody>
+                        <tr><td>Registros de mantenimiento</td><td>¿Se revisó periódicamente el equipo según fabricante?</td><td>Órdenes de trabajo, firmas de técnicos, fechas de intervención</td></tr>
+                        <tr><td>Sustitución de piezas</td><td>¿Se reemplazaron componentes de desgaste antes de fallar?</td><td>Albaranes de repuestos, historial de averías</td></tr>
+                        <tr><td>Calibración de seguridad</td><td>¿Se verificó la funcionalidad de dispositivos de protección?</td><td>Certificados de calibración, pruebas de funcionamiento</td></tr>
+                        <tr><td>Actuaciones correctivas</td><td>¿Se documentaron y cerraron las no conformidades detectadas?</td><td>Informes de incidencia, planes de acción, seguimiento</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RIESGO ELÉCTRICO -->
+        <section id="electrical">
+            <h2>Riesgo Eléctrico: Evaluación Pericial</h2>
+            <p>El análisis del riesgo eléctrico requiere cumplimiento del <strong>Real Decreto 614/2001</strong>. Los accidentes por electrocución o arco eléctrico exigen peritación minuciosa por su potencial letalidad.</p>
+            
+            <h3>Tipos de contacto y medidas de protección</h3>
+            <table class="info-table">
+                <thead><tr><th>Tipo de Contacto</th><th>Definición</th><th>Medidas de Protección Requeridas</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Contacto directo</strong></td><td>Acceso accidental a partes activas bajo tensión</td><td>Aislamiento, barreras, distancias de seguridad, obstáculos</td></tr>
+                    <tr><td><strong>Contacto indirecto</strong></td><td>Carcasa metálica adquiere tensión por fallo de aislamiento</td><td>Toma de tierra, interruptores diferenciales, equipotencialidad</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Verificaciones periciales en instalaciones eléctricas</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">⚡</div>
+                    <h4>Protecciones automáticas</h4>
+                    <p>Funcionamiento coordinado de toma de tierra y dispositivos de corte automático. Sensibilidad y tiempos de disparo de interruptores diferenciales.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔌</div>
+                    <h4>Estado de aislamiento</h4>
+                    <p>Verificación de cables y conexiones: ausencia de deterioros, empalmes no autorizados o exposiciones de conductores.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔐</div>
+                    <h4>Accesibilidad y protección</h4>
+                    <p>Cuadros eléctricos con puertas cerradas, bornes protegidos, señalización de tensión y bloqueo para personal no autorizado.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">👷</div>
+                    <h4>Habilitación de trabajadores</h4>
+                    <p>Verificación de cualificación (Cualificado vs. Autorizado) según RD 614/2001 para tareas en tensión o proximidad.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>Ejemplo de nexo causal:</strong> Un operario sufre electrocución al tocar la carcasa de una máquina. El perito acredita: (1) fallo de aislamiento en el motor (contacto indirecto), (2) ausencia de toma de tierra funcional, y (3) diferencial con sensibilidad inadecuada (300 mA en lugar de 30 mA). La combinación de estas tres deficiencias constituye el nexo causal técnico con el daño.</p>
+            </div>
+
+            <div class="highlight">
+                <strong>Precaución pericial:</strong> En accidentes eléctricos, el perito debe extremar la seguridad en la inspección ocular. Nunca manipular instalaciones bajo tensión sin la debida autorización y equipos de protección. La evidencia fotográfica y documental es prioritaria sobre la medición directa en escenarios de riesgo.
+            </div>
+        </section>
+
+        <!-- MANUTENCIÓN DE CARGAS -->
+        <section id="loads">
+            <h2>Manutención de Cargas y Equipos de Elevación</h2>
+            <p>Las tareas de manipulación y elevación implican riesgos biomecánicos y catastróficos por desplome de materiales. La peritación evalúa tanto la manipulación manual (RD 487/1997) como el uso de equipos de elevación.</p>
+            
+            <h3>Evaluación de manipulación manual de cargas</h3>
+            <p>Conforme al Real Decreto 487/1997, el perito analiza:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>Peso de la carga:</strong> Comparación con límites recomendados según frecuencia y postura</li>
+                <li><strong>Posición del centro de gravedad:</strong> Influencia en estabilidad y esfuerzo requerido</li>
+                <li><strong>Frecuencia de manipulación:</strong> Impacto en fatiga acumulada</li>
+                <li><strong>Asimetría del movimiento:</strong> Torsiones de tronco como factor de riesgo biomecánico</li>
+                <li><strong>Distancia horizontal:</strong> Entre carga y cuerpo: multiplicador del esfuerzo lumbar</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">Inspección de aparejos y accesorios de elevación</h3>
+            <table class="info-table">
+                <thead><tr><th>Elemento</th><th>Criterio de aceptación</th><th>Deficiencia peritable</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Cables de acero</strong></td><td>Ausencia de hilos rotos, cocas o deformaciones</td><td>Hilos cortados visibles, aplastamientos, corrosión avanzada</td></tr>
+                    <tr><td><strong>Eslingas textiles</strong></td><td>Sin cortes, quemaduras o desgaste excesivo</td><td>Desgaste en bordes, exposición de fibras internas, etiquetas ilegibles</td></tr>
+                    <tr><td><strong>Ganchos</strong></td><td>Con sistema de seguridad funcional (pestillo)</td><td>Pestillo roto, deformación del gancho, apertura excesiva</td></tr>
+                    <tr><td><strong>Grilletes</strong></td><td>Con pasador de seguridad integrado</td><td>Pasador ausente, roscas dañadas, deformación del cuerpo</td></tr>
+                    <tr><td><strong>Marcado de CMU</strong></td><td>Carga Máxima de Utilización visible y legible</td><td>Etiqueta borrada, pintada o ausente; sobrecarga documentada</td></tr>
+                </tbody>
+            </table>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Factores multiplicadores del esfuerzo en elevación</h4>
+                <table class="info-table">
+                    <thead><tr><th>Factor</th><th>Efecto técnico</th><th>Verificación pericial</th></tr></thead>
+                    <tbody>
+                        <tr><td>Ángulo de eslingado</td><td>A mayor ángulo respecto a la vertical, mayor tensión en cada ramal</td><td>Medición del ángulo real vs. ángulo de diseño en planos</td></tr>
+                        <tr><td>Efectos dinámicos</td><td>Aceleraciones bruscas incrementan la carga efectiva sobre el aparejo</td><td>Análisis de procedimientos de izado: arranques/paradas suaves</td></tr>
+                        <tr><td>Condiciones ambientales</td><td>Viento, lluvia o visibilidad reducida como factores concurrentes</td><td>Registro meteorológico del día del accidente; protocolos de parada</td></tr>
+                        <tr><td>Estado de la carga</td><td>Centro de gravedad inestable o superficies resbaladizas</td><td>Inspección de la carga: fijación, equilibrio, materiales de sujeción</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="definition-card">
+                <strong>Principio de jerarquía de medidas:</strong> En manutención de cargas, la peritación verifica que la empresa priorizó medidas colectivas (grúas, polipastos) sobre las individuales (fajas lumbares, EPIs). El uso exclusivo de EPIs sin ayudas mecánicas cuando el peso/frecuencia lo exige constituye deficiencia peritable.
+            </div>
+        </section>
+
+        <!-- ATEX E INCENDIOS -->
+        <section id="atex">
+            <h2>Atmósferas Explosivas (ATEX) y Protección contra Incendios</h2>
+            <p>La peritación en entornos ATEX evalúa la Clasificación de Zonas realizada por la empresa y la adecuación de equipos a la categoría requerida conforme al RD 681/2003.</p>
+            
+            <h3>Clasificación de zonas por probabilidad de atmósfera explosiva</h3>
+            <table class="info-table">
+                <thead><tr><th>Zona</th><th>Gas/Vapor</th><th>Polvo</th><th>Definición</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>0 / 20</strong></td><td>Gas</td><td>Polvo</td><td>Atmósfera explosiva presente de forma continua o prolongada</td></tr>
+                    <tr><td><strong>1 / 21</strong></td><td>Gas</td><td>Polvo</td><td>Atmósfera explosiva probable en funcionamiento normal</td></tr>
+                    <tr><td><strong>2 / 22</strong></td><td>Gas</td><td>Polvo</td><td>Atmósfera explosiva poco probable o de corta duración</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Fuentes de ignición no eléctricas a evaluar</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🔧</div>
+                    <h4>Chispas mecánicas</h4>
+                    <p>Por impacto o fricción de herramientas. El perito verifica el uso de herramientas anti-chispas (bronce, aluminio, plásticos conductivos) en zonas clasificadas.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔥</div>
+                    <h4>Superficies calientes</h4>
+                    <p>Motores, cojinetes, sistemas de escape. Se auditan temperaturas superficiales vs. temperatura de autoignición de la sustancia presente.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚡</div>
+                    <h4>Electricidad estática</h4>
+                    <p>Por flujo de materiales o movimiento de personal. Se verifica puesta a tierra de equipos, uso de calzado conductivo y humidificación ambiental.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔥</div>
+                    <h4>Llamas abiertas</h4>
+                    <p>Operaciones de soldadura, corte o calentamiento. Se auditan permisos de trabajo en caliente, vigilancia y extintores disponibles.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>Caso ATEX:</strong> Explosión en silo de harina. El perito acredita: (1) clasificación de zona 21 para polvo de harina, (2) uso de motor eléctrico categoría 2D inadecuado (requería categoría 1D), y (3) ausencia de sistema de extracción para mantener concentración por debajo del LEL. La combinación de estas deficiencias configura el nexo causal técnico.</p>
+            </div>
+
+            <div class="highlight">
+                <strong>Medidas organizativas verificables:</strong> Prohibición expresa de fumar y uso de llamas, utilización de herramientas anti-chispas, ventilación forzada para mantener concentración por debajo del Límite Inferior de Explosividad (LEL), y procedimientos de trabajo en caliente con permiso específico y vigilancia.
+            </div>
+        </section>
+
+        <!-- METODOLOGÍAS DE INVESTIGACIÓN -->
+        <section id="methods">
+            <h2>Metodologías Científicas en la Investigación Pericial</h2>
+            <p>La determinación de causas de accidentes requiere aplicación de métodos analíticos validados, garantizando trazabilidad del razonamiento, objetividad y resistencia a sesgos cognitivos.</p>
+            
+            <h3>Metodología SCRA (Síntoma – Causa – Remedio – Acción)</h3>
+            <p>Método estructurado que traza línea lógica desde el hecho lesivo hasta la deficiencia organizativa de gestión.</p>
+            <table class="info-table">
+                <thead><tr><th>Fase</th><th>Definición Técnica</th><th>Aplicación Pericial</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Síntoma</strong></td><td>Accidente, incidente o desviación con daños físicos/materiales manifestados</td><td>Descripción aséptica de la lesión y evento: localización anatómica, mecanismo biomecánico, secuencia temporal</td></tr>
+                    <tr><td><strong>Causa</strong></td><td>Motivo directo, origen material u omisión que desencadena el síntoma</td><td>Identificación de vulnerabilidad material o procedimental: ausencia de resguardo, procedimiento no aplicado, formación insuficiente</td></tr>
+                    <tr><td><strong>Remedio</strong></td><td>Medida inmediata para detener propagación del daño y asegurar la zona</td><td>Documentación de actuaciones de emergencia: parada de línea, balizamiento, primeros auxilios, bloqueo energético</td></tr>
+                    <tr><td><strong>Acción</strong></td><td>Modificación estructural para evitar recurrencia a largo plazo</td><td>Propuesta de medidas sistémicas: rediseño de protecciones, revisión de auditoría, actualización de procedimientos, acciones formativas</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Método del Árbol de Causas</h3>
+            <p>Técnica de razonamiento lógico retrospectivo que parte del daño materializado y retrocede cronológicamente mediante preguntas sistemáticas.</p>
+            
+            <div class="accordion">
+                <div class="accordion-header">🔗 Principios lógicos de conexión</div>
+                <div class="accordion-content">
+                    <p><strong>Cadena (Secuencia lineal):</strong> Hecho A ← Hecho B ← Hecho C<br>
+                    <em>Ejemplo:</em> Caída al vacío ← Ausencia de barandilla ← Omisión en planificación de obra</p>
+                    <p><strong>Conjunción:</strong> Hecho A ← (Hecho B + Hecho C)<br>
+                    <em>Ejemplo:</em> Electrocución ← Contacto con parte activa + Fallo de diferencial<br>
+                    <em>Ningún factor aislado habría provocado el accidente.</em></p>
+                    <p><strong>Disyunción:</strong> (Hecho A + Hecho B) ← Hecho C<br>
+                    <em>Ejemplo:</em> (Caída de herramienta + Chispa mecánica) ← Uso de equipo no ATEX en zona clasificada</p>
+                </div>
+            </div>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Categorización de deficiencias en el análisis</h4>
+                <table class="info-table">
+                    <thead><tr><th>Nivel de causa</th><th>Características</th><th>Ejemplos en seguridad</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Causas inmediatas</strong></td><td>Fallos técnicos evidentes en entorno físico; actos inseguros directos en el instante del siniestro</td><td>Ausencia de rodapié, no anclaje a línea de vida, retirada de resguardo</td></tr>
+                        <tr><td><strong>Causas básicas/subyacentes</strong></td><td>Factores organizativos y de gestión; deficiencias documentales o en recursos humanos</td><td>Ausencia de procedimiento seguro, falta de presupuesto para EPIs, insuficiente supervisión por mandos intermedios</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="definition-card">
+                <strong>Notas Técnicas de Prevención (NTP) como estándar técnico:</strong> Emitidas por el INSST, las NTP constituyen referencia del "estado del arte" técnico en prevención. La cita expresa de NTP en dictámenes (ej. NTP 442 para árbol de causas) aporta respaldo metodológico y refuerza la solidez técnica de las conclusiones.
+            </div>
+        </section>
+
+        <!-- EVIDENCIA TÉCNICA -->
+        <section id="evidence">
+            <h2>Recopilación y Análisis de la Evidencia Técnica</h2>
+            <p>La fundamentación de la peritación reside en la exhaustividad de la recogida, documentación y análisis de información, garantizando trazabilidad de hallazgos.</p>
+            
+            <h3>Evidencia Documental: La Trazabilidad Preventiva</h3>
+            <p>Constituye el rastro administrativo de la gestión preventiva, demostrando actuación proactiva o reactiva de la organización.</p>
+            <table class="info-table">
+                <thead><tr><th>Documentación crítica</th><th>Preguntas de verificación pericial</th><th>Indicador de deficiencia</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Evaluación de Riesgos</strong></td><td>¿Estaba identificado el riesgo específico que causó el accidente?</td><td>Riesgo no contemplado o subvalorado sin justificación técnica</td></tr>
+                    <tr><td><strong>Planificación Preventiva</strong></td><td>¿Se asignaron recursos, plazos y responsables para corregir el riesgo?</td><td>Medidas planificadas no ejecutadas sin causa justificada</td></tr>
+                    <tr><td><strong>Registros de Formación</strong></td><td>¿Recibió el trabajador formación específica para la tarea realizada?</td><td>Ausencia de certificado o contenido formativo no adecuado al puesto</td></tr>
+                    <tr><td><strong>Procedimientos de Trabajo</strong></td><td>¿Existía instrucción escrita para la operación realizada?</td><td>Procedimiento inexistente, desactualizado o no comunicado</td></tr>
+                    <tr><td><strong>Permisos de Trabajo Especiales</strong></td><td>¿Se validó por responsable técnico competente?</td><td>Permiso genérico, sin fecha/hora, o firmado por persona no habilitada</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Evidencia Material: Inspección Técnico-Ocular</h3>
+            <p>Obtenida mediante inspección directa del escenario o análisis de reportajes fotográficos y croquis oficiales.</p>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">📏</div>
+                    <h4>Instrumental de medición</h4>
+                    <p>Flexómetros/telémetros láser (alturas, distancias), dinamómetros (fuerzas), luxómetros (iluminancia), comprobadores de tensión (instalaciones eléctricas).</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📸</div>
+                    <h4>Protocolo fotográfico</h4>
+                    <p>Vista general del escenario, detalle de elementos de seguridad presentes/ausentes, estado de maquinaria, señalización, evidencia de daños materiales.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">❌</div>
+                    <h4>Constatación de ausencias</h4>
+                    <p>Documentar explícitamente espacios vacíos donde deberían ubicarse protecciones; registrar carencia de puntos de anclaje, señalización o sistemas de emergencia.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Evidencia Testimonial: Triangulación de la Información</h3>
+            <p>Información recabada de declaraciones de testigos, compañeros, mandos y, si procede, del accidentado.</p>
+            <div class="accordion">
+                <div class="accordion-header">🔄 Proceso de triangulación</div>
+                <div class="accordion-content">
+                    <p><strong>Paso 1:</strong> Recopilación independiente de declaraciones<br>
+                    <strong>Paso 2:</strong> Identificación de puntos comunes en cronología y hechos objetivos<br>
+                    <strong>Paso 3:</strong> Detección de divergencias en interpretación o percepción<br>
+                    <strong>Paso 4:</strong> Contraste con evidencia documental y material disponible<br>
+                    <strong>Paso 5:</strong> Síntesis de hechos probados con grado de certeza asociado</p>
+                    <p style="margin-top: 1rem;">La triangulación permite identificar divergencias entre procedimiento teórico documentado y práctica real de trabajo, frecuentemente influenciada por presión productiva, rutina o falta de supervisión.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Principio de objetividad testimonial:</strong> El perito no valida versiones; contrasta declaraciones con evidencia material y documental. Las discrepancias entre testimonios se documentan como hallazgos, no como conclusiones definitivas.
+            </div>
+        </section>
+
+        <!-- DICTAMEN EN SEGURIDAD -->
+        <section id="report">
+            <h2>Particularidades del Dictamen Pericial en Seguridad</h2>
+            <p>El dictamen pericial proporciona al tribunal una traducción técnica neutral de la mecánica del siniestro, descifrando normativas de seguridad e ingeniería aplicadas al suceso.</p>
+            
+            <h3>Establecimiento Riguroso del Nexo Causal</h3>
+            <p>Aspecto técnico-jurídico crítico: discriminación entre incumplimientos formales y causas materiales directas.</p>
+            <div class="definition-card">
+                <strong>Teoría de la Causalidad Adecuada aplicada:</strong> El nexo causal debe evidenciar que la ausencia de una medida preventiva es causa idónea, lógica y suficiente para explicar el resultado lesivo. No todo incumplimiento administrativo genera nexo causal respecto al accidente concreto.
+            </div>
+
+            <h3 style="margin-top: 2rem;">Análisis de concurrencia de comportamientos</h3>
+            <table class="info-table">
+                <thead><tr><th>Situación</th><th>Valoración Pericial</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Acto inseguro del operario</strong><br><em>(ej. omisión de arnés)</em></td><td>Determinar si responde a imprudencia temeraria o a tolerancia empresarial a malas prácticas</td></tr>
+                    <tr><td><strong>Rutina o fatiga como factor concurrente</strong></td><td>Evaluar si la organización implementó rotaciones, pausas o vigilancia adecuada</td></tr>
+                    <tr><td><strong>Falta de supervisión por mandos intermedios</strong></td><td>Valorar si existían procedimientos de control y si se aplicaron efectivamente</td></tr>
+                    <tr><td><strong>Presión productiva documentada</strong></td><td>Relacionar con priorización de resultados sobre seguridad en la cultura organizativa</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Peritación de la Coordinación de Actividades Empresariales (CAE)</h3>
+            <p>En centros compartidos con concurrencia de varias empresas, el análisis de responsabilidades requiere evaluación específica conforme al RD 171/2004.</p>
+            <div class="accordion">
+                <div class="accordion-header">🤝 Auditoría del intercambio documental</div>
+                <div class="accordion-content">
+                    <p>Verificación de transmisión efectiva de información sobre riesgos específicos de instalaciones por parte de la Empresa Titular. Comprobación de recepción y comprensión por empresas contratistas/subcontratistas. Documentación de medidas de emergencia coordinadas y simulacros conjuntos.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">👁️ Eficacia de figuras de control en campo</div>
+                <div class="accordion-content">
+                    <p>Designación por escrito de Coordinador de Seguridad y Salud (obras) o Recurso Preventivo. Presencia efectiva en operaciones de riesgo especial concurrente. Capacidad de paralización de trabajos ante incumplimientos graves. Registro de actuaciones, observaciones y medidas correctivas adoptadas.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>Caso CAE:</strong> Accidente de trabajador de subcontrata en obra. El perito verifica: (1) si la empresa titular transmitió información sobre riesgos de instalaciones existentes, (2) si la subcontrata recibió y comprendió dicha información, y (3) si existió coordinación operativa real o solo intercambio documental automatizado. La ausencia de coordinación efectiva configura deficiencia peritable.</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Análisis Estructural de la Organización Preventiva</h3>
+            <p>La investigación pericial culmina proyectando la mirada sobre el modelo preventivo global de la organización.</p>
+            <table class="info-table">
+                <thead><tr><th>Modalidad organizativa</th><th>Criterios de Evaluación Pericial</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Asunción personal por empresario</strong></td><td>Recursos dedicados, formación específica, tiempo asignado a prevención</td></tr>
+                    <tr><td><strong>Designación de trabajadores</strong></td><td>Competencia técnica, dedicación horaria, independencia jerárquica</td></tr>
+                    <tr><td><strong>Servicio de Prevención Propio</strong></td><td>Dimensión del equipo, cualificación, integración en línea de mando</td></tr>
+                    <tr><td><strong>Servicio de Prevención Ajeno</strong></td><td>Frecuencia de visitas, profundidad de auditorías, seguimiento de recomendaciones</td></tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <strong>Principio de integración preventiva:</strong> El sistema preventivo funciona como productor de documentos teóricos o está integrado orgánicamente en la producción. El grado de "diligencia debida" se evidencia mediante la aplicación efectiva de medidas preventivas identificadas como necesarias, no mediante la mera existencia documental de evaluaciones de riesgo.
+            </div>
+        </section>
+
+        <!-- NUEVOS HORIZONTES -->
+        <section id="future">
+            <h2>Nuevos Horizontes: Seguridad en la Robótica y Colaboración Humano-Máquina</h2>
+            <p>La introducción de robots colaborativos (Cobots) modifica los criterios tradicionales de seguridad, desplazando el enfoque desde barreras físicas hacia sistemas de detección y limitación de energía.</p>
+            
+            <h3>Diferencias clave en peritación de entornos con Cobots</h3>
+            <table class="info-table">
+                <thead><tr><th>Seguridad Tradicional</th><th>Seguridad en Robótica Colaborativa</th></tr></thead>
+                <tbody>
+                    <tr><td>Resguardos físicos fijos como protección primaria</td><td>Sensores de proximidad, visión artificial, láser de seguridad</td></tr>
+                    <tr><td>Parada total ante acceso a zona peligrosa</td><td>Reducción dinámica de velocidad y fuerza ante detección de persona</td></tr>
+                    <tr><td>Validación mediante inspección visual de protecciones</td><td>Validación mediante pruebas de software y calibración de sensores</td></tr>
+                    <tr><td>Normativa centrada en hardware</td><td>Normativa ISO 10218 (robots industriales) e ISO/TS 15066 (robots colaborativos)</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Aspectos críticos en peritación de sistemas colaborativos</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">💻</div>
+                    <h4>Configuración del software</h4>
+                    <p>Parámetros de velocidad, fuerza y distancia de parada. El perito verifica que los valores configurados cumplen con ISO/TS 15066 para la tarea concreta.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔧</div>
+                    <h4>Calibración de sensores</h4>
+                    <p>Frecuencia y metodología de calibración de sensores de presencia. Se auditan registros de mantenimiento y pruebas de validación periódicas.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">👥</div>
+                    <h4>Formación de operarios</h4>
+                    <p>Contenidos específicos en interacción segura con Cobots. El perito verifica que la formación incluyó escenarios de fallo del sistema de seguridad.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔐</div>
+                    <h4>Ciberseguridad industrial</h4>
+                    <p>Protección de sistemas de control frente a accesos no autorizados. Fallos en programación o comunicación pueden comprometer protecciones funcionales.</p>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <strong>Requisito pericial emergente:</strong> La peritación en robótica colaborativa requiere conocimientos interdisciplinares en prevención, automatización y ciberseguridad industrial. El perito debe acreditar formación específica o contar con apoyo de expertos en estas áreas para garantizar la solidez técnica del dictamen.
+            </div>
+
+            <div class="highlight">
+                <strong>Principio de actualización técnica:</strong> El estado de la técnica evoluciona. El perito debe fundamentar sus conclusiones en la normativa y estándares vigentes en el momento de los hechos, no en criterios posteriores. La consulta de NTP actualizadas y guías del INSST es esencial para mantener la pertinencia técnica del dictamen.
+            </div>
+        </section>
+
+        <!-- AUTOEVALUACIÓN -->
+        <section id="quiz">
+            <h2>Autoevaluación: Pon a prueba tus conocimientos</h2>
+            <p>Responde estas preguntas para verificar tu comprensión de los criterios técnicos de seguridad en el trabajo. ¡Recuerda que es una herramienta formativa!</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. Según el RD 486/1997, ¿cuál es la altura mínima exigible para barandillas de protección en lugares de trabajo?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) 80 cm</div>
+                    <div class="quiz-option" data-correct="true">B) 90 cm</div>
+                    <div class="quiz-option" data-correct="false">C) 100 cm</div>
+                    <div class="quiz-option" data-correct="false">D) 110 cm</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Correcto! El RD 486/1997 exige barandillas rígidas de altura mínima 90 cm, con listones intermedios y rodapiés, para protección de aberturas y desniveles.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. El RD 486/1997 establece que las barandillas de protección deben tener una altura mínima de 90 cm, además de listones intermedios y rodapiés para evitar caídas de personas u objetos.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">2. En la metodología SCRA, ¿qué representa la fase "Acción"?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Descripción objetiva del hecho bruto</div>
+                    <div class="quiz-option" data-correct="false">B) Medida inmediata para detener propagación del daño</div>
+                    <div class="quiz-option" data-correct="true">C) Modificación estructural para evitar recurrencia a largo plazo</div>
+                    <div class="quiz-option" data-correct="false">D) Identificación de factores concurrentes en el accidente</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Exacto! La fase "Acción" en SCRA se refiere a modificaciones estructurales del sistema de gestión para prevenir recurrencias: rediseño de protecciones, actualización de procedimientos, acciones formativas sistémicas.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. En SCRA, "Acción" corresponde a modificaciones estructurales del sistema de gestión para evitar recurrencias a largo plazo. La descripción del hecho es "Síntoma", la medida inmediata es "Remedio".</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">3. ¿Qué caracteriza a las "causas básicas o raíz" en el análisis de accidentes?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Son los fallos técnicos evidentes en el entorno físico</div>
+                    <div class="quiz-option" data-correct="true">B) Son factores organizativos y de gestión que permiten que las causas inmediatas se materialicen</div>
+                    <div class="quiz-option" data-correct="false">C) Son circunstancias ajenas al ámbito laboral</div>
+                    <div class="quiz-option" data-correct="false">D) Solo aplican en accidentes de tráfico in itinere</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Muy bien! Las causas básicas o raíz son factores sistémicos de gestión (diseño deficiente, falta de recursos, presión productiva, cultura preventiva débil) que originan o permiten que las causas inmediatas se materialicen.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Las causas inmediatas son los fallos técnicos o actos inseguros directos. Las causas raíz o básicas son los factores organizativos y de gestión que permiten que esas deficiencias ocurran.</div>
+            </div>
+            
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>¡Felicidades por completar el Módulo 3!</strong> Ahora dominas los criterios técnicos para peritar en seguridad en el trabajo: lugares de trabajo, maquinaria, riesgo eléctrico, manutención de cargas y ATEX. En el Módulo 4 aplicarás estos principios a la especialidad de Higiene Industrial, analizando contaminantes químicos, físicos y biológicos.
+            </div>
+        </section>
+
+        <div class="module-nav">
+            <button class="module-btn" id="prevModule">← Módulo Anterior</button>
+            <button class="module-btn" id="nextModule">Siguiente Módulo →</button>
+        </div>
+
+        <footer>
+            <p>Módulo 3: Peritación de la Práctica Preventiva: Seguridad en el Trabajo · Formación Universitaria en PRL</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de primer año</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            let currentSectionIndex = 0;
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = progress;
+            }
+            
+            function showSection(sectionId) {
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.section === sectionId) btn.classList.add('active');
+                });
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.dataset.section === sectionId) dot.classList.add('active');
+                });
+                currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            navButtons.forEach(button => button.addEventListener('click', function() { showSection(this.dataset.section); }));
+            indicatorDots.forEach(dot => dot.addEventListener('click', function() { showSection(this.dataset.section); }));
+            
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            });
+            
+            const quizContainers = document.querySelectorAll('.quiz-container');
+            quizContainers.forEach(container => {
+                const options = container.querySelectorAll('.quiz-option');
+                const button = container.querySelector('.quiz-btn');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'none';
+                        button.disabled = false;
+                    });
+                });
+                
+                button.addEventListener('click', function() {
+                    const selectedOption = container.querySelector('.quiz-option.selected');
+                    if(!selectedOption) return;
+                    const isCorrect = selectedOption.dataset.correct === 'true';
+                    if(isCorrect) {
+                        selectedOption.classList.add('correct');
+                        feedbackCorrect.style.display = 'block';
+                        feedbackIncorrect.style.display = 'none';
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'block';
+                    }
+                    button.disabled = true;
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                });
+            });
+            
+            document.getElementById('prevModule').addEventListener('click', function() { alert('En un entorno real, este botón te llevaría al Módulo 2: El Marco Procesal de la Peritación en Seguridad y Salud en el Trabajo.'); });
+            document.getElementById('nextModule').addEventListener('click', function() { alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 4: Peritación de la Práctica Preventiva: Higiene Industrial.'); });
+            
+            const glossaryTerms = document.querySelectorAll('.glossary-term');
+            glossaryTerms.forEach(term => {
+                term.addEventListener('click', function(e) {
+                    if(window.innerWidth < 768) {
+                        e.preventDefault();
+                        alert(`Definición: ${this.getAttribute('data-definition')}`);
+                    }
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

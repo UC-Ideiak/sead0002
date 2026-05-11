@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claves Fundamentales de la Ley 31/1995 de PRL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sketch-border: 3px dashed #5a6b8c;
+            --sketch-border-light: 2px dashed #8a9ab6;
+            --primary: #4a6fa5;
+            --secondary: #6b8dbe;
+            --accent: #e67e5a;
+            --background: #f8f9fc;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6b8c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            background-image: radial-gradient(var(--sketch-border-light) 1px, transparent 1px), radial-gradient(var(--sketch-border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            padding-bottom: 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header {
+            text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;
+            border: var(--sketch-border); background: var(--card-bg);
+            border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px); z-index: 0;
+        }
+        header * { position: relative; z-index: 1; }
+        h1 { font-family: 'Kalam', cursive; font-size: 3.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-family: 'Kalam', cursive; font-size: 1.8rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 400; }
+        .intro-text { max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: var(--text-light); }
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; margin: 0.5rem; border: 2px dashed white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); background: rgba(255, 255, 255, 0.85); border-radius: 8px; position: sticky; top: 1rem; z-index: 100; box-shadow: var(--shadow); }
+        .nav-btn { background: white; border: 2px solid var(--secondary); padding: 0.7rem 1.4rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.1rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2); }
+        .nav-btn:hover, .nav-btn.active { background: var(--secondary); color: white; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3); }
+        section { margin-bottom: 2.5rem; border: var(--sketch-border); background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); display: none; animation: fadeIn 0.4s ease; }
+        section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-family: 'Kalam', cursive; font-size: 2.4rem; color: var(--primary); margin: 0 0 1.5rem 0; padding-bottom: 0.8rem; border-bottom: 2px dashed var(--secondary); font-weight: 700; }
+        h3 { font-family: 'Kalam', cursive; font-size: 1.9rem; color: var(--secondary); margin: 1.8rem 0 1rem; font-weight: 600; }
+        p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .definition-card { border-left: 4px solid var(--accent); background: rgba(230, 126, 90, 0.08); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; position: relative; }
+        .definition-card::before { content: "💡"; position: absolute; left: -15px; top: -10px; background: var(--accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; border: 2px solid white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .definition-card strong { color: var(--primary); font-weight: 600; }
+        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.8rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        .info-table th { background: var(--primary); color: white; font-family: 'Kalam', cursive; font-size: 1.3rem; padding: 1.1rem 1.4rem; text-align: left; font-weight: 600; }
+        .info-table td { padding: 1rem 1.4rem; border-bottom: 1px dashed var(--sketch-border-light); }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table tr:nth-child(even) { background: rgba(90, 107, 140, 0.04); }
+        .info-table tr:hover { background: rgba(107, 141, 190, 0.08); }
+        .accordion { margin: 1.5rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; }
+        .accordion-header { background: var(--secondary); color: white; padding: 1.1rem 1.5rem; font-family: 'Kalam', cursive; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .accordion-header:hover { background: var(--primary); }
+        .accordion-header::after { content: "+"; font-size: 1.8rem; font-weight: 300; }
+        .accordion-header.active::after { content: "−"; }
+        .accordion-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: rgba(255, 255, 255, 0.9); }
+        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
+        .glossary-term { border-bottom: 2px dashed var(--accent); cursor: help; position: relative; font-weight: 500; color: var(--primary); }
+        .glossary-term:hover::after { content: attr(data-definition); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.95rem; width: 280px; text-align: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px dashed white; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .quiz-container { background: rgba(107, 141, 190, 0.08); border: var(--sketch-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .quiz-question { font-weight: 600; margin-bottom: 1.2rem; font-size: 1.15rem; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+        .quiz-option { padding: 0.9rem 1.4rem; background: white; border: 2px solid var(--secondary); border-radius: 8px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.8rem; }
+        .quiz-option:hover { background: rgba(107, 141, 190, 0.1); transform: translateX(3px); }
+        .quiz-option.selected { background: var(--secondary); color: white; border-color: var(--primary); }
+        .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
+        .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
+        .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
+        .quiz-feedback.correct { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
+        .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
+        .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .key-point { background: white; border: var(--sketch-border-light); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition); }
+        .key-point:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2); }
+        .key-point-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .key-point h4 { font-family: 'Kalam', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; font-weight: 600; }
+        .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
+        .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
+        .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 15%; transition: width 0.4s ease; }
+        .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
+        footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
+        .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+        .module-btn { background: white; border: var(--sketch-border); padding: 1rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: var(--shadow); flex: 1; max-width: 200px; }
+        .module-btn:hover { background: var(--secondary); color: white; transform: translate(-3px, -3px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25); }
+        .module-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .sketch-box { position: relative; border: var(--sketch-border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; background: white; box-shadow: var(--shadow); }
+        .highlight { background: rgba(74, 111, 165, 0.08); border-left: 4px solid var(--primary); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .highlight strong { color: var(--primary); }
+        .example-box { background: rgba(230, 126, 90, 0.1); border: 2px dashed var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
+        .example-box::before { content: "Clave para entender"; position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 0.2rem 1rem; border-radius: 20px; font-family: 'Kalam', cursive; font-size: 0.95rem; font-weight: 600; }
+        .section-indicator { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem 0; }
+        .indicator-dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d9e6; cursor: pointer; transition: var(--transition); border: 2px solid var(--secondary); }
+        .indicator-dot.active { background: var(--accent); transform: scale(1.2); }
+        .indicator-dot:hover { background: var(--secondary); }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; } .subtitle { font-size: 1.5rem; } .nav-container { flex-direction: column; align-items: center; } .nav-btn { width: 100%; max-width: 300px; } section { padding: 1.5rem; } h2 { font-size: 2.1rem; } h3 { font-size: 1.7rem; } .info-table { font-size: 0.95rem; } .info-table th, .info-table td { padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Claves Fundamentales de la Ley 31/1995</h1>
+            <div class="subtitle">Prevención de Riesgos Laborales · Guía Interactiva</div>
+            <p class="intro-text">Descubre los pilares de la normativa básica española en seguridad y salud en el trabajo. Este recurso traduce la estructura legal en conceptos claros, organizados progresivamente y adaptados para tu formación universitaria inicial.</p>
+            <div>
+                <span class="badge">📜 Norma Base</span>
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="intro">🏠 Inicio</button>
+            <button class="nav-btn" data-section="scope">⚖️ Ámbito y Definiciones</button>
+            <button class="nav-btn" data-section="rights">🤝 Derechos y Deberes</button>
+            <button class="nav-btn" data-section="principles">🛡️ Principios Preventivos</button>
+            <button class="nav-btn" data-section="organization">🏢 Organización</button>
+            <button class="nav-btn" data-section="participation">🗣️ Participación</button>
+            <button class="nav-btn" data-section="surveillance">🔍 Vigilancia y Actuación</button>
+            <button class="nav-btn" data-section="quiz">✅ Autoevaluación</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-title">Tu progreso en la guía</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text"><span id="progressPercent">12</span>% completado</div>
+        </div>
+
+        <div class="section-indicator">
+            <div class="indicator-dot active" data-section="intro"></div>
+            <div class="indicator-dot" data-section="scope"></div>
+            <div class="indicator-dot" data-section="rights"></div>
+            <div class="indicator-dot" data-section="principles"></div>
+            <div class="indicator-dot" data-section="organization"></div>
+            <div class="indicator-dot" data-section="participation"></div>
+            <div class="indicator-dot" data-section="surveillance"></div>
+            <div class="indicator-dot" data-section="quiz"></div>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="intro" class="active">
+            <h2>¡Bienvenido a la Guía de la Ley 31/1995!</h2>
+            <p>Esta ley constituye el <strong>pilar fundamental</strong> de la política de protección de la salud de los trabajadores en España. Su objetivo es promover la seguridad y la salud mediante la aplicación de medidas y el desarrollo de actividades necesarias para la <span class="glossary-term" data-definition="Conjunto de actividades o medidas adoptadas o previstas en todas las fases de actividad de la empresa con el fin de evitar o disminuir los riesgos derivados del trabajo.">prevención</span> de riesgos derivados del trabajo.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo de esta guía:</strong> Extraer y organizar las claves estructurales de la norma, facilitando la comprensión de sus principios, derechos, obligaciones y mecanismos de participación, sin necesidad de conocimientos jurídicos previos.
+            </div>
+
+            <h3>¿Qué encontrarás aquí?</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🌍</div>
+                    <h4>Ámbito de aplicación</h4>
+                    <p>A quién protege y qué actividades se excluyen por su naturaleza</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚖️</div>
+                    <h4>Derechos y deberes</h4>
+                    <p>La relación entre la protección del trabajador y el deber empresarial</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📐</div>
+                    <h4>Principios de acción</h4>
+                    <p>Las 9 reglas básicas que deben guiar toda medida preventiva</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🏗️</div>
+                    <h4>Organización y participación</h4>
+                    <p>Cómo se estructura la prevención y cómo intervienen los trabajadores</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Nota para estudiantes:</strong> No necesitas memorizar artículos. Enfócate en comprender la lógica del sistema: la ley establece un marco mínimo indisponible que integra la prevención en la gestión diaria de la empresa, priorizando siempre la protección de la vida y la salud.
+            </div>
+        </section>
+
+        <!-- ÁMBITO Y DEFINICIONES -->
+        <section id="scope">
+            <h2>Ámbito de Aplicación y Definiciones Clave</h2>
+            <p>La ley se aplica tanto a relaciones laborales privadas como al personal civil con relación administrativa o estatutario de las Administraciones Públicas, incluyendo socios de cooperativas que prestan trabajo personal. Se excluyen únicamente actividades cuyas particularidades lo impidan en funciones públicas de policía, seguridad, protección civil operativa, peritaje forense en calamidades y Fuerzas Armadas.</p>
+            
+            <h3>Conceptos fundamentales (Art. 4)</h3>
+            <table class="info-table">
+                <thead><tr><th>Término Legal</th><th>Definición Operativa</th><th>Relevancia para el estudiante</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Riesgo laboral</strong></td>
+                        <td>Posibilidad de que un trabajador sufra un determinado daño derivado del trabajo.</td>
+                        <td>Se califica valorando conjuntamente la probabilidad de que se produzca y la severidad del mismo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Daños derivados del trabajo</strong></td>
+                        <td>Enfermedades, patologías o lesiones sufridas con motivo u ocasión del trabajo.</td>
+                        <td>Define el alcance de la protección: no solo accidentes, también enfermedades y patologías.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Riesgo grave e inminente</strong></td>
+                        <td>Aquel que resulte probable racionalmente que se materialice en un futuro inmediato y pueda suponer un daño grave.</td>
+                        <td>Activa mecanismos de emergencia, incluyendo la paralización inmediata de trabajos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Condición de trabajo</strong></td>
+                        <td>Cualquier característica del trabajo que pueda influir significativamente en la generación de riesgos.</td>
+                        <td>Incluye locales, equipos, agentes químicos/físicos/biológicos y la propia organización del trabajo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equipo de protección individual (EPI)</strong></td>
+                        <td>Cualquier equipo destinado a ser llevado o sujetado por el trabajador para protegerle de riesgos.</td>
+                        <td>Solo se utiliza cuando los riesgos no pueden evitarse o limitarse suficientemente por medios colectivos.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <p><strong>Carácter de norma mínima:</strong> La ley establece un nivel de protección indisponible. Esto significa que los convenios colectivos o acuerdos empresariales pueden mejorar estas garantías, pero nunca reducirlas. Es el suelo mínimo de derechos, no el techo.</p>
+            </div>
+        </section>
+
+        <!-- DERECHOS Y DEBERES -->
+        <section id="rights">
+            <h2>Derechos y Obligaciones Fundamentales</h2>
+            <p>La ley establece un equilibrio entre el derecho básico del trabajador a una protección eficaz y el deber correlativo del empresario de garantizar dicha seguridad. Esta relación se articula mediante derechos de información, formación, vigilancia de la salud y paralización ante peligro.</p>
+            
+            <h3>El Deber General de Protección Empresarial (Art. 14)</h3>
+            <div class="accordion">
+                <div class="accordion-header">🛡️ Garantía integral de seguridad y salud</div>
+                <div class="accordion-content">
+                    <p>El empresario debe garantizar la protección en <strong>todos los aspectos relacionados con el trabajo</strong>. Esto implica integrar la actividad preventiva en la empresa y adoptar cuantas medidas sean necesarias, desarrollando una acción permanente de seguimiento para perfeccionar continuamente la identificación, evaluación y control de riesgos.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">💰 Coste de las medidas preventivas</div>
+                <div class="accordion-content">
+                    <p>La ley establece expresamente que <strong>el coste de las medidas relativas a la seguridad y la salud en el trabajo no deberá recaer en modo alguno sobre los trabajadores</strong>. Es una obligación exclusiva de la organización.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Obligaciones del Trabajador (Art. 29)</h3>
+            <p>El trabajador debe velar por su propia seguridad y salud, y por la de aquellas personas a las que pueda afectar su actividad, conforme a su formación y a las instrucciones recibidas. Sus deberes específicos incluyen:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Usar adecuadamente máquinas, herramientas y sustancias según su naturaleza y riesgos previsibles.</li>
+                <li>Utilizar correctamente los EPIs facilitados.</li>
+                <li>No poner fuera de funcionamiento los dispositivos de seguridad existentes.</li>
+                <li>Informar de inmediato a su superior sobre situaciones que entrañen riesgo.</li>
+                <li>Cooperar con el empresario para garantizar condiciones de trabajo seguras.</li>
+            </ul>
+            <div class="highlight">
+                <strong>Recuerda:</strong> El incumplimiento de estas obligaciones por parte del trabajador tiene la consideración de incumplimiento laboral. Sin embargo, las obligaciones del trabajador complementan las del empresario, pero nunca lo eximen de su deber principal de protección.
+            </div>
+        </section>
+
+        <!-- PRINCIPIOS PREVENTIVOS -->
+        <section id="principles">
+            <h2>Los 9 Principios de la Acción Preventiva</h2>
+            <p>El artículo 15 establece las reglas de oro que deben guiar toda medida preventiva. No son meras recomendaciones, sino <strong>mandatos legales</strong> que estructuran cómo debe actuar la empresa para cumplir su deber de protección.</p>
+            
+            <table class="info-table">
+                <thead><tr><th>Nº</th><th>Principio</th><th>Significado práctico</th></tr></thead>
+                <tbody>
+                    <tr><td>a)</td><td><strong>Evitar los riesgos</strong></td><td>La mejor protección es eliminar el peligro desde el diseño o la organización.</td></tr>
+                    <tr><td>b)</td><td><strong>Evaluar los riesgos que no se puedan evitar</strong></td><td>Si no se eliminan, deben identificarse y cuantificarse técnicamente.</td></tr>
+                    <tr><td>c)</td><td><strong>Combatir los riesgos en su origen</strong></td><td>Actuar donde nace el problema, no solo sobre sus consecuencias.</td></tr>
+                    <tr><td>d)</td><td><strong>Adaptar el trabajo a la persona</strong></td><td>Diseñar puestos, elegir equipos y métodos que atenúen el trabajo monótono y repetitivo.</td></tr>
+                    <tr><td>e)</td><td><strong>Tener en cuenta la evolución de la técnica</strong></td><td>Actualizar medidas conforme avancen los conocimientos y tecnologías disponibles.</td></tr>
+                    <tr><td>f)</td><td><strong>Sustituir lo peligroso por lo seguro</strong></td><td>Reemplazar agentes, procesos o materiales peligrosos por alternativas de menor riesgo.</td></tr>
+                    <tr><td>g)</td><td><strong>Planificar la prevención</strong></td><td>Integrar técnica, organización, condiciones de trabajo, relaciones sociales y factores ambientales.</td></tr>
+                    <tr><td>h)</td><td><strong>Protección colectiva sobre individual</strong></td><td>Priorizar medidas que protejan a todos (ventilación, resguardos) antes que el EPI personal.</td></tr>
+                    <tr><td>i)</td><td><strong>Dar instrucciones debidas</strong></td><td>Formar y comunicar claramente cómo trabajar de forma segura.</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Principio de Previsibilidad (Art. 15.4)</h3>
+            <div class="definition-card">
+                <strong>Clave legal esencial:</strong> La efectividad de las medidas preventivas deberá prever las <em>distracciones o imprudencias no temerarias</em> que pudiera cometer el trabajador. La ley reconoce que el error humano es previsible; por tanto, las protecciones deben ser robustas y no depender exclusivamente de la atención constante del operario.
+            </div>
+        </section>
+
+        <!-- ORGANIZACIÓN -->
+        <section id="organization">
+            <h2>Organización de la Prevención en la Empresa</h2>
+            <p>La prevención no es un documento aislado, sino un <strong>plan integrado</strong> en el sistema general de gestión de la empresa. La ley establece instrumentos esenciales para su desarrollo y aplicación.</p>
+            
+            <h3>Instrumentos Esenciales (Art. 16)</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">📋</div>
+                    <h4>Plan de Prevención</h4>
+                    <p>Incluye estructura organizativa, responsabilidades, funciones, procedimientos y recursos necesarios para la acción preventiva en todos los niveles jerárquicos.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔍</div>
+                    <h4>Evaluación de Riesgos</h4>
+                    <p>Proceso inicial y periódico que tiene en cuenta la naturaleza de la actividad, características de puestos y trabajadores. Debe actualizarse cuando cambien las condiciones o se produzcan daños.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📅</div>
+                    <h4>Planificación de la Actividad</h4>
+                    <p>Si la evaluación revela riesgos, el empresario debe planificar actividades preventivas con plazos, responsables y recursos, asegurando su ejecución y seguimiento continuo.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Modalidades Organizativas (Arts. 30-31)</h3>
+            <p>La empresa debe organizar la prevención mediante una o varias de estas vías, según tamaño, riesgos y peligrosidad:</p>
+            <table class="info-table">
+                <thead><tr><th>Modalidad</th><th>Características</th><th>Requisitos clave</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Asunción personal por el empresario</strong></td><td>Para empresas ≤10 trabajadores (o ≤25 con un solo centro)</td><td>Desarrollo habitual en el centro y capacidad necesaria según riesgos.</td></tr>
+                    <tr><td><strong>Designación de trabajadores</strong></td><td>Trabajadores internos dedicados a la prevención</td><td>Capacidad necesaria, tiempo y medios precisos, número suficiente según tamaño y riesgos.</td></tr>
+                    <tr><td><strong>Servicio de Prevención Propio</strong></td><td>Constitución de un equipo interno especializado</td><td>Interdisciplinariedad, medios apropiados, formación y dedicación adecuadas a los tipos de riesgo.</td></tr>
+                    <tr><td><strong>Servicio de Prevención Ajeno</strong></td><td>Concertación con entidad especializada externa</td><td>Acreditación por autoridad laboral, póliza de seguro de responsabilidad, colaboración con la empresa.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <strong>Presencia de Recursos Preventivos (Art. 32 bis):</strong> Es obligatoria en el centro de trabajo cuando: (a) los riesgos puedan agravarse por concurrencia de operaciones diversas, (b) se realicen actividades consideradas peligrosas o con riesgos especiales, o (c) la Inspección de Trabajo lo requiera por las condiciones detectadas.
+            </div>
+        </section>
+
+        <!-- PARTICIPACIÓN -->
+        <section id="participation">
+            <h2>Participación y Representación de los Trabajadores</h2>
+            <p>La ley reconoce que la prevención es más efectiva cuando los trabajadores participan activamente. Establece mecanismos de consulta, representación especializada y órganos paritarios para garantizar una protección equilibrada.</p>
+            
+            <h3>Derecho a la Consulta y Participación (Arts. 33-34)</h3>
+            <p>El empresario debe consultar a los trabajadores, con la debida antelación, sobre decisiones relativas a: planificación y organización del trabajo, introducción de nuevas tecnologías, organización de actividades de prevención, designación de trabajadores para emergencias, formación preventiva y cualquier acción con efectos sustanciales sobre seguridad y salud.</p>
+            
+            <h3 style="margin-top: 2rem;">Delegados de Prevención (Arts. 35-36)</h3>
+            <p>Son los representantes de los trabajadores con funciones específicas en materia de prevención. Su número escala según la plantilla:</p>
+            <table class="info-table">
+                <thead><tr><th>Plantilla</th><th>Nº Delegados</th></tr></thead>
+                <tbody>
+                    <tr><td>≤ 30 trabajadores</td><td>Delegado de Personal (o 1 elegido por y entre ellos en empresas de 31-49)</td></tr>
+                    <tr><td>50 - 100</td><td>2</td></tr>
+                    <tr><td>101 - 500</td><td>3</td></tr>
+                    <tr><td>501 - 1.000</td><td>4</td></tr>
+                    <tr><td>1.001 - 2.000</td><td>5</td></tr>
+                    <tr><td>2.001 - 3.000</td><td>6</td></tr>
+                    <tr><td>3.001 - 4.000</td><td>7</td></tr>
+                    <tr><td>> 4.001</td><td>8</td></tr>
+                </tbody>
+            </table>
+            <p>Sus competencias incluyen colaborar con la dirección, promover la cooperación, ser consultados, vigilar el cumplimiento de la normativa, acompañar a técnicos e inspectores, y realizar visitas a los lugares de trabajo.</p>
+
+            <h3 style="margin-top: 2rem;">Comité de Seguridad y Salud (Arts. 38-39)</h3>
+            <p>Órgano paritario y colegiado que se constituye en empresas o centros con <strong>50 o más trabajadores</strong>. Está formado por los Delegados de Prevención y representantes del empresario en número igual. Se reúne trimestralmente y participa en la elaboración, puesta en práctica y evaluación de los planes de prevención, promoviendo iniciativas para mejorar las condiciones existentes.</p>
+
+            <div class="definition-card">
+                <strong>Garantías de los representantes:</strong> El tiempo dedicado a sus funciones es considerado tiempo de trabajo efectivo. El empresario debe proporcionarles los medios y la formación preventiva necesarios, sin que el coste recaiga sobre ellos. Deben guardar sigilo profesional sobre la información a la que tengan acceso.
+            </div>
+        </section>
+
+        <!-- VIGILANCIA Y ACTUACIONES -->
+        <section id="surveillance">
+            <h2>Vigilancia de la Salud, Coordinación y Actuaciones Inspectoras</h2>
+            <p>La ley cierra el ciclo preventivo con mecanismos de control sanitario, coordinación entre empresas y poderes de vigilancia pública para garantizar el cumplimiento real de las obligaciones.</p>
+            
+            <h3>Vigilancia de la Salud (Art. 22)</h3>
+            <p>El empresario garantizará la vigilancia periódica del estado de salud en función de los riesgos inherentes al trabajo. Este derecho se rige por principios estrictos:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>Carácter voluntario:</strong> Solo se exceptúa cuando sea imprescindible para evaluar efectos de las condiciones de trabajo, verificar si el estado de salud puede constituir peligro, o esté establecido en disposiciones legales específicas.</li>
+                <li><strong>Intimidad y confidencialidad:</strong> Se respeta siempre la dignidad de la persona. Los datos no podrán usarse con fines discriminatorios ni en perjuicio del trabajador.</li>
+                <li><strong>Información a la empresa:</strong> El acceso a información médica se limita al personal sanitario. Al empresario solo se le comunican las conclusiones sobre <strong>aptitud del trabajador</strong> para el puesto o la necesidad de mejorar medidas de protección.</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem;">Coordinación de Actividades Empresariales (Art. 24)</h3>
+            <p>Cuando en un mismo centro trabajen empresas distintas, todas deben cooperar en la aplicación de la normativa. El <strong>empresario titular</strong> del centro debe proporcionar información e instrucciones adecuadas sobre riesgos y medidas de emergencia. Las empresas que contraten o subcontraten deben vigilar el cumplimiento de la normativa por parte de sus contratistas.</p>
+
+            <h3 style="margin-top: 2rem;">Inspección de Trabajo y Paralización (Arts. 9, 43-44)</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🔎</div>
+                    <h4>Función de vigilancia</h4>
+                    <p>La Inspección vigila el cumplimiento, asesora, informa en procedimientos judiciales y puede ordenar la paralización inmediata de trabajos cuando exista riesgo grave e inminente.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🛑</div>
+                    <h4>Paralización de trabajos</h4>
+                    <p>Si se advierte riesgo grave e inminente, el Inspector puede ordenar la parada inmediata. La empresa puede impugnarla ante la autoridad laboral en 3 días, pero debe cumplirla de inmediato mientras se resuelve.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🤝</div>
+                    <h4>Colaboración con los trabajadores</h4>
+                    <p>Los trabajadores y sus representantes pueden recurrir a la Inspección si consideran que las medidas adoptadas no son suficientes. El Inspector comunicará su visita al empresario y a los Delegados de Prevención.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Responsabilidades (Art. 42):</strong> El incumplimiento de las obligaciones en materia de prevención dará lugar a responsabilidades administrativas, y en su caso, penales y civiles por daños y perjuicios. Estas responsabilidades son compatibles con el recargo de prestaciones económicas de la Seguridad Social.
+            </div>
+        </section>
+
+        <!-- AUTOEVALUACIÓN -->
+        <section id="quiz">
+            <h2>Autoevaluación: Pon a prueba tu comprensión</h2>
+            <p>Responde estas preguntas para verificar que has interiorizado las claves estructurales de la Ley 31/1995. ¡Recuerda que es una herramienta formativa!</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. Según la ley, ¿qué debe prever la efectividad de las medidas preventivas respecto al comportamiento humano?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Que los trabajadores nunca cometerán errores si reciben formación suficiente</div>
+                    <div class="quiz-option" data-correct="true">B) Las distracciones o imprudencias no temerarias que pudiera cometer el trabajador</div>
+                    <div class="quiz-option" data-correct="false">C) Únicamente las faltas de atención deliberadas y reiteradas</div>
+                    <div class="quiz-option" data-correct="false">D) La capacidad del trabajador para asumir voluntariamente los riesgos del puesto</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Correcto! El Art. 15.4 establece que la efectividad de las medidas preventivas deberá prever las distracciones o imprudencias no temerarias. La ley reconoce que el error humano es previsible y las protecciones deben ser robustas.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La ley exige expresamente que las medidas preventivas prevean las distracciones o imprudencias no temerarias del trabajador, reconociendo que el error humano es inherente y previsible.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">2. ¿En qué tipo de empresas o centros de trabajo es obligatorio constituir un Comité de Seguridad y Salud?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) En todas las empresas con más de 10 trabajadores</div>
+                    <div class="quiz-option" data-correct="false">B) Únicamente en empresas del sector industrial o construcción</div>
+                    <div class="quiz-option" data-correct="true">C) En todas las empresas o centros de trabajo que cuenten con 50 o más trabajadores</div>
+                    <div class="quiz-option" data-correct="false">D) Cuando lo solicite expresamente la Inspección de Trabajo</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Exacto! El Art. 38.2 establece que se constituirá un Comité de Seguridad y Salud en todas las empresas o centros de trabajo que cuenten con 50 o más trabajadores. Es un órgano paritario de consulta regular.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La ley fija el umbral en 50 o más trabajadores (Art. 38.2). Por debajo de este número, las funciones de consulta y vigilancia las ejercen directamente los Delegados de Prevención.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">3. ¿Qué información puede facilitar el empresario sobre la vigilancia de la salud de los trabajadores?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Todos los resultados médicos detallados para gestionar bajas laborales</div>
+                    <div class="quiz-option" data-correct="false">B) Únicamente las analíticas sanguíneas y pruebas de imagen realizadas</div>
+                    <div class="quiz-option" data-correct="true">C) Las conclusiones derivadas de los reconocimientos en relación con la aptitud para el puesto o la necesidad de mejorar medidas</div>
+                    <div class="quiz-option" data-correct="false">D) Cualquier dato médico si el trabajador firma una autorización general</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Muy bien! El Art. 22.4 establece que el acceso a la información médica personal se limita al personal sanitario. Al empresario solo se le informan las conclusiones sobre aptitud para el puesto o necesidad de mejorar medidas de protección.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La ley protege estrictamente la confidencialidad. El empresario solo recibe conclusiones sobre aptitud para el puesto o necesidad de mejorar medidas (Art. 22.4), nunca datos médicos personales.</div>
+            </div>
+            
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>¡Felicidades por completar la guía!</strong> Ahora comprendes la arquitectura legal que sustenta toda la prevención de riesgos laborales en España. Estos principios, derechos y mecanismos son la base sobre la que se construyen los dictámenes periciales que has estudiado en los módulos del curso. ¡Enhorabuena!
+            </div>
+        </section>
+
+        <div class="module-nav">
+            <button class="module-btn" id="backToCourse">← Volver al Curso</button>
+            <button class="module-btn" id="reviewGuide" style="background: var(--success); border-color: #219653;">🔄 Repasar Claves</button>
+        </div>
+
+        <footer>
+            <p>Claves Fundamentales de la Ley 31/1995 de Prevención de Riesgos Laborales · Recurso Complementario</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido extraído y adaptado exclusivamente del texto legal proporcionado · Diseño pedagógico para estudiantes universitarios de primer año</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            let currentSectionIndex = 0;
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = progress;
+            }
+            
+            function showSection(sectionId) {
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.section === sectionId) btn.classList.add('active');
+                });
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.dataset.section === sectionId) dot.classList.add('active');
+                });
+                currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            navButtons.forEach(button => button.addEventListener('click', function() { showSection(this.dataset.section); }));
+            indicatorDots.forEach(dot => dot.addEventListener('click', function() { showSection(this.dataset.section); }));
+            
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            });
+            
+            const quizContainers = document.querySelectorAll('.quiz-container');
+            quizContainers.forEach(container => {
+                const options = container.querySelectorAll('.quiz-option');
+                const button = container.querySelector('.quiz-btn');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'none';
+                        button.disabled = false;
+                    });
+                });
+                
+                button.addEventListener('click', function() {
+                    const selectedOption = container.querySelector('.quiz-option.selected');
+                    if(!selectedOption) return;
+                    const isCorrect = selectedOption.dataset.correct === 'true';
+                    if(isCorrect) {
+                        selectedOption.classList.add('correct');
+                        feedbackCorrect.style.display = 'block';
+                        feedbackIncorrect.style.display = 'none';
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'block';
+                    }
+                    button.disabled = true;
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                });
+            });
+            
+            document.getElementById('backToCourse').addEventListener('click', function() { alert('En un entorno real, este botón te redirigiría al índice principal del curso de Perito Judicial en PRL.'); });
+            document.getElementById('reviewGuide').addEventListener('click', function() { 
+                currentSectionIndex = 0;
+                showSection('intro');
+            });
+            
+            const glossaryTerms = document.querySelectorAll('.glossary-term');
+            glossaryTerms.forEach(term => {
+                term.addEventListener('click', function(e) {
+                    if(window.innerWidth < 768) {
+                        e.preventDefault();
+                        alert(`Definición: ${this.getAttribute('data-definition')}`);
+                    }
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

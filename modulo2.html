@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: El Marco Procesal de la Peritación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sketch-border: 3px dashed #5a6b8c;
+            --sketch-border-light: 2px dashed #8a9ab6;
+            --primary: #4a6fa5;
+            --secondary: #6b8dbe;
+            --accent: #e67e5a;
+            --background: #f8f9fc;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6b8c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(var(--sketch-border-light) 1px, transparent 1px),
+                radial-gradient(var(--sketch-border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            padding-bottom: 4rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* Header Styles */
+        header {
+            text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;
+            border: var(--sketch-border); background: var(--card-bg);
+            border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px); z-index: 0;
+        }
+        header * { position: relative; z-index: 1; }
+        h1 { font-family: 'Kalam', cursive; font-size: 3.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-family: 'Kalam', cursive; font-size: 1.8rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 400; }
+        .intro-text { max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: var(--text-light); }
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; margin: 0.5rem; border: 2px dashed white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+
+        /* Navigation */
+        .nav-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); background: rgba(255, 255, 255, 0.85); border-radius: 8px; position: sticky; top: 1rem; z-index: 100; box-shadow: var(--shadow); }
+        .nav-btn { background: white; border: 2px solid var(--secondary); padding: 0.7rem 1.4rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.1rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2); }
+        .nav-btn:hover, .nav-btn.active { background: var(--secondary); color: white; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3); }
+
+        /* Section Styles */
+        section { margin-bottom: 2.5rem; border: var(--sketch-border); background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); display: none; animation: fadeIn 0.4s ease; }
+        section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-family: 'Kalam', cursive; font-size: 2.4rem; color: var(--primary); margin: 0 0 1.5rem 0; padding-bottom: 0.8rem; border-bottom: 2px dashed var(--secondary); font-weight: 700; }
+        h3 { font-family: 'Kalam', cursive; font-size: 1.9rem; color: var(--secondary); margin: 1.8rem 0 1rem; font-weight: 600; }
+        p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+
+        /* Components */
+        .definition-card { border-left: 4px solid var(--accent); background: rgba(230, 126, 90, 0.08); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; position: relative; }
+        .definition-card::before { content: "💡"; position: absolute; left: -15px; top: -10px; background: var(--accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; border: 2px solid white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .definition-card strong { color: var(--primary); font-weight: 600; }
+        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.8rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        .info-table th { background: var(--primary); color: white; font-family: 'Kalam', cursive; font-size: 1.3rem; padding: 1.1rem 1.4rem; text-align: left; font-weight: 600; }
+        .info-table td { padding: 1rem 1.4rem; border-bottom: 1px dashed var(--sketch-border-light); }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table tr:nth-child(even) { background: rgba(90, 107, 140, 0.04); }
+        .info-table tr:hover { background: rgba(107, 141, 190, 0.08); }
+        .accordion { margin: 1.5rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; }
+        .accordion-header { background: var(--secondary); color: white; padding: 1.1rem 1.5rem; font-family: 'Kalam', cursive; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .accordion-header:hover { background: var(--primary); }
+        .accordion-header::after { content: "+"; font-size: 1.8rem; font-weight: 300; }
+        .accordion-header.active::after { content: "−"; }
+        .accordion-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: rgba(255, 255, 255, 0.9); }
+        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
+        .glossary-term { border-bottom: 2px dashed var(--accent); cursor: help; position: relative; font-weight: 500; color: var(--primary); }
+        .glossary-term:hover::after { content: attr(data-definition); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.95rem; width: 280px; text-align: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px dashed white; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .quiz-container { background: rgba(107, 141, 190, 0.08); border: var(--sketch-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .quiz-question { font-weight: 600; margin-bottom: 1.2rem; font-size: 1.15rem; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+        .quiz-option { padding: 0.9rem 1.4rem; background: white; border: 2px solid var(--secondary); border-radius: 8px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.8rem; }
+        .quiz-option:hover { background: rgba(107, 141, 190, 0.1); transform: translateX(3px); }
+        .quiz-option.selected { background: var(--secondary); color: white; border-color: var(--primary); }
+        .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
+        .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
+        .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
+        .quiz-feedback.correct { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
+        .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
+        .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .key-point { background: white; border: var(--sketch-border-light); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition); }
+        .key-point:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2); }
+        .key-point-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .key-point h4 { font-family: 'Kalam', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; font-weight: 600; }
+        .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
+        .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
+        .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 15%; transition: width 0.4s ease; }
+        .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
+        footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
+        .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+        .module-btn { background: white; border: var(--sketch-border); padding: 1rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: var(--shadow); flex: 1; max-width: 200px; }
+        .module-btn:hover { background: var(--secondary); color: white; transform: translate(-3px, -3px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25); }
+        .module-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .sketch-box { position: relative; border: var(--sketch-border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; background: white; box-shadow: var(--shadow); }
+        .highlight { background: rgba(74, 111, 165, 0.08); border-left: 4px solid var(--primary); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .highlight strong { color: var(--primary); }
+        .example-box { background: rgba(230, 126, 90, 0.1); border: 2px dashed var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
+        .example-box::before { content: "Ejemplo ilustrativo"; position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 0.2rem 1rem; border-radius: 20px; font-family: 'Kalam', cursive; font-size: 0.95rem; font-weight: 600; }
+        .section-indicator { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem 0; }
+        .indicator-dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d9e6; cursor: pointer; transition: var(--transition); border: 2px solid var(--secondary); }
+        .indicator-dot.active { background: var(--accent); transform: scale(1.2); }
+        .indicator-dot:hover { background: var(--secondary); }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; } .subtitle { font-size: 1.5rem; } .nav-container { flex-direction: column; align-items: center; } .nav-btn { width: 100%; max-width: 300px; } section { padding: 1.5rem; } h2 { font-size: 2.1rem; } h3 { font-size: 1.7rem; } .info-table { font-size: 0.95rem; } .info-table th, .info-table td { padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>El Marco Procesal de la Peritación</h1>
+            <div class="subtitle">Módulo 2</div>
+            <p class="intro-text">Descubre cómo se organiza el sistema judicial español para tratar los daños laborales y cómo se integra tu futuro trabajo técnico dentro de cada jurisdicción. Aprenderás a navegar entre lo social, lo penal y lo civil con claridad y precisión.</p>
+            <div>
+                <span class="badge">⏱️ Duración: 30 horas</span>
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="intro">🏠 Inicio</button>
+            <button class="nav-btn" data-section="jurisdictions">⚖️ Las Tres Jurisdicciones</button>
+            <button class="nav-btn" data-section="responsibility">🔗 Responsabilidad y Causalidad</button>
+            <button class="nav-btn" data-section="investigation">🔍 Investigación de Accidentes</button>
+            <button class="nav-btn" data-section="report">📝 Estructura del Informe</button>
+            <button class="nav-btn" data-section="ethics">🤝 Ética y Responsabilidad Social</button>
+            <button class="nav-btn" data-section="quiz">✅ Autoevaluación</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-title">Tu progreso en el módulo</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text"><span id="progressPercent">15</span>% completado</div>
+        </div>
+
+        <div class="section-indicator">
+            <div class="indicator-dot active" data-section="intro"></div>
+            <div class="indicator-dot" data-section="jurisdictions"></div>
+            <div class="indicator-dot" data-section="responsibility"></div>
+            <div class="indicator-dot" data-section="investigation"></div>
+            <div class="indicator-dot" data-section="report"></div>
+            <div class="indicator-dot" data-section="ethics"></div>
+            <div class="indicator-dot" data-section="quiz"></div>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="intro" class="active">
+            <h2>¡Bienvenido al Módulo 2!</h2>
+            <p>En el módulo anterior conociste qué es un <span class="glossary-term" data-definition="Profesional con titulación oficial en PRL que aporta conocimientos técnicos para ayudar al juez a resolver cuestiones técnicas.">perito judicial</span> y cómo se estructura un dictamen. Ahora daremos un paso fundamental: entender <strong>dónde</strong> y <strong>cómo</strong> se utiliza ese informe en la práctica real.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo del módulo:</strong> Aplicar la normativa jurídica básica relativa a las jurisdicciones social, civil y penal, comprendiendo la operativa procesal y contextualizando la utilidad práctica del dictamen pericial en cada ámbito.
+            </div>
+
+            <h3>¿Qué aprenderás en este módulo?</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🏛️</div>
+                    <h4>Jurisdicciones</h4>
+                    <p>Diferencias clave entre los órdenes Social, Penal y Civil</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔄</div>
+                    <h4>Carga de la prueba</h4>
+                    <p>Cómo se invierte la responsabilidad de demostrar el cumplimiento preventivo</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔗</div>
+                    <h4>Nexo causal</h4>
+                    <p>Métodos para conectar técnicamente la omisión preventiva con el daño</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🛠️</div>
+                    <h4>Metodologías</h4>
+                    <p>Árbol de causas, SCRA y análisis de documentación para investigar accidentes</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Nota para estudiantes:</strong> No necesitas ser experto en derecho. Este módulo traduce los conceptos procesales a un lenguaje técnico claro, centrado en cómo afectan a tu futura labor pericial.
+            </div>
+        </section>
+
+        <!-- LAS TRES JURISDICCIONES -->
+        <section id="jurisdictions">
+            <h2>Las Tres Jurisdicciones: Social, Penal y Civil</h2>
+            <p>El orden jurisdiccional competente depende de la naturaleza del conflicto, la existencia de una relación laboral y el tipo de daño producido. Cada uno tiene reglas propias sobre cómo se presenta y valora la prueba pericial.</p>
+            
+            <div class="accordion">
+                <div class="accordion-header">🏢 Orden Social (Jurisdicción Laboral)</div>
+                <div class="accordion-content">
+                    <p>Se rige por la Ley Reguladora de la Jurisdicción Social. Predomina la oralidad y la celeridad, con protección reforzada al trabajador como parte más vulnerable.</p>
+                    <table class="info-table">
+                        <thead><tr><th>Procedimiento</th><th>Objeto de la Pericia</th><th>Consecuencia Jurídica</th></tr></thead>
+                        <tbody>
+                            <tr><td>Accidentes y enfermedades profesionales</td><td>Determinar relación causal entre lesión y actividad laboral</td><td>Calificación de contingencia profesional vs. común</td></tr>
+                            <tr><td>Recargo de prestaciones</td><td>Valorar existencia de falta de medidas de seguridad</td><td>Incremento del 30%-50% en prestaciones a cargo del empresario</td></tr>
+                            <tr><td>Demandas por daños</td><td>Analizar responsabilidad civil contractual del empleador</td><td>Indemnizaciones complementarias a la Seguridad Social</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Carga de la prueba:</strong> Se invierte parcialmente. Corresponde al empresario acreditar que cumplió sus obligaciones preventivas. Además, se presume la laboralidad del daño si ocurrió en tiempo y lugar de trabajo.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">⚖️ Orden Penal</div>
+                <div class="accordion-content">
+                    <p>Regulado por los artículos 316 a 318 del Código Penal. Se centra en delitos contra los derechos de los trabajadores.</p>
+                    <table class="info-table">
+                        <thead><tr><th>Tipo Delictivo</th><th>Elemento Constitutivo</th><th>Función Pericial</th></tr></thead>
+                        <tbody>
+                            <tr><td>Delito de riesgo (Art. 316)</td><td>Omisión de medidas que genera peligro grave para vida o salud</td><td>Acreditar existencia, gravedad y previsibilidad del riesgo, sin necesidad de daño materializado</td></tr>
+                            <tr><td>Homicidio/lesiones (Art. 317)</td><td>Accidente por imprudencia de mandos o dirección</td><td>Determinar si la omisión constituye imprudencia grave o menos grave</td></tr>
+                            <tr><td>Responsabilidad de técnicos</td><td>Incumplimiento de la lex artis por técnicos de prevención</td><td>Valorar si la actuación se ajustó a estándares técnicos exigibles</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Clave técnica:</strong> El delito de riesgo es un delito de peligro abstracto. No hace falta que ocurra un accidente; basta demostrar que la omisión creaba un riesgo grave y previsible.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">📜 Orden Civil</div>
+                <div class="accordion-content">
+                    <p>Regulado por la Ley de Enjuiciamiento Civil. Aplica cuando no hay relación laboral directa entre causante y perjudicado (ej. accidentes de contratas que afectan a terceros, daños a clientes en establecimientos).</p>
+                    <p><strong>Características:</strong> Carga de la prueba recae generalmente en el demandante. Se aplica el principio de igualdad procesal y la valoración conforme a la sana crítica.</p>
+                    <p><strong>Función del perito:</strong> Establecer el nexo causal entre la conducta omisiva y el daño, cuantificar técnicamente los perjuicios y valorar el cumplimiento del deber genérico de diligencia.</p>
+                </div>
+            </div>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Modalidades de Designación Pericial</h4>
+                <table class="info-table">
+                    <thead><tr><th>Tipo</th><th>Designación</th><th>Valoración Judicial Habitual</th></tr></thead>
+                    <tbody>
+                        <tr><td>Perito de parte</td><td>Contrato privado por empresa o trabajador</td><td>Condicionada a la demostración de objetividad técnica</td></tr>
+                        <tr><td>Perito judicial</td><td>Designación de oficio por el juzgado</td><td>Mayor peso probatorio por presunta neutralidad</td></tr>
+                        <tr><td>Testigo-perito</td><td>Comparece como testigo con conocimientos técnicos</td><td>Mixta: credibilidad testimonial + competencia técnica</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RESPONSABILIDAD Y CAUSALIDAD -->
+        <section id="responsibility">
+            <h2>Responsabilidad y Nexo Causal</h2>
+            
+            <h3>La Deuda de Seguridad Empresarial</h3>
+            <p>El deber de protección no es solo un trámite documental. La ley exige una <strong>eficacia real</strong>: las medidas deben estar implementadas, ser funcionales y verificables. La mera existencia de papeles no exonera de responsabilidad.</p>
+            <p>Además, el empresario debe prever y neutralizar las distracciones o imprudencias no temerarias derivadas de la rutina o la presión productiva. Las medidas de seguridad deben ser, en la medida de lo posible, "a prueba de errores humanos previsibles".</p>
+
+            <h3>El Nexo Causal: Conectar la Omisión con el Daño</h3>
+            <p>Para atribuir responsabilidad, debes demostrar técnicamente la conexión entre una conducta omisiva o activa y el daño producido. Esto requiere cumplir tres requisitos:</p>
+            <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>Existencia de infracción preventiva:</strong> Incumplimiento de norma legal, reglamentaria o técnica aplicable.</li>
+                <li><strong>Producción de un daño:</strong> Lesión física, enfermedad profesional o perjuicio cuantificable.</li>
+                <li><strong>Relación de causalidad adecuada:</strong> Demostrar que, con la medida omitida, el daño no se habría producido o se habría mitigado sustancialmente.</li>
+            </ol>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Métodos de Análisis Causal</h4>
+                <table class="info-table">
+                    <thead><tr><th>Método</th><th>Aplicación</th><th>Ventaja</th><th>Limitación</th></tr></thead>
+                    <tbody>
+                        <tr><td>Causalidad directa</td><td>Accidentes con secuencia lineal clara</td><td>Sencillez expositiva</td><td>Insuficiente para siniestros complejos</td></tr>
+                        <tr><td>Causalidad múltiple</td><td>Sucesos con concurrencia de factores</td><td>Identifica responsabilidades compartidas</td><td>Requiere mayor esfuerzo analítico</td></tr>
+                        <tr><td>Causalidad hipotética</td><td>Valoración de escenarios alternativos</td><td>Útil para determinar evitabilidad del daño</td><td>Depende de supuestos técnicos verificables</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example-box">
+                <p>Un trabajador cae desde 4 metros. La normativa exige barandillas a partir de 2 metros. Si el perito acredita que la ausencia de barandillas fue la causa directa, se configura el nexo causal. Por el contrario, si la caída se debió a un desmayo repentino por causa médica ajena al trabajo, la falta de barandillas podría no ser causa adecuada del daño.</p>
+            </div>
+        </section>
+
+        <!-- INVESTIGACIÓN DE ACCIDENTES -->
+        <section id="investigation">
+            <h2>Investigación Técnica de Accidentes</h2>
+            <p>La reconstrucción objetiva y sistemática de los hechos es el núcleo de tu labor. Para ello, se aplican metodologías validadas que garantizan trazabilidad y resistencia a sesgos.</p>
+            
+            <h3>Metodología SCRA (Síntoma – Causa – Remedio – Acción)</h3>
+            <table class="info-table">
+                <thead><tr><th>Fase</th><th>Contenido</th><th>Ejemplo Aplicado</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Síntoma</strong></td><td>Descripción objetiva del hecho bruto</td><td>"Trabajador atrapado por prensa durante mantenimiento"</td></tr>
+                    <tr><td><strong>Causa</strong></td><td>Análisis técnico de factores concurrentes</td><td>"Sensor puenteado; protocolo LOTO no aplicado; formación insuficiente"</td></tr>
+                    <tr><td><strong>Remedio</strong></td><td>Solución técnica inmediata</td><td>"Restablecer sensor; implementar protocolo; reforzar formación"</td></tr>
+                    <tr><td><strong>Acción</strong></td><td>Modificación del sistema de gestión</td><td>"Incluir verificación de dispositivos en checklist diario; auditorías trimestrales"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Teoría de la Causalidad Múltiple</h3>
+            <p>Los accidentes rara vez obedecen a una causa única. Suelen ser resultado de la concurrencia de factores técnicos, organizativos y humanos, clasificados jerárquicamente:</p>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🚨</div>
+                    <h4>Causas Inmediatas</h4>
+                    <p>Factores directamente vinculados al suceso: condiciones materiales peligrosas, protecciones inexistentes, acciones personales inseguras.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🌱</div>
+                    <h4>Causas Básicas o Raíz</h4>
+                    <p>Factores sistémicos de gestión: diseño deficiente, falta de mantenimiento, presión productiva, formación genérica, cultura preventiva débil.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Auditoría de la Documentación Preventiva</h3>
+            <p>El análisis documental no es una mera recopilación de papeles. Debes verificar su adecuación, actualización y aplicación efectiva:</p>
+            <table class="info-table">
+                <thead><tr><th>Documento</th><th>Pregunta de Verificación</th><th>Indicador de Deficiencia</th></tr></thead>
+                <tbody>
+                    <tr><td>Evaluación de Riesgos</td><td>¿Estaba identificado el riesgo específico?</td><td>Riesgo no contemplado o subvalorado</td></tr>
+                    <tr><td>Planificación Preventiva</td><td>¿Se asignaron recursos y plazos?</td><td>Medidas no ejecutadas sin justificación</td></tr>
+                    <tr><td>Registros de Formación</td><td>¿Recibió formación específica?</td><td>Ausencia de certificado o contenido inadecuado</td></tr>
+                    <tr><td>Procedimientos de Trabajo</td><td>¿Existía instrucción escrita?</td><td>Inexistente, desactualizado o no comunicado</td></tr>
+                </tbody>
+            </table>
+            <div class="highlight">
+                <strong>Recuerda:</strong> La documentación preventiva debe ser "viva", accesible y aplicada efectivamente. Un archivo perfecto en un cajón que nadie sigue en la práctica no cumple su función preventiva.
+            </div>
+        </section>
+
+        <!-- ESTRUCTURA DEL INFORME -->
+        <section id="report">
+            <h2>Redacción del Informe Pericial: Estructura y Calidad</h2>
+            
+            <h3>Estructura Estándar Recomendada</h3>
+            <div class="accordion">
+                <div class="accordion-header">1. Encabezamiento y Objeto</div>
+                <div class="accordion-content">Identificación del órgano judicial, procedimiento, partes y cualificación del perito. Enunciado preciso de la cuestión técnica a resolver.</div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">2. Antecedentes y Metodología</div>
+                <div class="accordion-content">Relación de documentos examinados, descripción del método de investigación aplicado y fechas/lugares de inspección ocular.</div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">3. Relato de los Hechos</div>
+                <div class="accordion-content">Descripción cronológica, objetiva y neutra. Exclusión de juicios de valor. Referencia a fuentes para cada afirmación.</div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">4. Consideraciones Técnicas y Conclusiones</div>
+                <div class="accordion-content">Contrastación con normativa aplicable, análisis de adecuación de medidas, valoración del nexo causal. Conclusiones numeradas, jerarquizadas y delimitadas claramente.</div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Criterios de Calidad Esenciales</h3>
+            <table class="info-table">
+                <thead><tr><th>Criterio</th><th>Definición Operativa</th><th>Aplicación Práctica</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Rigor técnico</strong></td><td>Uso exclusivo de evidencias verificables y criterios contrastados</td><td>Evitar términos ambiguos; fundamentar cada afirmación en datos</td></tr>
+                    <tr><td><strong>Trazabilidad</strong></td><td>Capacidad de reconstruir el proceso de obtención de datos</td><td>Referenciar documento, fecha y folio; indicar método analítico</td></tr>
+                    <tr><td><strong>Claridad expositiva</strong></td><td>Adaptación del lenguaje técnico al destinatario judicial</td><td>Explicar conceptos con analogías; evitar jerga innecesaria</td></tr>
+                    <tr><td><strong>Imparcialidad</strong></td><td>Exposición equilibrada de elementos favorables y desfavorables</td><td>Incluir en el análisis todas las hipótesis relevantes</td></tr>
+                    <tr><td><strong>Proporcionalidad</strong></td><td>Adecuación de la extensión a la complejidad del caso</td><td>Priorizar cuestiones controvertidas; sintetizar lo no disputado</td></tr>
+                </tbody>
+            </table>
+
+            <div class="highlight" style="border-left-color: #e74c3c; background: rgba(231, 76, 60, 0.08);">
+                <strong>Errores frecuentes a evitar:</strong> Confundir descripción con valoración, emitir juicios jurídicos reservados al juez, omitir limitaciones metodológicas o utilizar fuentes no contrastadas.
+            </div>
+        </section>
+
+        <!-- ÉTICA Y RESPONSABILIDAD SOCIAL -->
+        <section id="ethics">
+            <h2>Responsabilidad Social y Ética del Perito</h2>
+            <p>Tu labor trasciende la resolución de un conflicto individual. La peritación cumple una función social que impacta directamente en la mejora de la seguridad colectiva.</p>
+            
+            <h3>Principios Deontológicos</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🕊️</div>
+                    <h4>Independencia</h4>
+                    <p>Ausencia de vínculos de dependencia económica, jerárquica o emocional con las partes.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📏</div>
+                    <h4>Objetividad</h4>
+                    <p>Valoración basada exclusivamente en criterios técnicos y evidencias verificables.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔍</div>
+                    <h4>Transparencia</h4>
+                    <p>Declaración expresa de posibles conflictos de interés o limitaciones en el análisis.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔒</div>
+                    <h4>Confidencialidad</h4>
+                    <p>Protección de datos personales y sensibles obtenidos durante la peritación.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Tipos de Responsabilidad Jurídica</h3>
+            <table class="info-table">
+                <thead><tr><th>Tipo</th><th>Supuesto de Aplicación</th><th>Consecuencia</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Civil</strong></td><td>Negligencia, error grave u omisión que cause perjuicio</td><td>Indemnización de daños y perjuicios</td></tr>
+                    <tr><td><strong>Penal</strong></td><td>Falsedad documental, ocultación deliberada, testimonio falso</td><td>Sanciones penales conforme al Código Penal</td></tr>
+                    <tr><td><strong>Disciplinaria</strong></td><td>Incumplimiento de códigos deontológicos profesionales</td><td>Expediente colegial, suspensión o expulsión</td></tr>
+                </tbody>
+            </table>
+
+            <div class="definition-card">
+                <strong>Impacto social:</strong> Los informes periciales identifican deficiencias sistémicas, generan efecto disuasorio para el cumplimiento proactivo y consolidan estándares de buena práctica que alimentan la jurisprudencia técnica especializada.
+            </div>
+        </section>
+
+        <!-- AUTOEVALUACIÓN -->
+        <section id="quiz">
+            <h2>Autoevaluación: Pon a prueba tus conocimientos</h2>
+            <p>Responde estas preguntas para verificar tu comprensión del marco procesal y las metodologías de investigación. ¡Recuerda que es una herramienta formativa!</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. En el orden jurisdiccional social, ¿cómo se distribuye la carga de la prueba en casos de daños laborales?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) El trabajador debe probar siempre la negligencia empresarial</div>
+                    <div class="quiz-option" data-correct="true">B) Se invierte parcialmente, correspondiendo al empresario acreditar el cumplimiento preventivo</div>
+                    <div class="quiz-option" data-correct="false">C) El juez investiga de oficio todas las condiciones del puesto</div>
+                    <div class="quiz-option" data-correct="false">D) Se reparte equitativamente al 50% entre ambas partes</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Correcto! En la jurisdicción social opera una inversión parcial de la carga probatoria. Una vez acreditado el daño, corresponde al empresario demostrar que adoptó todas las medidas preventivas exigibles.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Recuerda que el orden social protege a la parte más vulnerable (trabajador) invirtiendo la carga probatoria: corresponde al empresario acreditar el cumplimiento de sus obligaciones preventivas.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">2. Según la teoría de la causalidad múltiple, ¿qué caracteriza a las "causas raíz o básicas"?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Son los fallos técnicos inmediatos que provocan el impacto</div>
+                    <div class="quiz-option" data-correct="true">B) Son factores sistémicos de gestión como falta de mantenimiento, presión productiva o formación deficiente</div>
+                    <div class="quiz-option" data-correct="false">C) Son circunstancias ajenas al ámbito laboral</div>
+                    <div class="quiz-option" data-correct="false">D) Solo aplican en accidentes de tráfico in itinere</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Exacto! Las causas raíz o básicas son factores organizativos y de gestión (diseño deficiente, falta de recursos, presión productiva, cultura preventiva débil) que permiten que las causas inmediatas se materialicen.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Las causas inmediatas son los fallos técnicos o actos inseguros directos. Las causas raíz o básicas son los factores sistémicos de gestión que originan o permiten esas deficiencias.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">3. ¿Cuál de los siguientes es un error frecuente en la redacción del informe pericial que debe evitarse?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Referenciar la normativa técnica aplicada</div>
+                    <div class="quiz-option" data-correct="false">B) Distinguir entre hechos verificables y valoraciones técnicas</div>
+                    <div class="quiz-option" data-correct="true">C) Emitir juicios de calificación jurídica reservados al órgano judicial</div>
+                    <div class="quiz-option" data-correct="false">D) Incluir un glosario de términos técnicos en los anexos</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Muy bien! El perito debe limitarse al ámbito técnico. Emitir juicios como "existe responsabilidad penal" o "la empresa fue negligente" invade funciones reservadas exclusivamente al juez.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. El perito debe evitar emitir juicios jurídicos. Su función es describir deficiencias técnicas y establecer causalidades; la calificación jurídica (responsabilidad, negligencia, etc.) corresponde al órgano judicial.</div>
+            </div>
+            
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>¡Felicidades por completar el Módulo 2!</strong> Ahora comprendes cómo se articula el sistema judicial español y cómo tu trabajo técnico se integra en cada vía. En el Módulo 3 aplicarás estos conceptos a la especialidad de Seguridad en el Trabajo, analizando lugares de trabajo, maquinaria y riesgos eléctricos.
+            </div>
+        </section>
+
+        <div class="module-nav">
+            <button class="module-btn" id="prevModule">← Módulo Anterior</button>
+            <button class="module-btn" id="nextModule">Siguiente Módulo →</button>
+        </div>
+
+        <footer>
+            <p>Módulo 2: El Marco Procesal de la Peritación en Seguridad y Salud en el Trabajo · Formación Universitaria en PRL</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de primer año</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            let currentSectionIndex = 0;
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = progress;
+            }
+            
+            function showSection(sectionId) {
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.section === sectionId) btn.classList.add('active');
+                });
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.dataset.section === sectionId) dot.classList.add('active');
+                });
+                currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            navButtons.forEach(button => button.addEventListener('click', function() { showSection(this.dataset.section); }));
+            indicatorDots.forEach(dot => dot.addEventListener('click', function() { showSection(this.dataset.section); }));
+            
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            });
+            
+            const quizContainers = document.querySelectorAll('.quiz-container');
+            quizContainers.forEach(container => {
+                const options = container.querySelectorAll('.quiz-option');
+                const button = container.querySelector('.quiz-btn');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'none';
+                        button.disabled = false;
+                    });
+                });
+                
+                button.addEventListener('click', function() {
+                    const selectedOption = container.querySelector('.quiz-option.selected');
+                    if(!selectedOption) return;
+                    const isCorrect = selectedOption.dataset.correct === 'true';
+                    if(isCorrect) {
+                        selectedOption.classList.add('correct');
+                        feedbackCorrect.style.display = 'block';
+                        feedbackIncorrect.style.display = 'none';
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'block';
+                    }
+                    button.disabled = true;
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                });
+            });
+            
+            document.getElementById('prevModule').addEventListener('click', function() { alert('En un entorno real, este botón te llevaría al Módulo 1: El Perito Judicial y el Dictamen Pericial.'); });
+            document.getElementById('nextModule').addEventListener('click', function() { alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 3: Peritación de la Práctica Preventiva: Seguridad en el Trabajo.'); });
+            
+            const glossaryTerms = document.querySelectorAll('.glossary-term');
+            glossaryTerms.forEach(term => {
+                term.addEventListener('click', function(e) {
+                    if(window.innerWidth < 768) {
+                        e.preventDefault();
+                        alert(`Definición: ${this.getAttribute('data-definition')}`);
+                    }
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

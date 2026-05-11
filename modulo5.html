@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Peritación de la Práctica Preventiva: Ergonomía y Psicosociología</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sketch-border: 3px dashed #5a6b8c;
+            --sketch-border-light: 2px dashed #8a9ab6;
+            --primary: #4a6fa5;
+            --secondary: #6b8dbe;
+            --accent: #e67e5a;
+            --background: #f8f9fc;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6b8c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            background-image: radial-gradient(var(--sketch-border-light) 1px, transparent 1px), radial-gradient(var(--sketch-border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            padding-bottom: 4rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header {
+            text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;
+            border: var(--sketch-border); background: var(--card-bg);
+            border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        header::before {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px); z-index: 0;
+        }
+        header * { position: relative; z-index: 1; }
+        h1 { font-family: 'Kalam', cursive; font-size: 3.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .subtitle { font-family: 'Kalam', cursive; font-size: 1.8rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 400; }
+        .intro-text { max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: var(--text-light); }
+        .badge { display: inline-block; background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; margin: 0.5rem; border: 2px dashed white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); background: rgba(255, 255, 255, 0.85); border-radius: 8px; position: sticky; top: 1rem; z-index: 100; box-shadow: var(--shadow); }
+        .nav-btn { background: white; border: 2px solid var(--secondary); padding: 0.7rem 1.4rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.1rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2); }
+        .nav-btn:hover, .nav-btn.active { background: var(--secondary); color: white; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3); }
+        section { margin-bottom: 2.5rem; border: var(--sketch-border); background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); display: none; animation: fadeIn 0.4s ease; }
+        section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-family: 'Kalam', cursive; font-size: 2.4rem; color: var(--primary); margin: 0 0 1.5rem 0; padding-bottom: 0.8rem; border-bottom: 2px dashed var(--secondary); font-weight: 700; }
+        h3 { font-family: 'Kalam', cursive; font-size: 1.9rem; color: var(--secondary); margin: 1.8rem 0 1rem; font-weight: 600; }
+        p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .definition-card { border-left: 4px solid var(--accent); background: rgba(230, 126, 90, 0.08); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; position: relative; }
+        .definition-card::before { content: "💡"; position: absolute; left: -15px; top: -10px; background: var(--accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; border: 2px solid white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .definition-card strong { color: var(--primary); font-weight: 600; }
+        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.8rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        .info-table th { background: var(--primary); color: white; font-family: 'Kalam', cursive; font-size: 1.3rem; padding: 1.1rem 1.4rem; text-align: left; font-weight: 600; }
+        .info-table td { padding: 1rem 1.4rem; border-bottom: 1px dashed var(--sketch-border-light); }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table tr:nth-child(even) { background: rgba(90, 107, 140, 0.04); }
+        .info-table tr:hover { background: rgba(107, 141, 190, 0.08); }
+        .accordion { margin: 1.5rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; }
+        .accordion-header { background: var(--secondary); color: white; padding: 1.1rem 1.5rem; font-family: 'Kalam', cursive; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .accordion-header:hover { background: var(--primary); }
+        .accordion-header::after { content: "+"; font-size: 1.8rem; font-weight: 300; }
+        .accordion-header.active::after { content: "−"; }
+        .accordion-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: rgba(255, 255, 255, 0.9); }
+        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
+        .glossary-term { border-bottom: 2px dashed var(--accent); cursor: help; position: relative; font-weight: 500; color: var(--primary); }
+        .glossary-term:hover::after { content: attr(data-definition); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.95rem; width: 280px; text-align: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px dashed white; font-family: 'Inter', sans-serif; line-height: 1.4; }
+        .quiz-container { background: rgba(107, 141, 190, 0.08); border: var(--sketch-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .quiz-question { font-weight: 600; margin-bottom: 1.2rem; font-size: 1.15rem; color: var(--primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+        .quiz-option { padding: 0.9rem 1.4rem; background: white; border: 2px solid var(--secondary); border-radius: 8px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.8rem; }
+        .quiz-option:hover { background: rgba(107, 141, 190, 0.1); transform: translateX(3px); }
+        .quiz-option.selected { background: var(--secondary); color: white; border-color: var(--primary); }
+        .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
+        .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
+        .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
+        .quiz-feedback.correct { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
+        .quiz-feedback.incorrect { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
+        .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
+        .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .key-point { background: white; border: var(--sketch-border-light); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition); }
+        .key-point:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2); }
+        .key-point-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .key-point h4 { font-family: 'Kalam', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; font-weight: 600; }
+        .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
+        .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
+        .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 15%; transition: width 0.4s ease; }
+        .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
+        footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
+        .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
+        .module-btn { background: white; border: var(--sketch-border); padding: 1rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: var(--shadow); flex: 1; max-width: 200px; }
+        .module-btn:hover { background: var(--secondary); color: white; transform: translate(-3px, -3px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25); }
+        .module-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .sketch-box { position: relative; border: var(--sketch-border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; background: white; box-shadow: var(--shadow); }
+        .highlight { background: rgba(74, 111, 165, 0.08); border-left: 4px solid var(--primary); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .highlight strong { color: var(--primary); }
+        .example-box { background: rgba(230, 126, 90, 0.1); border: 2px dashed var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
+        .example-box::before { content: "Ejemplo ilustrativo"; position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 0.2rem 1rem; border-radius: 20px; font-family: 'Kalam', cursive; font-size: 0.95rem; font-weight: 600; }
+        .section-indicator { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem 0; }
+        .indicator-dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d9e6; cursor: pointer; transition: var(--transition); border: 2px solid var(--secondary); }
+        .indicator-dot.active { background: var(--accent); transform: scale(1.2); }
+        .indicator-dot:hover { background: var(--secondary); }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; } .subtitle { font-size: 1.5rem; } .nav-container { flex-direction: column; align-items: center; } .nav-btn { width: 100%; max-width: 300px; } section { padding: 1.5rem; } h2 { font-size: 2.1rem; } h3 { font-size: 1.7rem; } .info-table { font-size: 0.95rem; } .info-table th, .info-table td { padding: 0.8rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ergonomía y Psicosociología en el Trabajo</h1>
+            <div class="subtitle">Módulo 5</div>
+            <p class="intro-text">Aprende a evaluar pericialmente cómo el diseño del puesto y la organización del trabajo afectan a la salud física y mental. Descubrirás métodos validados (RULA, REBA, FPSICO, ISTAS21) para determinar nexo causal en trastornos musculoesqueléticos y daños psicosociales.</p>
+            <div>
+                <span class="badge">⏱️ Duración: 30 horas</span>
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="intro">🏠 Inicio</button>
+            <button class="nav-btn" data-section="fundamentals">🔍 Fundamentos</button>
+            <button class="nav-btn" data-section="tme">💪 Trastornos Musculoesqueléticos</button>
+            <button class="nav-btn" data-section="psychosocial">🧩 Factores Psicosociales</button>
+            <button class="nav-btn" data-section="pathologies">🩺 Patologías Psicosociales</button>
+            <button class="nav-btn" data-section="methods">📊 Métodos de Evaluación</button>
+            <button class="nav-btn" data-section="report">📝 Dictamen Pericial</button>
+            <button class="nav-btn" data-section="regulatory">⚖️ Marco Normativo</button>
+            <button class="nav-btn" data-section="quiz">✅ Autoevaluación</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-title">Tu progreso en el módulo</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text"><span id="progressPercent">12</span>% completado</div>
+        </div>
+
+        <div class="section-indicator">
+            <div class="indicator-dot active" data-section="intro"></div>
+            <div class="indicator-dot" data-section="fundamentals"></div>
+            <div class="indicator-dot" data-section="tme"></div>
+            <div class="indicator-dot" data-section="psychosocial"></div>
+            <div class="indicator-dot" data-section="pathologies"></div>
+            <div class="indicator-dot" data-section="methods"></div>
+            <div class="indicator-dot" data-section="report"></div>
+            <div class="indicator-dot" data-section="regulatory"></div>
+            <div class="indicator-dot" data-section="quiz"></div>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="intro" class="active">
+            <h2>¡Bienvenido al Módulo 5!</h2>
+            <p>En los módulos anteriores aprendiste a investigar riesgos visibles (seguridad) e invisibles pero medibles (higiene). Ahora exploramos la dimensión <strong>humana y organizativa</strong>: cómo el diseño del puesto y la gestión del trabajo pueden generar daños físicos y mentales. Aprenderás a evaluar posturas, cargas mentales y factores organizativos con métodos científicos.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo del módulo:</strong> Analizar y aplicar la normativa vigente en PRL en relación con la especialidad de Ergonomía y Psicosociología, y ser capaz de realizar informes periciales fundamentados en métodos validados y evidencia técnica verificable.
+            </div>
+
+            <h3>¿Qué aprenderás en este módulo?</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🦴</div>
+                    <h4>Ergonomía física</h4>
+                    <p>Evaluar posturas, manipulación de cargas y diseño de puestos conforme a antropometría y biomecánica</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🧠</div>
+                    <h4>Psicosociología</h4>
+                    <p>Identificar factores organizativos (carga mental, autonomía, relaciones) que generan daño psicosocial</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📐</div>
+                    <h4>Métodos validados</h4>
+                    <p>Aplicar RULA, REBA, NIOSH, OCRA para ergonomía; FPSICO, ISTAS21 para psicosociología</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔗</div>
+                    <h4>Nexo causal</h4>
+                    <p>Establecer relación técnica entre exposición a factores de riesgo y trastornos musculoesqueléticos o psicosociales</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📋</div>
+                    <h4>Dictamen pericial</h4>
+                    <p>Estructurar informes con trazabilidad metodológica, precisión terminológica y fundamentación normativa</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Nota para estudiantes:</strong> La ergonomía y psicosociología pericial no se limita a aplicar fórmulas. Debes interpretar resultados en contexto, validar si la empresa evaluó correctamente y demostrar si los controles fallaron. Es ciencia aplicada al factor humano.
+            </div>
+        </section>
+
+        <!-- FUNDAMENTOS -->
+        <section id="fundamentals">
+            <h2>Fundamentos de la Ergonomía y su Aplicación Pericial</h2>
+            <p>La ergonomía constituye una disciplina científico-técnica orientada al ajuste mutuo entre la persona, los equipos de trabajo y el entorno. En el ámbito pericial, su aplicación se centra en determinar si el diseño del puesto ha respetado las capacidades y limitaciones físicas del trabajador.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo pericial:</strong> Determinar si la configuración física y ambiental del puesto de trabajo ha constituido causa directa de patología o accidente laboral, mediante análisis biomecánico y contrastación con estándares técnicos reconocidos.
+            </div>
+
+            <h3>Elementos clave del análisis biomecánico</h3>
+            <table class="info-table">
+                <thead><tr><th>Concepto</th><th>Definición técnica</th><th>Relevancia pericial</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Antropometría</strong></td>
+                        <td>Estudio de las dimensiones corporales humanas aplicado al diseño de puestos.</td>
+                        <td>Uso de percentiles (habitualmente 5 para alcances, 95 para espacios) para garantizar adaptabilidad. Mobiliario no ajustable para dimensiones extremas constituye fallo peritable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carga física estática</strong></td>
+                        <td>Contracción muscular prolongada sin movimiento articular asociado.</td>
+                        <td>Genera compresión vascular que dificulta aporte de oxígeno y eliminación de metabolitos, derivando en fatiga muscular y dolor crónico.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carga física dinámica</strong></td>
+                        <td>Ciclo repetitivo de contracción y relajación muscular asociado a movimiento.</td>
+                        <td>El riesgo emerge cuando la frecuencia del ciclo impide la recuperación muscular completa, generando sobrecarga acumulativa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manipulación manual de cargas</strong></td>
+                        <td>Actividad que implica levantamiento, descenso, empuje, tracción o transporte por esfuerzo físico.</td>
+                        <td>Evaluación conforme al RD 487/1997: análisis de peso, distancia al centro de gravedad, altura de manipulación y giro del tronco.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Factores transversales en la manipulación manual de cargas</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">📏</div>
+                    <h4>Posición de la carga</h4>
+                    <p>Alejamiento respecto al centro de gravedad corporal incrementa el momento de fuerza sobre la columna lumbar.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📐</div>
+                    <h4>Altura de manipulación</h4>
+                    <p>Las zonas de riesgo se localizan por debajo de la altura de los codos y por encima de los hombros.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔄</div>
+                    <h4>Frecuencia y duración</h4>
+                    <p>La repetición de esfuerzos sin periodos de recuperación adecuados multiplica el riesgo de lesión.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🎯</div>
+                    <h4>Características de la carga</h4>
+                    <p>Asimetría, inestabilidad, temperatura extrema o superficies resbaladizas modifican los requisitos de control motor.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p><strong>Ejemplo práctico:</strong> Un operario de almacén levanta cajas de 20 kg desde el suelo 15 veces por hora. El perito aplica la ecuación de NIOSH y obtiene un Índice de Levantamiento de 3.8 (umbral de riesgo inaceptable: >3). Concluye que la ausencia de ayudas mecánicas (transpaletas, mesas elevadoras) constituye deficiencia peritable con nexo causal probable con lumbalgia diagnosticada.</p>
+            </div>
+        </section>
+
+        <!-- TRASTORNOS MUSCULOESQUELÉTICOS -->
+        <section id="tme">
+            <h2>Trastornos Musculoesqueléticos (TME) y Nexo Causal</h2>
+            <p>Los trastornos musculoesqueléticos representan la principal causa de enfermedades profesionales reconocidas. La determinación del nexo causal requiere el análisis de tres variables técnicas: frecuencia, duración e intensidad de la exposición a factores de riesgo ergonómico.</p>
+            
+            <h3>Tipología de TME y mecanismos de producción</h3>
+            <table class="info-table">
+                <thead><tr><th>Tipología de TME</th><th>Mecanismo de producción / Causa técnica</th><th>Implicación pericial</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Síndrome del Túnel Carpiano</strong></td>
+                        <td>Inflamación del ligamento anular del carpo que comprime el nervio mediano por flexo-extensión forzada y repetitiva de muñeca.</td>
+                        <td>Requiere acreditar uso prolongado de herramientas vibrátiles, movimientos de pinza repetitiva o posturas de muñeca en desviación radial/cubital mantenida.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Epicondilitis</strong></td>
+                        <td>Micro-roturas en los tendones de los músculos extensores de la mano y dedos en su inserción epicondílea.</td>
+                        <td>Asociada a movimientos de rotación forzada del antebrazo (pronosupinación) combinados con aplicación de fuerza de prensión.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lumbalgia crónica</strong></td>
+                        <td>Degeneración de discos intervertebrales por sobreesfuerzo repetido, vibración de cuerpo completo o posturas mantenidas de flexión del tronco.</td>
+                        <td>Verificación de disponibilidad y uso efectivo de ayudas mecánicas, así como de la formación impartida en técnicas de levantamiento.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tendinitis del manguito rotador</strong></td>
+                        <td>Pinzamiento de los tendones del hombro contra el acromion por elevación repetida o mantenida del brazo.</td>
+                        <td>Típico en puestos con elevación de brazos por encima de 90° de forma sostenida (pintura, instalación en altura, manipulación en estanterías elevadas).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Síndrome del desfiladero torácico</strong></td>
+                        <td>Compresión neurovascular en el espacio entre la clavícula y la primera costilla por posturas de brazos elevados y retracción escapular.</td>
+                        <td>Peritable en puestos con trabajo por encima de la cabeza o con carga estática de la cintura escapular.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Criterios para la determinación del nexo causal</h3>
+            <div class="sketch-box">
+                <p><strong>Temporalidad:</strong> La exposición al factor de riesgo debe preceder cronológicamente a la aparición de síntomas.</p>
+                <p><strong>Dosis-respuesta:</strong> Mayor intensidad, frecuencia o duración de la exposición correlaciona con mayor probabilidad o severidad de la patología.</p>
+                <p><strong>Especificidad biomecánica:</strong> El mecanismo lesional descrito en la literatura médica debe coincidir con las condiciones observadas en el puesto de trabajo.</p>
+                <p><strong>Exclusión de alternativas:</strong> Descarte de factores extra-laborales (patologías previas, actividades extraprofesionales) como causa principal del daño.</p>
+                <p><strong>Consistencia con la evidencia:</strong> Concordancia entre los hallazgos clínicos, las mediciones ergonómicas y la literatura científica especializada.</p>
+            </div>
+
+            <div class="definition-card">
+                <strong>Principio de prevención primaria:</strong> En ergonomía, la peritación no solo analiza el daño ocurrido, sino que valora si la empresa aplicó medidas de diseño preventivo (ajuste antropométrico, ayudas mecánicas, rotación de puestos) que hubieran evitado la exposición al riesgo.
+            </div>
+        </section>
+
+        <!-- FACTORES PSICOSOCIALES -->
+        <section id="psychosocial">
+            <h2>Psicosociología Aplicada: Riesgos Emergentes y Evaluación</h2>
+            <p>La psicosociología laboral estudia los factores organizativos y relacionales del entorno de trabajo que, mediante mecanismos psicológicos y fisiológicos, pueden generar daños a la salud mental, emocional o social del trabajador.</p>
+            
+            <h3>Dimensiones críticas de evaluación</h3>
+            <table class="info-table">
+                <thead><tr><th>Factor de riesgo</th><th>Definición operativa</th><th>Indicadores observables</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Carga mental</strong></td>
+                        <td>Esfuerzo cognitivo requerido para procesar información, tomar decisiones y ejecutar tareas.</td>
+                        <td>Exceso: saturación informativa, plazos incompatibles, multitarea forzada. Defecto: tareas subestimulantes, ausencia de retos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contenido del trabajo</strong></td>
+                        <td>Características intrínsecas de las tareas: variedad, significado, autonomía técnica.</td>
+                        <td>Repetición extrema, fragmentación de procesos, ausencia de retroalimentación sobre resultados, percepción de inutilidad de la labor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Autonomía y control</strong></td>
+                        <td>Capacidad del trabajador para decidir sobre el orden, ritmo, métodos y pausas en la ejecución de sus tareas.</td>
+                        <td>Rigidez en procedimientos, supervisión constante, imposibilidad de adaptar el ritmo a condiciones variables.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ambigüedad de rol</strong></td>
+                        <td>Incertidumbre sobre las funciones, responsabilidades o expectativas asociadas al puesto.</td>
+                        <td>Instrucciones contradictorias, ausencia de descripción de puesto actualizada, cambios frecuentes de funciones sin comunicación formal.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conflicto de rol</strong></td>
+                        <td>Recepción de demandas incompatibles o contradictorias procedentes de distintos superiores o áreas.</td>
+                        <td>Órdenes opuestas de mandos intermedios, exigencias de producción que colisionan con protocolos de seguridad.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relaciones interpersonales</strong></td>
+                        <td>Calidad de la interacción con compañeros, superiores y subordinados.</td>
+                        <td>Aislamiento social, comunicación agresiva o evitativa, ausencia de apoyo en situaciones de alta demanda.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Desarrollo profesional</strong></td>
+                        <td>Perspectivas de promoción, formación y reconocimiento vinculadas al desempeño.</td>
+                        <td>Estancamiento prolongado sin causa objetiva, ausencia de planes de carrera, evaluación del desempeño no transparente.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Interacción de factores: el modelo demanda-control-apoyo</h3>
+            <div class="definition-card">
+                <strong>Modelo de Karasek-Theorell:</strong> La combinación de alta demanda psicológica con bajo control sobre la tarea y escaso apoyo social constituye el escenario de mayor predictividad para el desarrollo de trastornos de ansiedad, depresión y enfermedades cardiovasculares relacionadas con el estrés laboral crónico.
+            </div>
+            <p>Este modelo permite al perito identificar puestos de alto riesgo incluso en ausencia de sintomatología declarada, facilitando la evaluación preventiva y la fundamentación de medidas correctoras.</p>
+        </section>
+
+        <!-- PATOLOGÍAS PSICOSOCIALES -->
+        <section id="pathologies">
+            <h2>Patologías Psicosociales Específicas: El Daño Objetivable</h2>
+            <p>El dictamen pericial requiere terminología diagnóstica precisa para diferenciar procesos clínicos que frecuentemente se confunden en reclamaciones judiciales.</p>
+            
+            <h3>Diferenciación conceptual de patologías psicosociales</h3>
+            <table class="info-table">
+                <thead><tr><th>Patología</th><th>Definición clínica</th><th>Criterios de objetivación pericial</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Estrés laboral agudo</strong></td>
+                        <td>Respuesta fisiológica y psicológica transitoria ante demandas percibidas como excedentes de los recursos disponibles.</td>
+                        <td>Documentación de eventos estresantes identificables, registro de síntomas somáticos (taquicardia, insomnio) y conductuales con inicio temporal vinculado al evento.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estrés laboral crónico</strong></td>
+                        <td>Estado de activación sostenida derivado de exposición prolongada a factores de riesgo psicosocial no mitigados.</td>
+                        <td>Persistencia de síntomas >6 meses, deterioro funcional en ámbito laboral y/o personal, evidencia de factores organizativos mantenidos en el tiempo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Síndrome de Burnout</strong></td>
+                        <td>Proceso de desgaste profesional caracterizado por tres dimensiones: agotamiento emocional, despersonalización y baja realización personal.</td>
+                        <td>Agotamiento: fatiga crónica no reversible con descanso. Despersonalización: actitudes cínicas o indiferentes. Baja realización: autopercepción de ineficacia.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acoso psicológico (mobbing)</strong></td>
+                        <td>Conductas hostiles, repetidas y sistemáticas orientadas a la exclusión, intimidación o degradación de un trabajador.</td>
+                        <td>Cuatro pilares: (1) Intencionalidad: patrón de conductas orientadas a dañar. (2) Repetición: frecuencia mínima semanal. (3) Duración: ≥6 meses. (4) Asimetría de poder.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trastorno de adaptación</strong></td>
+                        <td>Reacción emocional o conductual desproporcionada ante un cambio identificable en las condiciones laborales.</td>
+                        <td>Nexo temporal claro entre cambio organizativo y aparición de síntomas; exclusión de patologías previas no relacionadas.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Criterios de exclusión en la valoración psicosocial</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🚫</div>
+                    <h4>Patologías preexistentes</h4>
+                    <p>Trastornos psiquiátricos no vinculados al entorno laboral deben descartarse como causa principal.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🏠</div>
+                    <h4>Conflictos personales</h4>
+                    <p>Situaciones ajenas al ámbito profesional no constituyen riesgo laboral peritable.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📋</div>
+                    <h4>Respuestas adaptativas</h4>
+                    <p>Reacciones proporcionadas a cambios organizativos legítimos y comunicados adecuadamente no son patológicas.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🩺</div>
+                    <h4>Causas orgánicas</h4>
+                    <p>Síntomas somáticos con causa médica acreditada independiente de factores psicosociales deben diferenciarse.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Recuerda:</strong> El perito no diagnostica patologías psiquiátricas. Su función es evaluar si las condiciones laborales constituyeron factor de riesgo suficiente para generar o agravar el daño, estableciendo nexo causal técnico con evidencia verificable.
+            </div>
+        </section>
+
+        <!-- MÉTODOS DE EVALUACIÓN -->
+        <section id="methods">
+            <h2>Metodología de Evaluación Pericial y Rigor Científico</h2>
+            <p>La validez probatoria del informe pericial depende de la aplicación de métodos de evaluación estandarizados, reconocidos por la comunidad científica y las instituciones de referencia en prevención de riesgos laborales.</p>
+            
+            <h3>Herramientas de Medición en Ergonomía</h3>
+            <table class="info-table">
+                <thead><tr><th>Método</th><th>Ámbito de aplicación</th><th>Variables evaluadas</th><th>Interpretación de resultados</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RULA</strong><br>(Rapid Upper Limb Assessment)</td>
+                        <td>Puestos con predominio de trabajo sentado o estático: oficina, laboratorio, línea de montaje fina.</td>
+                        <td>Postura de cuello, tronco, brazos, muñecas; carga muscular estática; fuerza aplicada; frecuencia del movimiento.</td>
+                        <td>Puntuación 1-2: aceptable. 3-4: requiere cambios si se mantiene. 5-6: cambios necesarios pronto. 7: intervención inmediata requerida.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>REBA</strong><br>(Rapid Entire Body Assessment)</td>
+                        <td>Puestos que implican posturas forzadas de todo el cuerpo: construcción, sanidad, logística.</td>
+                        <td>Postura de piernas, tronco, cuello, brazos, muñecas; tipo de agarre; carga manipulada; dinámica del movimiento.</td>
+                        <td>Puntuación 1: negligible. 2-3: bajo riesgo. 4-7: medio riesgo. 8-10: alto riesgo. 11-15: muy alto riesgo, intervención inmediata.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ecuación de NIOSH</strong></td>
+                        <td>Evaluación cuantitativa del riesgo en levantamiento manual de cargas.</td>
+                        <td>Peso de la carga, distancia horizontal al cuerpo, altura vertical, ángulo de asimetría, frecuencia, duración, calidad del agarre.</td>
+                        <td>Índice de Levantamiento (IL) = Peso real / Peso recomendado. IL >1: riesgo presente. IL >3: riesgo inaceptable, nexo causal con lesión lumbar altamente probable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OCRA</strong><br>(Occupational Repetitive Actions)</td>
+                        <td>Evaluación de exposición a movimientos repetitivos de miembros superiores.</td>
+                        <td>Frecuencia de acciones, fuerza requerida, posturas de extremidad superior, periodos de recuperación, factores adicionales.</td>
+                        <td>Índice OCRA: <2.2 aceptable; 2.2-3.5 riesgo ligero, vigilancia; >3.5 riesgo alto, intervención necesaria.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Herramientas de Medición en Psicosociología</h3>
+            <table class="info-table">
+                <thead><tr><th>Método</th><th>Modelo teórico de referencia</th><th>Factores evaluados</th><th>Ventajas para el peritaje</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>FPSICO (INSST)</strong></td>
+                        <td>Modelo multifactorial adaptado al contexto normativo español.</td>
+                        <td>9 factores: Tiempo de trabajo, Autonomía, Carga de trabajo, Demandas psicológicas, Variedad/Contenido, Participación/Supervisión, Interés por el trabajador, Desempeño de rol, Relaciones.</td>
+                        <td>Estándar de referencia en España; alineado con criterios de la Inspección de Trabajo; permite comparación con bases de datos sectoriales.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISTAS21 (CoPsoQ)</strong></td>
+                        <td>Modelo demanda-control-apoyo social (Karasek-Theorell).</td>
+                        <td>6 dimensiones: Exigencias psicológicas, Influencia en el trabajo, Posibilidades de desarrollo, Calidad de liderazgo, Apoyo social, Inseguridad laboral.</td>
+                        <td>Fuerte base epidemiológica; capacidad predictiva para salud cardiovascular y mental; validación internacional.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MBI (Maslach Burnout Inventory)</strong></td>
+                        <td>Modelo tridimensional del burnout.</td>
+                        <td>Agotamiento emocional, Despersonalización, Realización personal.</td>
+                        <td>Instrumento específico para síndrome de burnout; ampliamente utilizado en investigación clínica y laboral.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LIPT (Leymann Inventory)</strong></td>
+                        <td>Modelo de acoso psicológico.</td>
+                        <td>45 ítems de conductas hostiles: aislamiento, ataques a la dignidad, descalificación profesional, amenazas.</td>
+                        <td>Diseñado específicamente para acreditación de mobbing; permite cuantificar frecuencia e intensidad de conductas.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="definition-card">
+                <strong>Requisitos metodológicos para validez pericial:</strong> Aplicación estandarizada (respeto de instrucciones y criterios de corrección), representatividad muestral (diversidad de puestos y turnos), triangulación de fuentes (cuestionarios + entrevistas + observación) y control de sesgos (identificación de factores distorsionadores).
+            </div>
+        </section>
+
+        <!-- DICTAMEN PERICIAL -->
+        <section id="report">
+            <h2>Desarrollo del Informe Pericial y Defensa Técnica</h2>
+            <p>El informe pericial constituye el vehículo de transmisión del conocimiento técnico al órgano judicial. Su redacción debe priorizar la claridad expositiva, la trazabilidad metodológica y la objetividad en las conclusiones.</p>
+            
+            <h3>Fases de la Investigación Pericial</h3>
+            <div class="accordion">
+                <div class="accordion-header">📋 Recopilación de evidencias documentales</div>
+                <div class="accordion-content">
+                    <p>Evaluación de Riesgos Laborales de la empresa (vigencia, metodología, participación de trabajadores). Planificación de la actividad preventiva: medidas adoptadas, plazos, responsables. Registros de vigilancia de la salud: aptos médicos, restricciones, adaptaciones de puesto. Documentación formativa: contenidos, asistencia, evaluación de aprovechamiento. Comunicaciones internas: instrucciones, procedimientos, actas de comités de seguridad.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">👁️ Observación directa y toma de datos in situ</div>
+                <div class="accordion-content">
+                    <p>Registro fotográfico y videográfico del puesto de trabajo (con autorización). Medición de dimensiones antropométricas del puesto: alturas de trabajo, alcances, espacios de circulación. Cronometraje de ciclos de tarea: frecuencia de movimientos, tiempos de pausa, ritmo de producción. Entrevista semiestructurada al trabajador: descripción de tareas, percepción de dificultades, historial de síntomas.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">📐 Aplicación de métodos de evaluación</div>
+                <div class="accordion-content">
+                    <p>Selección del instrumento adecuado según características del puesto y tipo de riesgo. Ejecución conforme a protocolo estandarizado. Registro de datos brutos y cálculo de indicadores según metodología.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">⚖️ Análisis comparativo y contraste normativo</div>
+                <div class="accordion-content">
+                    <p>Comparación de resultados con valores de referencia: normas UNE, ISO, guías técnicas del INSST, criterios de la Inspección de Trabajo. Identificación de desviaciones respecto a requisitos legales o buenas prácticas técnicas. Evaluación de la adecuación de medidas preventivas adoptadas.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Habilidades de gestión y asertividad en la redacción pericial</h3>
+            <table class="info-table">
+                <thead><tr><th>Formulación imprecisa (evitar)</th><th>Formulación técnica precisa (recomendar)</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>"El trabajador hacía mucha fuerza"</td>
+                        <td>"El trabajador ejercía una fuerza de prensión manual de 25 kg, superando los 15 kg recomendados para una frecuencia de 10 ciclos/minuto según método OCRA."</td>
+                    </tr>
+                    <tr>
+                        <td>"El puesto era incómodo"</td>
+                        <td>"La altura de la mesa de trabajo (65 cm) se situaba 15 cm por debajo del percentil 5 de altura de codo para población femenina, generando flexión mantenida de tronco >20°."</td>
+                    </tr>
+                    <tr>
+                        <td>"Había mucho estrés"</td>
+                        <td>"La carga mental evaluada mediante FPSICO obtuvo puntuación 8.2/10 en la dimensión 'Demandas psicológicas', superando el valor de referencia sectorial de 6.1."</td>
+                    </tr>
+                    <tr>
+                        <td>"La empresa no hizo nada"</td>
+                        <td>"No se documentan medidas correctoras adoptadas tras la evaluación de riesgos de 2022, ni registros de formación específica en técnicas de manipulación de cargas."</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <p><strong>Ejemplo de estructura de conclusiones:</strong></p>
+                <p><strong>Cuestión planteada:</strong> ¿Existía nexo causal entre las condiciones ergonómicas del puesto de empaquetado y la lumbalgia crónica diagnosticada en el trabajador?</p>
+                <p><strong>Respuesta pericial:</strong></p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.8rem;">
+                    <li><strong>Hecho constatado:</strong> El puesto requería levantamiento manual de cargas de 18 kg con frecuencia de 8 ciclos/minuto, sin ayuda mecánica disponible.</li>
+                    <li><strong>Dato técnico:</strong> Aplicación de la ecuación de NIOSH arroja un Índice de Levantamiento de 3.4, superando el umbral de riesgo inaceptable (IL>3).</li>
+                    <li><strong>Referencia normativa:</strong> El RD 487/1997 exige la utilización de ayudas mecánicas cuando el peso y frecuencia superan los límites establecidos.</li>
+                    <li><strong>Conclusión:</strong> Las condiciones ergonómicas del puesto constituían factor de riesgo suficiente para generar la patología diagnosticada, existiendo nexo causal técnico acreditado.</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 2rem;">El Perito ante el Contraperitaje</h3>
+            <p>En materias ergonómicas y psicosociales es frecuente la presentación de informes contradictorios. El análisis crítico de un contrainforme requiere evaluar:</p>
+            <table class="info-table">
+                <thead><tr><th>Aspecto evaluado</th><th>Indicador de calidad</th><th>Indicador de deficiencia</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Vigencia temporal</strong></td>
+                        <td>Evaluación actualizada (<2 años) o revisada tras cambios en el puesto.</td>
+                        <td>Evaluación desactualizada (>3 años) sin justificación de mantenimiento de validez.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Metodología aplicada</strong></td>
+                        <td>Uso de métodos estandarizados con justificación de selección y aplicación conforme a protocolo.</td>
+                        <td>Ausencia de referencia metodológica o aplicación superficial sin registro de datos brutos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Participación de trabajadores</strong></td>
+                        <td>Consulta a delegados de prevención y/o encuestas a trabajadores afectados (Art. 18 y 33 LPRL).</td>
+                        <td>Evaluación realizada exclusivamente "de escritorio" sin observación in situ ni consulta a trabajadores.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Análisis de resultados</strong></td>
+                        <td>Interpretación de indicadores conforme a umbrales validados; propuesta de medidas proporcionales al riesgo.</td>
+                        <td>Resultados numéricos sin interpretación; medidas genéricas no vinculadas a factores de riesgo identificados.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trazabilidad documental</strong></td>
+                        <td>Registro de fuentes de información, fechas de observación, nombres de entrevistados (con consentimiento).</td>
+                        <td>Ausencia de referencias a fuentes de datos; imposibilidad de verificar la base fáctica de las conclusiones.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- MARCO NORMATIVO -->
+        <section id="regulatory">
+            <h2>Marco Normativo y Responsabilidad Jurídica</h2>
+            <p>La peritación en ergonomía y psicosociología requiere anclaje en el bloque normativo de prevención para determinar incumplimientos empresariales susceptibles de generar responsabilidad.</p>
+            
+            <h3>Disposiciones legales esenciales</h3>
+            <table class="info-table">
+                <thead><tr><th>Norma</th><th>Contenido relevante para peritaje</th><th>Aplicación práctica en el informe</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ley 31/1995 de PRL</strong></td>
+                        <td>Art. 14: Derecho de los trabajadores a protección eficaz. Art. 15.1.d: Principio de adaptación del trabajo a la persona, concepción de puestos, elección de equipos y métodos para atenuar trabajo monótono y repetitivo.</td>
+                        <td>Verificación de que el diseño del puesto respeta capacidades del trabajador; análisis de si se adoptaron medidas para reducir monotonía y repetición.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RD 39/1997, Reglamento de los Servicios de Prevención</strong></td>
+                        <td>Art. 5: Obligación de evaluar riesgos. Art. 6: Revisión de la evaluación cuando se produzcan daños a la salud o cambien las condiciones de trabajo.</td>
+                        <td>Investigación de si la empresa revisó la evaluación tras la baja médica del trabajador; análisis de la adecuación de la planificación preventiva.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RD 487/1997, Manipulación Manual de Cargas</strong></td>
+                        <td>Anexo: Guía para la evaluación del riesgo. Valores de referencia para peso, frecuencia y postura.</td>
+                        <td>Aplicación de la ecuación de NIOSH o método simplificado del anexo para determinar si se superan límites de seguridad.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Criterio Técnico 104/2021 de la Inspección de Trabajo</strong></td>
+                        <td>Criterios para la actuación inspectora en riesgos psicosociales: metodología, indicadores de deficiencia, medidas requeridas.</td>
+                        <td>Referencia para evaluar si las medidas adoptadas por la empresa cumplen con los estándares exigibles por la autoridad laboral.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Determinación de responsabilidades</h3>
+            <table class="info-table">
+                <thead><tr><th>Elemento</th><th>Pregunta pericial</th><th>Criterio de valoración</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Conocimiento del riesgo</strong></td>
+                        <td>¿Tenía la empresa información suficiente para identificar el riesgo ergonómico/psicosocial?</td>
+                        <td>Existencia de evaluaciones previas, quejas de trabajadores, bajas médicas repetidas, literatura técnica disponible.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Capacidad de actuación</strong></td>
+                        <td>¿Disponía la empresa de medios técnicos, organizativos y económicos para adoptar medidas?</td>
+                        <td>Tamaño de empresa, sector de actividad, recursos preventivos disponibles, viabilidad de medidas alternativas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adopción de medidas</strong></td>
+                        <td>¿Se implementaron medidas preventivas proporcionales al riesgo identificado?</td>
+                        <td>Comparación entre riesgos detectados y medidas adoptadas; análisis de eficacia y seguimiento de las mismas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nexo causal</strong></td>
+                        <td>¿Existe relación técnica entre el incumplimiento preventivo y el daño sufrido?</td>
+                        <td>Aplicación de criterios de temporalidad, dosis-respuesta, especificidad y exclusión de alternativas.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="definition-card">
+                <strong>Gradación de la responsabilidad:</strong> Responsabilidad directa (incumplimiento manifiesto con nexo causal claro), responsabilidad concurrente (contribución de factores laborales y extra-laborales; cuantificación del peso relativo), ausencia de responsabilidad (daño atribuible exclusivamente a factores ajenos al ámbito laboral).
+            </div>
+
+            <div class="highlight">
+                <strong>Principio de participación:</strong> El cumplimiento del deber de consulta a trabajadores y delegados de prevención en la evaluación y planificación preventiva constituye indicador de diligencia empresarial. Su omisión configura deficiencia peritable en la gestión del riesgo psicosocial.
+            </div>
+        </section>
+
+        <!-- AUTOEVALUACIÓN -->
+        <section id="quiz">
+            <h2>Autoevaluación: Pon a prueba tus conocimientos</h2>
+            <p>Responde estas preguntas para verificar tu comprensión de los criterios ergonómicos y psicosociales. ¡Recuerda que es una herramienta formativa!</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. Según la ecuación de NIOSH, ¿qué indica un Índice de Levantamiento (IL) superior a 3?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Riesgo bajo, no requiere intervención</div>
+                    <div class="quiz-option" data-correct="false">B) Riesgo moderado, vigilancia periódica recomendada</div>
+                    <div class="quiz-option" data-correct="true">C) Riesgo inaceptable, nexo causal con lesión lumbar altamente probable</div>
+                    <div class="quiz-option" data-correct="false">D) Resultado no válido, debe repetirse la medición</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Correcto! Un Índice de Levantamiento >3 indica riesgo inaceptable según la ecuación de NIOSH. En este escenario, la probabilidad de nexo causal entre las condiciones de manipulación y una lesión lumbar es altamente probable, constituyendo deficiencia peritable si no se adoptaron medidas correctoras.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Según la ecuación de NIOSH, un Índice de Levantamiento >3 indica riesgo inaceptable. Esto significa que las condiciones de manipulación superan los límites de seguridad y existe alta probabilidad de nexo causal con lesiones lumbares si no se implementan medidas correctoras.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">2. En la evaluación psicosocial, ¿qué cuatro pilares deben acreditarse para configurar acoso psicológico (mobbing)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Intensidad, frecuencia, duración y gravedad de los síntomas</div>
+                    <div class="quiz-option" data-correct="true">B) Intencionalidad, repetición, duración (≥6 meses) y asimetría de poder</div>
+                    <div class="quiz-option" data-correct="false">C) Quejas documentadas, testimonios, informes médicos y actas de inspección</div>
+                    <div class="quiz-option" data-correct="false">D) Carga mental, autonomía, relaciones interpersonales y desarrollo profesional</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Exacto! Para acreditar mobbing, el perito debe demostrar: (1) Intencionalidad: patrón de conductas orientadas a dañar. (2) Repetición: frecuencia mínima semanal. (3) Duración: proceso mantenido ≥6 meses. (4) Asimetría de poder: jerárquica, técnica o social que impide la defensa efectiva de la víctima.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Los cuatro pilares del acoso psicológico son: (1) Intencionalidad: patrón de conductas orientadas a dañar. (2) Repetición: frecuencia mínima semanal. (3) Duración: proceso mantenido ≥6 meses. (4) Asimetría de poder: que impide la defensa efectiva de la víctima.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">3. ¿Cuál de los siguientes es un requisito metodológico para la validez pericial en evaluación psicosocial?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Aplicación exclusiva de cuestionarios online para garantizar anonimato</div>
+                    <div class="quiz-option" data-correct="true">B) Triangulación de fuentes: combinación de cuestionarios, entrevistas, observación y análisis documental</div>
+                    <div class="quiz-option" data-correct="false">C) Exclusión de trabajadores con antigüedad inferior a 6 meses para evitar sesgos</div>
+                    <div class="quiz-option" data-correct="false">D) Uso preferente de métodos internacionales sobre los adaptados al contexto español</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Muy bien! La triangulación de fuentes (cuestionarios + entrevistas semiestructuradas + observación directa + análisis documental) permite contrastar resultados, identificar divergencias y fortalecer la solidez probatoria del dictamen pericial frente a posibles impugnaciones.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La triangulación de fuentes es un requisito metodológico esencial: combinar cuestionarios, entrevistas, observación y análisis documental permite contrastar resultados y fortalecer la solidez probatoria del dictamen frente a posibles impugnaciones.</div>
+            </div>
+            
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>¡Felicidades por completar el Módulo 5!</strong> Ahora dominas los fundamentos de la ergonomía y psicosociología pericial: evalúas posturas, cargas mentales y factores organizativos con métodos validados, estableces nexo causal con rigor técnico y estructuras dictámenes con trazabilidad metodológica. En el Módulo 6 aprenderás a defender tu informe en sala con habilidades comunicativas y estrategias de oratoria forense.
+            </div>
+        </section>
+
+        <div class="module-nav">
+            <button class="module-btn" id="prevModule">← Módulo Anterior</button>
+            <button class="module-btn" id="nextModule">Siguiente Módulo →</button>
+        </div>
+
+        <footer>
+            <p>Módulo 5: Peritación de la Práctica Preventiva: Ergonomía y Psicosociología en el Trabajo · Formación Universitaria en PRL</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de primer año</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            let currentSectionIndex = 0;
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = progress;
+            }
+            
+            function showSection(sectionId) {
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.section === sectionId) btn.classList.add('active');
+                });
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.dataset.section === sectionId) dot.classList.add('active');
+                });
+                currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            navButtons.forEach(button => button.addEventListener('click', function() { showSection(this.dataset.section); }));
+            indicatorDots.forEach(dot => dot.addEventListener('click', function() { showSection(this.dataset.section); }));
+            
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    this.nextElementSibling.classList.toggle('active');
+                });
+            });
+            
+            const quizContainers = document.querySelectorAll('.quiz-container');
+            quizContainers.forEach(container => {
+                const options = container.querySelectorAll('.quiz-option');
+                const button = container.querySelector('.quiz-btn');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'none';
+                        button.disabled = false;
+                    });
+                });
+                
+                button.addEventListener('click', function() {
+                    const selectedOption = container.querySelector('.quiz-option.selected');
+                    if(!selectedOption) return;
+                    const isCorrect = selectedOption.dataset.correct === 'true';
+                    if(isCorrect) {
+                        selectedOption.classList.add('correct');
+                        feedbackCorrect.style.display = 'block';
+                        feedbackIncorrect.style.display = 'none';
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'block';
+                    }
+                    button.disabled = true;
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                });
+            });
+            
+            document.getElementById('prevModule').addEventListener('click', function() { alert('En un entorno real, este botón te llevaría al Módulo 4: Peritación de la Práctica Preventiva: Higiene Industrial.'); });
+            document.getElementById('nextModule').addEventListener('click', function() { alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 6: La Defensa del Informe Pericial en Sala.'); });
+            
+            const glossaryTerms = document.querySelectorAll('.glossary-term');
+            glossaryTerms.forEach(term => {
+                term.addEventListener('click', function(e) {
+                    if(window.innerWidth < 768) {
+                        e.preventDefault();
+                        alert(`Definición: ${this.getAttribute('data-definition')}`);
+                    }
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

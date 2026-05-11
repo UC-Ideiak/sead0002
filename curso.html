@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEAD0002 - Perito Judicial en PRL</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --red-dark: #2D0A0A;
+            --red-primary: #6B0F1A;
+            --red-medium: #8B1A2B;
+            --red-light: #A52A3A;
+            --red-accent: #C41E3A;
+            --gold: #D4AF37;
+            --gold-light: #E8C75D;
+            --gold-dark: #B8962E;
+            --slate-50: #FFF8F0;
+            --slate-100: #FFF3E6;
+            --slate-200: #FFE0CC;
+            --slate-800: #2C0A0A;
+            --slate-900: #1A0505;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--slate-50);
+            color: var(--slate-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red-primary) 50%, var(--red-medium) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(107,15,26,0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .logo-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mix-blend-mode: normal;
+        }
+
+        .course-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .course-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 4px;
+            transition: width var(--transition-speed) ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .main-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 320px;
+            background: white;
+            border-right: 1px solid var(--slate-200);
+            padding: 1.5rem 1rem;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red-medium);
+            margin: 1.5rem 0 0.75rem 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .nav-item:hover {
+            background: var(--slate-100);
+            color: var(--red-primary);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(107,15,26,0.08), transparent);
+            color: var(--red-primary);
+            border-left: 3px solid var(--gold);
+            padding-left: calc(0.75rem - 3px);
+        }
+
+        .nav-item.completed {
+            color: #059669;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--slate-200);
+            color: #64748b;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        .nav-item.active .nav-badge {
+            background: var(--gold);
+            color: var(--red-dark);
+        }
+
+        .nav-item.completed .nav-badge {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        .module-header {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red-primary) 50%, var(--red-medium) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .module-number {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--red-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
+        }
+
+        .module-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--slate-200);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            box-shadow: 0 4px 12px rgba(107,15,26,0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--red-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .objective-box {
+            background: linear-gradient(90deg, rgba(107,15,26,0.04), transparent);
+            border-left: 4px solid var(--red-primary);
+            padding: 1.25rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .objective-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--red-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .objective-text {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .topic-list {
+            list-style: none;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--red-accent);
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .topic-text {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--red-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--red-medium);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--red-primary);
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-secondary:hover {
+            background: var(--slate-100);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--red-dark);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 40;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 45;
+                height: 100vh;
+                transform: translateX(-100%);
+                box-shadow: 4px 0 12px rgba(0,0,0,0.1);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+            }
+
+            .content-area {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .module-title {
+                font-size: 1.4rem;
+            }
+
+            .header-content {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .module-header {
+                padding: 1.5rem;
+            }
+
+            .module-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .highlight-box {
+            background: linear-gradient(90deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05));
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--red-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight-text {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .tab-container {
+            border-bottom: 1px solid var(--slate-200);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.25rem;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #64748b;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            color: var(--red-primary);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-btn:hover {
+            color: var(--red-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .block-card {
+            border: 1px solid var(--slate-200);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .block-header {
+            background: linear-gradient(90deg, var(--red-primary), var(--red-medium));
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .block-content {
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-area">
+                <div class="logo-wrapper">
+                    <img src="https://laner.es/wp-content/uploads/2026/02/4a2af585-f355-464f-a58b-c158e300bc06.png" alt="SEAD0002 Logo" class="logo-image">
+                </div>
+                <div>
+                    <div class="course-title">SEAD0002 - Perito Judicial en PRL</div>
+                    <div class="course-subtitle">Prevención de Riesgos Laborales | Itinerario Formativo Completo</div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Completado</span>
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="main-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section-title">Información General</div>
+            <div class="nav-item active" onclick="showModule(0)">
+                <i data-lucide="book-open" class="nav-icon"></i>
+                <span>Vista General</span>
+                <span class="nav-badge">6 Módulos</span>
+            </div>
+
+            <div class="sidebar-section-title">Módulos del Curso</div>
+            <div class="nav-item" onclick="showModule(1)">
+                <i data-lucide="file-text" class="nav-icon"></i>
+                <span>Módulo 1</span>
+                <span class="nav-badge">30h</span>
+            </div>
+            <div class="nav-item" onclick="showModule(2)">
+                <i data-lucide="shield" class="nav-icon"></i>
+                <span>Módulo 2</span>
+                <span class="nav-badge">30h</span>
+            </div>
+            <div class="nav-item" onclick="showModule(3)">
+                <i data-lucide="hard-hat" class="nav-icon"></i>
+                <span>Módulo 3</span>
+                <span class="nav-badge">50h</span>
+            </div>
+            <div class="nav-item" onclick="showModule(4)">
+                <i data-lucide="flask-conical" class="nav-icon"></i>
+                <span>Módulo 4</span>
+                <span class="nav-badge">30h</span>
+            </div>
+            <div class="nav-item" onclick="showModule(5)">
+                <i data-lucide="users" class="nav-icon"></i>
+                <span>Módulo 5</span>
+                <span class="nav-badge">30h</span>
+            </div>
+            <div class="nav-item" onclick="showModule(6)">
+                <i data-lucide="mic" class="nav-icon"></i>
+                <span>Módulo 6</span>
+                <span class="nav-badge">30h</span>
+            </div>
+        </aside>
+
+        <main class="content-area" id="contentArea">
+            <!-- Content will be loaded dynamically -->
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        const courseData = {
+            overview: {
+                title: "Perito Judicial en Prevención de Riesgos Laborales",
+                code: "SEAD0002",
+                description: "Programa formativo integral diseñado para capacitar profesionales en la elaboración de dictámenes periciales en materia de prevención de riesgos laborales, con especial énfasis en la objetividad, metodología rigurosa y validez judicial.",
+                totalHours: 200,
+                modules: 6,
+                structure: [
+                    {
+                        title: "Bloque de Fundamentación",
+                        hours: 60,
+                        modules: ["Módulo 1: El Perito Judicial y el Dictamen Pericial", "Módulo 2: El Marco Procesal de la Peritación"]
+                    },
+                    {
+                        title: "Bloque de Especialización Técnica",
+                        hours: 110,
+                        modules: ["Módulo 3: Seguridad en el Trabajo", "Módulo 4: Higiene Industrial", "Módulo 5: Ergonomía y Psicosociología"]
+                    },
+                    {
+                        title: "Bloque de Cierre: Capacitación Procesal",
+                        hours: 30,
+                        modules: ["Módulo 6: La Defensa del Informe Pericial en Sala"]
+                    }
+                ],
+                objectives: [
+                    "Analizar la utilidad y funciones del perito judicial en PRL",
+                    "Aplicar la normativa jurídica básica en jurisdicciones social, civil y penal",
+                    "Elaborar informes periciales rigurosos y trazables",
+                    "Defender conclusiones técnicas con solvencia en sede judicial",
+                    "Integrar conocimientos de seguridad, higiene y ergonomía en peritajes"
+                ],
+                skills: [
+                    "Capacidad de exposición, redacción y análisis de información",
+                    "Objetividad en el desempeño del trabajo pericial",
+                    "Precisión y exactitud en la narración de hechos",
+                    "Asertividad como herramienta de entrevista y exposición",
+                    "Expresión oral clara y decoro profesional en sala"
+                ]
+            },
+            modules: [
+                null, // Placeholder for 0-index
+                {
+                    number: 1,
+                    title: "El Perito Judicial y el Dictamen Pericial",
+                    hours: 30,
+                    objective: "Analizar la utilidad y funciones que desarrolla perito judicial, así como la utilidad de su trabajo y dónde se enmarca su actuación.",
+                    knowledge: [
+                        "Introducción al Peritaje",
+                        "El Perito Judicial: funciones, límites y responsabilidades",
+                        "Ética profesional, objetividad e imparcialidad",
+                        "El informe pericial",
+                        "Recopilación y valoración de indicios y pruebas",
+                        "Entrevistas y obtención de información",
+                        "Cuestiones de contenido intrínsecos del informe pericial",
+                        "Cuestiones formales de los informes periciales",
+                        "Criterios de calidad del dictamen: rigor, trazabilidad y claridad expositiva",
+                        "Objetivo y función de la peritación en prevención de riesgos laborales"
+                    ],
+                    skills: [
+                        "Capacidad de exposición, redacción y análisis de información tanto en la toma de datos como en la redacción de los informes y su exposición en sede judicial",
+                        "Objetividad en el desempeño del trabajo"
+                    ]
+                },
+                {
+                    number: 2,
+                    title: "El Marco Procesal de la Peritación en Seguridad y Salud en el Trabajo",
+                    hours: 30,
+                    objective: "Aplicar la normativa jurídica básica en lo relativo a las jurisdicciones (social, civil y penal), así como la operativa procesal de los procedimientos judiciales, contextualizando la utilidad del dictamen pericial.",
+                    knowledge: [
+                        "Delito de riesgo",
+                        "Procedimientos por delito de riesgo y responsables",
+                        "Procesos administrativos",
+                        "Accidentes Laborales y recargo de prestaciones",
+                        "Enfermedades Profesionales y su regulación",
+                        "Proceso Penal en daños y lesiones derivadas de los riesgos laborales",
+                        "La imprudencia en la responsabilidad social",
+                        "Procesos civiles en los daños y lesiones temporales derivados de los riesgos laborales",
+                        "Legislación. Clasificación del Tipo de Accidentes",
+                        "Consecuencias de los Accidentes",
+                        "Métodos de Investigación de accidentes laborales",
+                        "Estructura del informe pericial",
+                        "Redacción de Informes de causas"
+                    ],
+                    skills: [
+                        "Capacidad de exposición, redacción y análisis de información tanto en la toma de datos como en la redacción de los informes y su exposición en sede judicial",
+                        "Objetividad en el desempeño del trabajo",
+                        "Desarrollo de la capacidad de análisis de grandes cantidades de información",
+                        "Pericia en la localización de la información que resulte de interés"
+                    ]
+                },
+                {
+                    number: 3,
+                    title: "Peritación de la Práctica Preventiva: Seguridad en el Trabajo",
+                    hours: 50,
+                    objective: "Analizar y aplicar la normativa vigente en PRL en relación con la especialidad de Seguridad en el trabajo, y ser capaz de realizar informes periciales en relación con la misma.",
+                    knowledge: [
+                        "Peritación de la Seguridad en el Trabajo",
+                        "Seguridad en Lugares de Trabajo",
+                        "Seguridad en Equipos de Trabajo",
+                        "Seguridad en Manutención de Cargas",
+                        "Normativa Industrial",
+                        "Entornos Explosivos",
+                        "Riesgo Eléctrico",
+                        "Particularidades de los Informes periciales en Seguridad",
+                        "Redacción del informe pericial en Seguridad en el trabajo"
+                    ],
+                    skills: [
+                        "Precisión y exactitud en la narración y redacción de los hechos que han ocasionado el requerimiento del informe en la especialidad de seguridad en el trabajo",
+                        "Asertividad como herramienta de entrevista y exposición"
+                    ]
+                },
+                {
+                    number: 4,
+                    title: "Peritación de la Práctica Preventiva: Higiene Industrial",
+                    hours: 30,
+                    objective: "Analizar y aplicar la normativa vigente en la especialidad de Higiene Industrial, y ser capaz de realizar informes periciales en relación con la misma",
+                    knowledge: [
+                        "Peritación de la Higiene Industrial en el Trabajo",
+                        "Contaminantes químicos",
+                        "Contaminantes biológicos",
+                        "Contaminantes físicos",
+                        "Tipos y Vías de entrada. Métodos y Evaluación",
+                        "Particularidades de los Informes periciales en Higiene Industrial",
+                        "Redacción del informe pericial en Higiene Industrial"
+                    ],
+                    skills: [
+                        "Precisión y exactitud en la narración y redacción de los hechos que han ocasionado el requerimiento del informe en la especialidad higiene industrial",
+                        "Asertividad como herramienta de entrevista y exposición"
+                    ]
+                },
+                {
+                    number: 5,
+                    title: "Peritación de la Práctica Preventiva: Ergonomía y Psicosociología en el Trabajo",
+                    hours: 30,
+                    objective: "Analizar y aplicar la normativa vigente en PRL en relación con la especialidad de Ergonomía y Psicosociología, y ser capaz de realizar informes periciales en relación con la misma.",
+                    knowledge: [
+                        "Peritación de la Ergonomía y Psicosociología en el Trabajo",
+                        "Trastornos músculo esqueléticos en miembros superiores e inferiores",
+                        "Métodos de evaluación en Ergonomía",
+                        "Criterios de Aplicación",
+                        "Estrés Laboral y sus manifestaciones",
+                        "Métodos de evaluación en psicosociología",
+                        "Identificación de factores a considerar en su peritación",
+                        "Particularidades de los Informes periciales en Ergonomía y Psicosociología en el trabajo",
+                        "Redacción del informe pericial en ergonomía y psicosociología en el trabajo"
+                    ],
+                    skills: [
+                        "Precisión y exactitud en la narración y redacción de los hechos que han ocasionado el requerimiento del informe en la especialidad Ergonomía y Psicosociología en el trabajo",
+                        "Asertividad como herramienta de entrevista y exposición"
+                    ]
+                },
+                {
+                    number: 6,
+                    title: "La Defensa del Informe Pericial en Sala",
+                    hours: 30,
+                    objective: "Desarrollar habilidades comunicativas para ser capaz de defender el informe pericial en el acto judicial de un modo veraz, objetivo y seguro.",
+                    knowledge: [
+                        "El perito como orador",
+                        "La comunicación en sala",
+                        "El lenguaje del cuerpo",
+                        "La voz, un instrumento frágil y valioso",
+                        "La preparación de la intervención",
+                        "Tipos de discurso",
+                        "El lenguaje",
+                        "Estrategias para la hora de la verdad",
+                        "El diálogo y las preguntas"
+                    ],
+                    skills: [
+                        "Expresión oral clara y decoro profesional en la exposición en sala",
+                        "Capacidad de elocuencia y expresión en sala",
+                        "Demostración de seguridad en la argumentación en sala"
+                    ]
+                }
+            ]
+        };
+
+        let currentModule = 0;
+        let completedModules = new Set();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        function updateProgress() {
+            const percent = Math.round((completedModules.size / 6) * 100);
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = percent + '% Completado';
+        }
+
+        function markComplete(moduleNum) {
+            if (completedModules.has(moduleNum)) {
+                completedModules.delete(moduleNum);
+            } else {
+                completedModules.add(moduleNum);
+            }
+            updateProgress();
+            renderModule(moduleNum);
+        }
+
+        function showModule(num) {
+            currentModule = num;
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach((item, index) => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item')[num].classList.add('active');
+            
+            // Close sidebar on mobile
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            
+            if (num === 0) {
+                renderOverview();
+            } else {
+                renderModule(num);
+            }
+        }
+
+        function renderOverview() {
+            const content = document.getElementById('contentArea');
+            const data = courseData.overview;
+            
+            let structureHTML = '';
+            data.structure.forEach((block, i) => {
+                structureHTML += `
+                    <div class="block-card">
+                        <div class="block-header">
+                            <i data-lucide="layers" style="width: 18px; height: 18px;"></i>
+                            ${block.title}
+                            <span style="margin-left: auto; opacity: 0.8; font-weight: 500;">${block.hours}h</span>
+                        </div>
+                        <div class="block-content">
+                            <ul class="topic-list">
+                                ${block.modules.map(m => `<li class="topic-item"><span class="topic-bullet"></span><span class="topic-text">${m}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+
+            let objectivesHTML = data.objectives.map(o => `<li class="topic-item"><span class="topic-bullet"></span><span class="topic-text">${o}</span></li>`).join('');
+            let skillsHTML = data.skills.map(s => `<li class="topic-item"><span class="topic-bullet"></span><span class="topic-text">${s}</span></li>`).join('');
+
+            content.innerHTML = `
+                <div class="module-header fade-in">
+                    <span class="module-number">SEAD0002</span>
+                    <h1 class="module-title">${data.title}</h1>
+                    <p style="opacity: 0.9; font-size: 0.95rem; line-height: 1.7;">${data.description}</p>
+                    <div class="module-meta">
+                        <span class="meta-item"><i data-lucide="clock" style="width: 16px; height: 16px;"></i> ${data.totalHours} horas totales</span>
+                        <span class="meta-item"><i data-lucide="layers" style="width: 16px; height: 16px;"></i> ${data.modules} módulos</span>
+                    </div>
+                </div>
+
+                <div class="content-card fade-in">
+                    <h2 class="card-title">
+                        <i data-lucide="map" style="width: 20px; height: 20px; color: var(--gold);"></i>
+                        Estructura del Curso
+                    </h2>
+                    ${structureHTML}
+                </div>
+
+                <div class="content-card fade-in">
+                    <h2 class="card-title">
+                        <i data-lucide="target" style="width: 20px; height: 20px; color: var(--red-primary);"></i>
+                        Objetivos Generales
+                    </h2>
+                    <ul class="topic-list">${objectivesHTML}</ul>
+                </div>
+
+                <div class="content-card fade-in">
+                    <h2 class="card-title">
+                        <i data-lucide="award" style="width: 20px; height: 20px; color: var(--gold);"></i>
+                        Competencias Profesionales
+                    </h2>
+                    <ul class="topic-list">${skillsHTML}</ul>
+                </div>
+
+                <div class="highlight-box fade-in">
+                    <div class="highlight-title">
+                        <i data-lucide="lightbulb" style="width: 16px; height: 16px;"></i>
+                        Nota Importante
+                    </div>
+                    <p class="highlight-text">Este programa formativo combina fundamentos teóricos con aplicaciones prácticas, preparando al alumnado para actuar con solvencia técnica, rigor ético y eficacia comunicativa en el auxilio a la Administración de Justicia.</p>
+                </div>
+            `;
+            
+            lucide.createIcons();
+        }
+
+        function renderModule(num) {
+            const content = document.getElementById('contentArea');
+            const data = courseData.modules[num];
+            const isCompleted = completedModules.has(num);
+            
+            let knowledgeHTML = data.knowledge.map(k => `<li class="topic-item"><span class="topic-bullet"></span><span class="topic-text">${k}</span></li>`).join('');
+            let skillsHTML = data.skills.map(s => `<li class="topic-item"><span class="topic-bullet"></span><span class="topic-text">${s}</span></li>`).join('');
+
+            content.innerHTML = `
+                <div class="module-header fade-in">
+                    <span class="module-number">MÓDULO ${data.number} DE 6</span>
+                    <h1 class="module-title">${data.title}</h1>
+                    <div class="module-meta">
+                        <span class="meta-item"><i data-lucide="clock" style="width: 16px; height: 16px;"></i> ${data.hours} horas</span>
+                        <span class="meta-item"><i data-lucide="${isCompleted ? 'check-circle' : 'circle'}" style="width: 16px; height: 16px;"></i> ${isCompleted ? 'Completado' : 'Pendiente'}</span>
+                    </div>
+                </div>
+
+                <div class="content-card fade-in">
+                    <div class="objective-box">
+                        <div class="objective-label">Objetivo del Módulo</div>
+                        <p class="objective-text">${data.objective}</p>
+                    </div>
+
+                    <div class="tab-container">
+                        <button class="tab-btn active" onclick="switchTab(event, 'knowledge-${num}')">Conocimientos</button>
+                        <button class="tab-btn" onclick="switchTab(event, 'skills-${num}')">Competencias</button>
+                    </div>
+
+                    <div id="knowledge-${num}" class="tab-content active">
+                        <h3 class="card-title" style="font-size: 1.1rem; margin-top: 1rem;">
+                            <i data-lucide="book-open" style="width: 18px; height: 18px; color: var(--gold);"></i>
+                            Conocimientos / Capacidades cognitivas y prácticas
+                        </h3>
+                        <ul class="topic-list">${knowledgeHTML}</ul>
+                    </div>
+
+                    <div id="skills-${num}" class="tab-content">
+                        <h3 class="card-title" style="font-size: 1.1rem; margin-top: 1rem;">
+                            <i data-lucide="users" style="width: 18px; height: 18px; color: var(--gold);"></i>
+                            Habilidades de gestión, personales y sociales
+                        </h3>
+                        <ul class="topic-list">${skillsHTML}</ul>
+                    </div>
+                </div>
+
+                <div class="action-buttons fade-in">
+                    <button class="btn btn-secondary" onclick="showModule(${num === 1 ? 6 : num - 1})">
+                        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                        Módulo Anterior
+                    </button>
+                    <button class="btn ${isCompleted ? 'btn-secondary' : 'btn-gold'}" onclick="markComplete(${num})">
+                        <i data-lucide="${isCompleted ? 'rotate-ccw' : 'check'}" style="width: 16px; height: 16px;"></i>
+                        ${isCompleted ? 'Desmarcar' : 'Marcar como Completado'}
+                    </button>
+                    <button class="btn btn-primary" onclick="showModule(${num === 6 ? 1 : num + 1})">
+                        Módulo Siguiente
+                        <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            `;
+            
+            lucide.createIcons();
+        }
+
+        function switchTab(event, tabId) {
+            // Remove active from all tabs in the same container
+            const container = event.target.parentElement;
+            container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Hide all tab contents in the same parent
+            const parent = container.parentElement;
+            parent.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Initialize
+        showModule(0);
+        updateProgress();
+    </script>
+</body>
+</html>

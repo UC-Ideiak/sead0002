@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: El Perito Judicial y el Dictamen Pericial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sketch-border: 3px dashed #5a6b8c;
+            --sketch-border-light: 2px dashed #8a9ab6;
+            --primary: #4a6fa5;
+            --secondary: #6b8dbe;
+            --accent: #e67e5a;
+            --background: #f8f9fc;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6b8c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(var(--sketch-border-light) 1px, transparent 1px),
+                radial-gradient(var(--sketch-border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            padding-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border: var(--sketch-border);
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(90, 107, 140, 0.03) 10px,
+                rgba(90, 107, 140, 0.03) 20px
+            );
+            z-index: 0;
+        }
+
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Kalam', cursive;
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            border: 2px dashed white;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: var(--sketch-border-light);
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 8px;
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 0.7rem 1.4rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.1rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 2.5rem;
+            border: var(--sketch-border);
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Kalam', cursive;
+            font-size: 2.4rem;
+            color: var(--primary);
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px dashed var(--secondary);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.9rem;
+            color: var(--secondary);
+            margin: 1.8rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Definition Cards */
+        .definition-card {
+            border-left: 4px solid var(--accent);
+            background: rgba(230, 126, 90, 0.08);
+            padding: 1.3rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .definition-card::before {
+            content: "💡";
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            background: var(--accent);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            border: 2px solid white;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .definition-card strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Tables */
+        .info-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.8rem 0;
+            border: var(--sketch-border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .info-table th {
+            background: var(--primary);
+            color: white;
+            font-family: 'Kalam', cursive;
+            font-size: 1.3rem;
+            padding: 1.1rem 1.4rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .info-table td {
+            padding: 1rem 1.4rem;
+            border-bottom: 1px dashed var(--sketch-border-light);
+        }
+
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table tr:nth-child(even) {
+            background: rgba(90, 107, 140, 0.04);
+        }
+
+        .info-table tr:hover {
+            background: rgba(107, 141, 190, 0.08);
+        }
+
+        /* Interactive Elements */
+        .accordion {
+            margin: 1.5rem 0;
+            border: var(--sketch-border-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--secondary);
+            color: white;
+            padding: 1.1rem 1.5rem;
+            font-family: 'Kalam', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary);
+        }
+
+        .accordion-header::after {
+            content: "+";
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+
+        .accordion-header.active::after {
+            content: "−";
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+
+        /* Glossary Tooltip */
+        .glossary-term {
+            border-bottom: 2px dashed var(--accent);
+            cursor: help;
+            position: relative;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .glossary-term:hover::after {
+            content: attr(data-definition);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            width: 280px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 2px dashed white;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+        }
+
+        .glossary-term:hover::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--primary);
+            margin-bottom: -16px;
+            z-index: 1001;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: rgba(107, 141, 190, 0.08);
+            border: var(--sketch-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            padding: 0.9rem 1.4rem;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(107, 141, 190, 0.1);
+            transform: translateX(3px);
+        }
+
+        .quiz-option.selected {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+            border-color: #219653;
+        }
+
+        .quiz-option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .quiz-feedback {
+            margin-top: 1.2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(39, 174, 96, 0.15);
+            color: #27ae60;
+            display: block;
+            border-left: 4px solid var(--success);
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(231, 76, 60, 0.15);
+            color: #c0392b;
+            display: block;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .quiz-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .quiz-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+        }
+
+        .quiz-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Key Points */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: white;
+            border: var(--sketch-border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .key-point:hover {
+            transform: translateY(-4px);
+            box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2);
+        }
+
+        .key-point-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .key-point h4 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Progress Tracker */
+        .progress-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: var(--sketch-border-light);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .progress-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #e0e6f2;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+            border: 1px dashed var(--secondary);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 15%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: var(--sketch-border);
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .module-btn {
+            background: white;
+            border: var(--sketch-border);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .module-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25);
+        }
+
+        .module-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.6rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 2.1rem;
+            }
+            
+            h3 {
+                font-size: 1.7rem;
+            }
+            
+            .info-table {
+                font-size: 0.95rem;
+            }
+            
+            .info-table th,
+            .info-table td {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        /* Sketch effect for images/boxes */
+        .sketch-box {
+            position: relative;
+            border: var(--sketch-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .sketch-box::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed var(--secondary);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Highlight box */
+        .highlight {
+            background: rgba(74, 111, 165, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 1.3rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight strong {
+            color: var(--primary);
+        }
+
+        /* Example box */
+        .example-box {
+            background: rgba(230, 126, 90, 0.1);
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .example-box::before {
+            content: "Ejemplo práctico";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-family: 'Kalam', cursive;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Animation for interactive elements */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(107, 141, 190, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(107, 141, 190, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(107, 141, 190, 0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Section indicators */
+        .section-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d9e6;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+        }
+
+        .indicator-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .indicator-dot:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>El Perito Judicial y el Dictamen Pericial</h1>
+            <div class="subtitle">Módulo 1</div>
+            <p class="intro-text">Aprende los fundamentos de la actividad pericial en prevención de riesgos laborales. Este módulo te introduce en el mundo del peritaje judicial con un enfoque claro, progresivo y adaptado para estudiantes de primer año.</p>
+            <div>
+                <span class="badge">⏱️ Duración: 30 horas</span>
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" data-section="intro">🏠 Inicio</button>
+            <button class="nav-btn" data-section="nature">🔍 Naturaleza de la Pericia</button>
+            <button class="nav-btn" data-section="expert">👨‍⚖️ El Perito Judicial</button>
+            <button class="nav-btn" data-section="report">📋 El Dictamen Pericial</button>
+            <button class="nav-btn" data-section="evidence">⚖️ Sistema de Pruebas</button>
+            <button class="nav-btn" data-section="types">🔄 Tipos de Pericia</button>
+            <button class="nav-btn" data-section="process">📅 Ciclo Procesal</button>
+            <button class="nav-btn" data-section="valuation">✨ Sana Crítica</button>
+            <button class="nav-btn" data-section="quiz">✅ Autoevaluación</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-title">Tu progreso en el módulo</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text"><span id="progressPercent">15</span>% completado</div>
+        </div>
+
+        <div class="section-indicator">
+            <div class="indicator-dot active" data-section="intro"></div>
+            <div class="indicator-dot" data-section="nature"></div>
+            <div class="indicator-dot" data-section="expert"></div>
+            <div class="indicator-dot" data-section="report"></div>
+            <div class="indicator-dot" data-section="evidence"></div>
+            <div class="indicator-dot" data-section="types"></div>
+            <div class="indicator-dot" data-section="process"></div>
+            <div class="indicator-dot" data-section="valuation"></div>
+            <div class="indicator-dot" data-section="quiz"></div>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="intro" class="active">
+            <h2>¡Bienvenido al Módulo 1!</h2>
+            <p>En este módulo descubrirás qué es un <span class="glossary-term" data-definition="Profesional con titulación oficial en Prevención de Riesgos Laborales que aporta conocimientos técnicos especializados para ayudar al juez a resolver cuestiones técnicas en un proceso judicial.">perito judicial</span> en prevención de riesgos laborales y cómo se elabora un dictamen pericial válido en sede judicial.</p>
+            
+            <div class="definition-card">
+                <strong>Objetivo del módulo:</strong> Comprender los fundamentos de la actividad pericial en prevención de riesgos laborales dentro del marco jurídico español, aprendiendo a transformar el conocimiento técnico en prueba judicial útil para esclarecer causalidades en procesos sobre daños laborales.
+            </div>
+
+            <h3>¿Qué aprenderás en este módulo?</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🎯</div>
+                    <h4>Conceptos básicos</h4>
+                    <p>Definición, características y función de la pericia en PRL</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">👨‍💼</div>
+                    <h4>El rol del perito</h4>
+                    <p>Funciones, límites y responsabilidades del perito judicial</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📝</div>
+                    <h4>El dictamen</h4>
+                    <p>Requisitos de rigor, metodología y ética en la elaboración</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">⚖️</div>
+                    <h4>Contexto judicial</h4>
+                    <p>Integración de la prueba pericial en el sistema procesal</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Importante:</strong> Todo el contenido de este módulo está basado exclusivamente en fuentes oficiales y normativa vigente en España. No se incluyen opiniones personales ni conocimientos externos no verificados.
+            </div>
+
+            <p>Este módulo es tu primer paso para entender cómo el conocimiento técnico en seguridad, higiene, ergonomía y psicosociología se convierte en una herramienta jurídica para determinar responsabilidades en casos de daños laborales.</p>
+        </section>
+
+        <!-- NATURALEZA DE LA PERICIA -->
+        <section id="nature">
+            <h2>Naturaleza y Función de la Pericia en PRL</h2>
+            
+            <h3>¿Qué es la pericia en prevención de riesgos laborales?</h3>
+            <p>La pericia en prevención de riesgos laborales es una <strong>actividad técnica de alto nivel especializado</strong>, realizada por profesionales que tienen la titulación de Técnico Superior en Prevención de Riesgos Laborales en las especialidades de Seguridad en el Trabajo, Higiene Industrial, Ergonomía y Psicosociología Aplicada.</p>
+            
+            <p>Su finalidad es proporcionar al juez conocimientos técnicos específicos sobre seguridad, higiene, ergonomía y factores psicosociales necesarios para valorar hechos controvertidos en procesos donde se discute la existencia, origen o responsabilidad de daños derivados de la actividad laboral.</p>
+
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Características clave de la actividad pericial</h4>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Carácter auxiliar</strong></td>
+                            <td>La función pericial no sustituye al juez; complementa su conocimiento en materias técnicas que exceden su formación jurídica.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Especialización obligatoria</strong></td>
+                            <td>Requiere titulación oficial en PRL y, en muchos casos, experiencia acreditada en el sector analizado.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Objeto técnico</strong></td>
+                            <td>El análisis se centra en condiciones de trabajo, procedimientos operativos, medidas preventivas y su adecuación normativa.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Finalidad probatoria</strong></td>
+                            <td>El dictamen establece relaciones de causalidad técnica entre deficiencias preventivas y daños producidos, sin emitir juicios jurídicos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vinculación normativa</strong></td>
+                            <td>La valoración técnica contrasta la realidad del centro de trabajo con la normativa de PRL vigente y el estado de la técnica.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="definition-card">
+                <strong>Recuerda:</strong> El perito no decide quién tiene razón en un juicio. Su función es explicar al juez, con lenguaje técnico pero comprensible, qué ocurrió desde el punto de vista de la prevención de riesgos laborales.
+            </div>
+        </section>
+
+        <!-- EL PERITO JUDICIAL -->
+        <section id="expert">
+            <h2>El Perito Judicial en PRL: Funciones, Límites y Responsabilidades</h2>
+            
+            <h3>Funciones principales del perito</h3>
+            <p>El perito judicial en prevención de riesgos laborales desarrolla cuatro funciones esenciales:</p>
+            
+            <div class="accordion">
+                <div class="accordion-header">Esclarecimiento de causas y reconstrucción del siniestro</div>
+                <div class="accordion-content">
+                    <p>Identifica la secuencia de eventos que condujeron al daño, diferenciando causas inmediatas (fallos técnicos, errores operativos) de causas raíz organizativas (deficiencias en planificación, formación insuficiente, ausencia de procedimientos).</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">Valoración técnica del cumplimiento preventivo</div>
+                <div class="accordion-content">
+                    <p>Determina si las medidas adoptadas por la empresa eran suficientes y adecuadas conforme a la normativa aplicable y al estado de la técnica en el momento de los hechos.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">Traducción técnico-jurídica</div>
+                <div class="accordion-content">
+                    <p>Convierte conceptos especializados de prevención (evaluaciones de riesgo, mediciones higiénicas, análisis ergonómicos) en explicaciones comprensibles para el órgano judicial.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">Suministro de estándares sectoriales</div>
+                <div class="accordion-content">
+                    <p>Aporta información sobre prácticas habituales, normas técnicas de referencia (UNE, ISO) y notas técnicas del INSST aplicables al sector o actividad analizada.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Límites de la actuación pericial</h3>
+            <p>El perito debe conocer y respetar sus límites profesionales para garantizar la validez de su intervención:</p>
+            
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Límite</th>
+                        <th>Fundamento</th>
+                        <th>Consecuencia práctica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Competencia técnica</strong></td>
+                        <td>El perito solo puede dictaminar sobre materias de su especialidad formativa.</td>
+                        <td>Un perito de Seguridad no emite conclusiones sobre diagnóstico médico o cuantificación de daños psíquicos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ámbito fáctico</strong></td>
+                        <td>El análisis se circunscribe a los hechos objeto del procedimiento judicial.</td>
+                        <td>No se investigan circunstancias ajenas al caso ni se emiten opiniones sobre situaciones no documentadas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Función auxiliar</strong></td>
+                        <td>El perito no sustituye al juez en la valoración jurídica de la prueba.</td>
+                        <td>Las conclusiones técnicas no contienen calificativos jurídicos como "negligencia" o "responsabilidad".</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temporalidad</strong></td>
+                        <td>La valoración se realiza conforme a la normativa vigente en el momento de los hechos.</td>
+                        <td>No se aplican criterios normativos posteriores al siniestro para valorar la conducta preventiva.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <strong>Responsabilidades del perito:</strong> Técnica (aplicar metodologías contrastadas), Ética (objetividad e imparcialidad), Procesal (cumplir plazos y normas) y Deontológica (confidencialidad, veracidad y lealtad procesal).
+            </div>
+        </section>
+
+        <!-- EL DICTAMEN PERICIAL -->
+        <section id="report">
+            <h2>El Dictamen Pericial en PRL: Requisitos de Rigor, Metodología y Ética</h2>
+            
+            <h3>Cientificidad y metodología contrastable</h3>
+            <p>El dictamen pericial debe sustentarse en procedimientos analíticos reglados que permitan la reproducción del análisis por terceros cualificados. Los métodos de investigación aplicables incluyen:</p>
+            
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Método</th>
+                        <th>Aplicación en PRL</th>
+                        <th>Tipo de datos generados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Árbol de causas</strong></td>
+                        <td>Reconstrucción secuencial de eventos para identificar puntos de fallo en el sistema preventivo.</td>
+                        <td>Diagrama lógico de relaciones causales entre condiciones, actos y daños.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AMFE</strong></td>
+                        <td>Evaluación sistemática de posibles fallos en equipos, procedimientos u organizaciones.</td>
+                        <td>Matriz de criticidad con priorización de medidas correctoras.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Método de la causa principal</strong></td>
+                        <td>Identificación del factor determinante que, de haberse controlado, habría evitado el daño.</td>
+                        <td>Conclusión única sobre la medida preventiva omitida o insuficiente.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mediciones de campo</strong></td>
+                        <td>Cuantificación de niveles de ruido, iluminación, contaminantes químicos, esfuerzos físicos.</td>
+                        <td>Datos numéricos contrastables con valores límite reglamentarios.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simulación ergonómica</strong></td>
+                        <td>Evaluación retrospectiva de posturas, movimientos repetitivos o manejo de cargas.</td>
+                        <td>Estimación de sobreesfuerzos y comparación con guías técnicas de referencia.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Independencia, objetividad y deontología profesional</h3>
+            <p>La objetividad pericial no es una opción voluntaria, sino un requisito legal reforzado por el juramento o promesa de actuación imparcial ante el órgano judicial. Los mecanismos de garantía incluyen:</p>
+            
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">⚖️</div>
+                    <h4>Tacha de peritos</h4>
+                    <p>Procedimiento mediante el cual la contraparte puede cuestionar la imparcialidad del perito cuando exista relación laboral, económica o de parentesco.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🚫</div>
+                    <h4>Recusación</h4>
+                    <p>Causas tasadas de abstención obligatoria: parentesco hasta cuarto grado, interés directo en el litigio, amistad íntima o enemistad manifiesta.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔍</div>
+                    <h4>Transparencia</h4>
+                    <p>Exposición detallada de fuentes documentales, técnicas empleadas y criterios de interpretación, permitiendo el contraste por otros expertos.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📋</div>
+                    <h4>Hechos vs. opiniones</h4>
+                    <p>Distinción explícita en el dictamen entre datos objetivos (mediciones, documentos) y conclusiones técnicas derivadas de su análisis.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <p>Un dictamen pericial bien elaborado no dice "la empresa fue negligente", sino que explica: "La ausencia de protección colectiva en la zona de trabajo, contraviniendo el artículo X del Reglamento Y, constituyó una deficiencia técnica que incrementó significativamente la probabilidad de que ocurriera el accidente descrito".</p>
+            </div>
+        </section>
+
+        <!-- SISTEMA DE PRUEBAS -->
+        <section id="evidence">
+            <h2>El Sistema de Pruebas en el Derecho Civil y Social</h2>
+            
+            <p>El dictamen pericial se integra en un conjunto probatorio regulado por el artículo 299 de la Ley de Enjuiciamiento Civil, aplicable supletoriamente en la jurisdicción social. Cada medio de prueba aporta información complementaria que el perito debe considerar en su análisis.</p>
+            
+            <h3>Medios de prueba y su interacción con el dictamen pericial</h3>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Medio de prueba</th>
+                        <th>Aplicación práctica en PRL</th>
+                        <th>Implicaciones técnicas para el perito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Interrogatorio de partes</strong></td>
+                        <td>Declaraciones del empresario sobre asignación de recursos preventivos o del trabajador sobre instrucciones recibidas.</td>
+                        <td>Permite contrastar la coherencia entre la planificación documental y la ejecución real de las medidas preventivas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentos</strong></td>
+                        <td>Evaluaciones de Riesgos, Planes de Prevención, registros de entrega de EPIs, actas de Inspección de Trabajo.</td>
+                        <td>Constituyen la base documental del análisis; el perito verifica su autenticidad, actualidad y adecuación al puesto concreto.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dictamen de peritos</strong></td>
+                        <td>Informe técnico que analiza el nexo causal entre deficiencias preventivas y el daño producido.</td>
+                        <td>Representa la prueba técnica central que articula la interpretación de documentos y declaraciones desde la perspectiva preventiva.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reconocimiento judicial</strong></td>
+                        <td>Desplazamiento del juez al centro de trabajo para observar in situ las condiciones del siniestro.</td>
+                        <td>El perito actúa como guía técnico, señalando elementos relevantes que puedan no ser evidentes para el juzgador.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Medios audiovisuales</strong></td>
+                        <td>Fotografías del lugar del accidente, grabaciones de cámaras de seguridad, recreaciones digitales.</td>
+                        <td>Permiten validar hipótesis sobre trayectorias, secuencias temporales o condiciones ambientales en el momento de los hechos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testigos</strong></td>
+                        <td>Declaraciones de compañeros sobre prácticas habituales, presión productiva o uso real de protecciones.</td>
+                        <td>Ayuda a determinar si el accidente fue un evento excepcional o consecuencia de una cultura preventiva sistemáticamente deficiente.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Lógica de la actividad probatoria en el ámbito laboral</h3>
+            
+            <div class="definition-card">
+                <strong>Principio dispositivo:</strong> En las jurisdicciones social y civil, corresponde a las partes la iniciativa probatoria. El juez no investiga de oficio; valora exclusivamente los medios de prueba propuestos y admitidos.
+            </div>
+            
+            <p>Esta característica determina que:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>La designación del perito y la presentación de su dictamen dependen de la estrategia procesal de cada parte.</li>
+                <li>Un dictamen técnicamente sólido pero presentado extemporáneamente puede ser inadmitido.</li>
+                <li>La calidad expositiva del informe influye en su capacidad para orientar la valoración judicial desde fases tempranas.</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>Carga de la prueba en PRL:</strong> Una vez acreditado el daño laboral, corresponde al empresario demostrar que adoptó todas las medidas preventivas exigibles. Esta "inversión dinámica" compensa la asimetría informativa entre trabajador y empresa.
+            </div>
+        </section>
+
+        <!-- TIPOS DE PERICIA -->
+        <section id="types">
+            <h2>Diferenciación Crítica: Investigación de Accidentes vs. Auditoría de Prevención</h2>
+            
+            <h3>Pericia de investigación de accidentes (análisis forense)</h3>
+            <p>Se activa ante la ocurrencia de un suceso traumático concreto (accidente laboral, incidente grave, enfermedad profesional declarada). Su objetivo es la <strong>reconstrucción histórica de los hechos</strong> para determinar por qué las defensas del sistema preventivo fallaron simultáneamente en un punto específico del tiempo.</p>
+            
+            <div class="sketch-box">
+                <h4 style="font-family: 'Kalam', cursive; color: var(--primary); margin-bottom: 1rem;">Foco de análisis técnico en investigación de accidentes</h4>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Elemento</th>
+                            <th>Preguntas clave</th>
+                            <th>Herramientas de valoración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Condiciones materiales</strong></td>
+                            <td>¿Existían protecciones en la máquina? ¿Estaban operativas? ¿Cumplían marcado CE?</td>
+                            <td>Inspección visual, fotografía técnica, contraste con ficha de características del equipo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Factores ambientales</strong></td>
+                            <td>¿Niveles de iluminación, ruido o contaminantes en el momento del suceso?</td>
+                            <td>Mediciones retrospectivas, simulación de condiciones, consulta de registros de vigilancia ambiental.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Procedimientos operativos</strong></td>
+                            <td>¿Existía instrucción escrita? ¿Fue transmitida al trabajador? ¿Se aplicaba en la práctica?</td>
+                            <td>Revisión documental, entrevistas a mandos intermedios, observación de tareas análogas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Factores humanos</strong></td>
+                            <td>¿Fatiga, estrés, formación insuficiente, presión productiva?</td>
+                            <td>Análisis de turnos, carga de trabajo, registros de formación, testimonios de compañeros.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Respuesta ante emergencia</strong></td>
+                            <td>¿Existía protocolo de rescate? ¿Se activó correctamente? ¿Se prestó asistencia adecuada?</td>
+                            <td>Revisión de planes de emergencia, registro de tiempos de intervención, evaluación de primeros auxilios.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Pericia de sistema de gestión (auditoría técnica)</h3>
+            <p>Se solicita para valorar la adecuación global del sistema preventivo de una organización, con independencia de la ocurrencia de un accidente concreto. Su objetivo es determinar si la prevención constituye una cultura integrada en la gestión empresarial o se limita a un cumplimiento formal para evitar sanciones.</p>
+            
+            <div class="example-box">
+                <p><strong>Ejemplo ilustrativo:</strong> En un caso de silicosis diagnosticada en un trabajador del sector del mármol, el perito no analiza un accidente puntual, sino la evolución del sistema preventivo durante diez años. Examina: ausencia de sistemas de aspiración localizada en puestos de corte, entrega de mascarillas no certificadas para sílice cristalina, falta de controles médicos con espirometrías periódicas, y omisión de información sobre los riesgos específicos del material trabajado.</p>
+            </div>
+
+            <div class="definition-card">
+                <strong>Diferencia clave:</strong> La investigación de accidentes mira hacia atrás para reconstruir un suceso concreto; la auditoría de sistema mira hacia adelante para evaluar la capacidad preventiva de una organización en el tiempo.
+            </div>
+        </section>
+
+        <!-- CICLO PROCESAL -->
+        <section id="process">
+            <h2>El Ciclo Procesal y la Estrategia del Dictamen</h2>
+            
+            <h3>Momentos clave de la aportación documental</h3>
+            <p>El momento en que se presenta el dictamen pericial varía según la jurisdicción y puede afectar a su admisión y valoración:</p>
+            
+            <div class="accordion">
+                <div class="accordion-header">Jurisdicción Social</div>
+                <div class="accordion-content">
+                    <p>Procedimientos de tramitación rápida, con plazos reducidos entre la demanda y la vista oral. Aunque la normativa permite presentar el dictamen en fases avanzadas, la entrega anticipada facilita que el juzgador examine el contenido técnico antes de la vista, incrementando su capacidad de influencia en la valoración probatoria. La presentación extemporánea puede motivar la exclusión del dictamen si se acredita indefensión para la contraparte.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">Jurisdicción Civil</div>
+                <div class="accordion-content">
+                    <p>El dictamen anunciado en la demanda debe acompañar a esta o presentarse con la contestación, conforme al artículo 337 de la LEC. Cualquier informe pericial anunciado debe estar a disposición del juzgado y de las partes al menos cinco días hábiles antes de la Audiencia Previa o del Juicio. El incumplimiento de este plazo constituye causa de inadmisión automática.</p>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <div class="accordion-header">Jurisdicción Penal</div>
+                <div class="accordion-content">
+                    <p>El perito puede ser designado por el juez de instrucción para emitir informe en fase sumarial, con carácter previo al juicio oral. El dictamen presentado en instrucción debe ser ratificado en el acto del juicio, sometido a interrogatorio por las partes y al contrainterrogatorio de la acusación y defensa.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">El perito en la vista oral: ratificación y contradicción</h3>
+            <p>La intervención oral del perito no reproduce literalmente el dictamen escrito; adapta su contenido a las características del acto judicial:</p>
+            
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Recurso comunicativo</th>
+                        <th>Finalidad técnica</th>
+                        <th>Ejemplo de aplicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Analogías sectoriales</strong></td>
+                        <td>Facilitar la comprensión de conceptos complejos mediante comparaciones con experiencias cotidianas.</td>
+                        <td>Explicar el principio de protección colectiva vs. individual comparándolo con barandillas fijas vs. arneses personales.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soportes visuales</strong></td>
+                        <td>Reforzar la claridad expositiva mediante esquemas, croquis o secuencias gráficas.</td>
+                        <td>Proyectar un diagrama del árbol de causas con codificación por colores para causas inmediatas, básicas y de gestión.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lenguaje preciso pero accesible</strong></td>
+                        <td>Evitar tecnicismos innecesarios sin sacrificar el rigor técnico.</td>
+                        <td>Sustituir "VLA-ED" por "valor límite de exposición diaria para ruido" la primera vez que se mencione, usando después la sigla.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estructura narrativa</strong></td>
+                        <td>Presentar las conclusiones como resultado lógico de una secuencia analítica verificable.</td>
+                        <td>"Primero se examinó la documentación; después se midieron las condiciones; finalmente se contrastó con la normativa; de ahí se deriva la conclusión".</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <strong>Consejo para estudiantes:</strong> La credibilidad técnica del perito se construye no solo con el contenido de su informe, sino también con su actitud procesal: respuestas directas, fundamentación objetiva, reconocimiento de límites y mantenimiento de la calma incluso ante preguntas desafiantes.
+            </div>
+        </section>
+
+        <!-- SANA CRÍTICA -->
+        <section id="valuation">
+            <h2>La "Sana Crítica": Criterios de Valoración Judicial del Dictamen Pericial</h2>
+            
+            <p>El artículo 348 de la Ley de Enjuiciamiento Civil establece que los tribunales valorarán la prueba pericial conforme a las reglas de la <strong>sana crítica</strong>. Este principio combina libertad de apreciación judicial con la exigencia de motivación lógica y fundamentada.</p>
+            
+            <p>Para el perito, implica que el dictamen debe construirse de modo que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</p>
+
+            <h3>Estándares de calidad para la valoración judicial</h3>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Criterio de sana crítica</th>
+                        <th>Manifestación en el dictamen</th>
+                        <th>Efecto en la valoración judicial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Idoneidad del experto</strong></td>
+                        <td>Acreditación de titulación, especialidad formativa, experiencia en el sector y formación continua.</td>
+                        <td>Mayor peso probatorio cuando el perito posee competencia específica en la materia objeto de análisis.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trazabilidad del dato</strong></td>
+                        <td>Cada afirmación técnica remite a su fuente: medición, documento, testimonio o norma de referencia.</td>
+                        <td>Facilita la verificación por el juzgador y resiste el contraste con otros medios de prueba o dictámenes contradictorios.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coherencia interna</strong></td>
+                        <td>Las conclusiones derivan lógicamente de los hallazgos; no existen saltos deductivos ni contradicciones entre apartados.</td>
+                        <td>Refuerza la credibilidad global del informe y dificulta su impugnación por inconsistencia argumental.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claridad expositiva</strong></td>
+                        <td>Estructura jerárquica, lenguaje preciso, explicación de términos técnicos, uso de resúmenes y conclusiones numeradas.</td>
+                        <td>Incrementa la comprensión por parte del juzgador y favorece la incorporación de las conclusiones técnicas a la motivación de la sentencia.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proporcionalidad de las conclusiones</strong></td>
+                        <td>Las afirmaciones se ajustan al alcance de la investigación realizada; no se extrapolan datos más allá de su soporte fáctico.</td>
+                        <td>Evita que el juzgador descarte conclusiones por considerarlas especulativas o excesivamente ambiciosas respecto a la prueba disponible.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Factores que debilitan la valoración del dictamen</h3>
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">⚠️</div>
+                    <h4>Subjetivismo</h4>
+                    <p>Uso de expresiones como "en mi opinión" o "parece evidente" sin respaldo en datos objetivos.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔍</div>
+                    <h4>Omisiones relevantes</h4>
+                    <p>Exclusión de documentos o circunstancias que, de haberse considerado, podrían haber modificado las conclusiones.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">📚</div>
+                    <h4>Exceso de tecnicismo</h4>
+                    <p>Redacción hermética que impide al juzgador comprender el razonamiento técnico subyacente.</p>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔄</div>
+                    <h4>Falta de actualización</h4>
+                    <p>Aplicación de criterios técnicos o valores límite derogados o modificados con posterioridad a los hechos.</p>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <strong>Recuerda:</strong> Un buen dictamen pericial no busca "ganar" el caso para una parte, sino aportar claridad técnica al juez para que pueda tomar una decisión fundamentada en la realidad de los hechos y la normativa aplicable.
+            </div>
+        </section>
+
+        <!-- AUTOEVALUACIÓN -->
+        <section id="quiz">
+            <h2>Autoevaluación: Pon a prueba tus conocimientos</h2>
+            <p>Responde las siguientes preguntas para verificar tu comprensión de los conceptos clave del Módulo 1. ¡No hay presión! Es una herramienta para que identifiques qué aspectos necesitas repasar.</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">1. ¿Cuál es la finalidad principal de la pericia en prevención de riesgos laborales?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Sustituir la labor del juez en la valoración jurídica de los hechos</div>
+                    <div class="quiz-option" data-correct="true">B) Proporcionar al órgano judicial conocimientos técnicos específicos para valorar hechos controvertidos</div>
+                    <div class="quiz-option" data-correct="false">C) Determinar la responsabilidad penal de las partes en conflicto</div>
+                    <div class="quiz-option" data-correct="false">D) Elaborar planes de prevención para la empresa implicada</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Correcto! La pericia complementa el conocimiento del juez en materias técnicas que exceden su formación jurídica, sin sustituir su función jurisdiccional.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Recuerda que la pericia tiene carácter auxiliar: complementa el conocimiento del juez en materias técnicas, pero no sustituye su función de valorar jurídicamente la prueba.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">2. ¿Qué límite debe respetar un perito judicial en PRL?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Puede emitir juicios de valor jurídico como "negligencia" o "responsabilidad"</div>
+                    <div class="quiz-option" data-correct="false">B) Debe aplicar criterios normativos posteriores al siniestro para valorar la conducta preventiva</div>
+                    <div class="quiz-option" data-correct="true">C) Solo puede dictaminar sobre materias de su especialidad formativa</div>
+                    <div class="quiz-option" data-correct="false">D) Puede investigar circunstancias ajenas al caso si considera que son relevantes</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Exacto! El perito solo puede dictaminar sobre materias de su especialidad formativa. Un perito de Seguridad, por ejemplo, no debe emitir conclusiones sobre diagnóstico médico o cuantificación de daños psíquicos.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. Recuerda que el perito debe respetar sus límites profesionales: solo puede dictaminar sobre materias de su especialidad, su análisis se circunscribe a los hechos del procedimiento, no sustituye al juez en la valoración jurídica, y valora conforme a la normativa vigente en el momento de los hechos.</div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">3. ¿Qué caracteriza a la "sana crítica" en la valoración judicial del dictamen pericial?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">A) Obliga al juez a aceptar siempre las conclusiones del perito designado por la parte demandante</div>
+                    <div class="quiz-option" data-correct="true">B) Combina libertad de apreciación judicial con la exigencia de motivación lógica y fundamentada</div>
+                    <div class="quiz-option" data-correct="false">C) Exige que todos los dictámenes periciales sigan exactamente la misma estructura formal</div>
+                    <div class="quiz-option" data-correct="false">D) Permite al perito emitir opiniones personales sin necesidad de fundamentarlas en datos objetivos</div>
+                </div>
+                <button class="quiz-btn">Verificar respuesta</button>
+                <div class="quiz-feedback correct">¡Muy bien! La sana crítica combina la libertad del juez para apreciar la prueba con la exigencia de que su valoración esté lógicamente motivada y fundamentada. Por eso, el dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La sana crítica (art. 348 LEC) combina libertad de apreciación judicial con la exigencia de motivación lógica y fundamentada. El dictamen debe construirse para que sus conclusiones resulten persuasivas conforme a estándares de razonamiento técnico aceptados.</div>
+            </div>
+            
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>¡Felicidades por completar el Módulo 1!</strong> Has adquirido los fundamentos para comprender la actividad pericial en prevención de riesgos laborales. En los próximos módulos profundizarás en aspectos específicos de seguridad, higiene, ergonomía y psicosociología, así como en las habilidades para defender tu informe en sede judicial.
+            </div>
+        </section>
+
+        <div class="module-nav">
+            <button class="module-btn" disabled>← Anterior</button>
+            <button class="module-btn" id="nextModule">Siguiente Módulo →</button>
+        </div>
+
+        <footer>
+            <p>Módulo 1: El Perito Judicial y el Dictamen Pericial · Formación Universitaria en Prevención de Riesgos Laborales</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de primer año</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section navigation buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('section');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            // Track current section for progress
+            let currentSectionIndex = 0;
+            const totalSections = sections.length;
+            
+            function updateProgress() {
+                const progress = Math.round(((currentSectionIndex + 1) / totalSections) * 100);
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = progress;
+            }
+            
+            function showSection(sectionId) {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Update navigation buttons
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.section === sectionId) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Update indicator dots
+                indicatorDots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.dataset.section === sectionId) {
+                        dot.classList.add('active');
+                    }
+                });
+                
+                // Update progress
+                currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
+                updateProgress();
+                
+                // Scroll to top of section
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Add click event to navigation buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    showSection(sectionId);
+                });
+            });
+            
+            // Add click event to indicator dots
+            indicatorDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    showSection(sectionId);
+                });
+            });
+            
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                });
+            });
+            
+            // Quiz functionality
+            const quizContainers = document.querySelectorAll('.quiz-container');
+            quizContainers.forEach(container => {
+                const options = container.querySelectorAll('.quiz-option');
+                const button = container.querySelector('.quiz-btn');
+                const feedbackCorrect = container.querySelector('.quiz-feedback.correct');
+                const feedbackIncorrect = container.querySelector('.quiz-feedback.incorrect');
+                
+                // Reset feedback on option selection
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remove selected class from all options
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        // Hide feedback
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'none';
+                        // Enable button
+                        button.disabled = false;
+                    });
+                });
+                
+                // Verify answer
+                button.addEventListener('click', function() {
+                    const selectedOption = container.querySelector('.quiz-option.selected');
+                    if(!selectedOption) return;
+                    
+                    const isCorrect = selectedOption.dataset.correct === 'true';
+                    
+                    // Show feedback
+                    if(isCorrect) {
+                        selectedOption.classList.add('correct');
+                        feedbackCorrect.style.display = 'block';
+                        feedbackIncorrect.style.display = 'none';
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        // Show correct answer
+                        options.forEach(opt => {
+                            if(opt.dataset.correct === 'true') {
+                                opt.classList.add('correct');
+                            }
+                        });
+                        feedbackCorrect.style.display = 'none';
+                        feedbackIncorrect.style.display = 'block';
+                    }
+                    
+                    // Disable button and options after answer
+                    button.disabled = true;
+                    options.forEach(opt => {
+                        opt.style.pointerEvents = 'none';
+                    });
+                });
+            });
+            
+            // Next module button
+            document.getElementById('nextModule').addEventListener('click', function() {
+                alert('¡Excelente trabajo! En un entorno real, este botón te llevaría al Módulo 2: El Marco Procesal de la Peritación en Seguridad y Salud en el Trabajo.');
+            });
+            
+            // Initialize progress
+            updateProgress();
+            
+            // Glossary tooltip enhancement for mobile
+            const glossaryTerms = document.querySelectorAll('.glossary-term');
+            glossaryTerms.forEach(term => {
+                term.addEventListener('click', function(e) {
+                    if(window.innerWidth < 768) {
+                        e.preventDefault();
+                        const definition = this.getAttribute('data-definition');
+                        alert(`Definición: ${definition}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

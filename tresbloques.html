@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Tres Bloques del Peritaje en PRL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .pilar-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .pilar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8 font-sans">
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Estructura Transversal del Peritaje en PRL</h1>
+            <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+                El peritaje judicial en prevención de riesgos laborales se fundamenta en tres pilares documentales esenciales que deben cruzarse para un dictamen sólido.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- BLOQUE 1: PILAR NORMATIVO -->
+            <div class="pilar-card bg-white p-8 rounded-2xl border-t-4 border-blue-600 shadow-sm flex flex-col h-full">
+                <div class="icon-box bg-blue-100 text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-blue-900 mb-3">1. Pilar Normativo</h2>
+                <p class="text-slate-600 mb-4 font-medium italic">Base legal y obligaciones.</p>
+                <div class="space-y-3 flex-grow">
+                    <div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
+                        <span class="block text-sm font-bold text-blue-800">Ley 31/1995 (LPRL)</span>
+                        <span class="text-xs text-blue-600">Marco general de prevención.</span>
+                    </div>
+                    <div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
+                        <span class="block text-sm font-bold text-blue-800">RD 39/1997 (RSP)</span>
+                        <span class="text-xs text-blue-600">Reglamento de Servicios de Prevención.</span>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-slate-500 italic border-t pt-4">"Define qué debía haber hecho la empresa según la ley."</p>
+            </div>
+
+            <!-- BLOQUE 2: PILAR PROCESAL -->
+            <div class="pilar-card bg-white p-8 rounded-2xl border-t-4 border-amber-500 shadow-sm flex flex-col h-full">
+                <div class="icon-box bg-amber-100 text-amber-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-amber-900 mb-3">2. Pilar Procesal</h2>
+                <p class="text-slate-600 mb-4 font-medium italic">Actuación ante los tribunales.</p>
+                <div class="space-y-3 flex-grow">
+                    <div class="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-400">
+                        <span class="block text-sm font-bold text-amber-800">LEC y LRJS</span>
+                        <span class="text-xs text-amber-600">Reglas de la prueba y jurisdicción social.</span>
+                    </div>
+                    <div class="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-400">
+                        <span class="block text-sm font-bold text-amber-800">Ética y Ratificación</span>
+                        <span class="text-xs text-amber-600">Imparcialidad y defensa en el acto del juicio.</span>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-slate-500 italic border-t pt-4">"Garantiza que el informe sea válido y eficaz como prueba judicial."</p>
+            </div>
+
+            <!-- BLOQUE 3: PILAR TÉCNICO-PERICIAL -->
+            <div class="pilar-card bg-white p-8 rounded-2xl border-t-4 border-emerald-600 shadow-sm flex flex-col h-full">
+                <div class="icon-box bg-emerald-100 text-emerald-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-emerald-900 mb-3">3. Pilar Técnico</h2>
+                <p class="text-slate-600 mb-4 font-medium italic">Metodología y especialidades.</p>
+                <div class="space-y-3 flex-grow">
+                    <div class="bg-emerald-50 p-3 rounded-lg border-l-4 border-emerald-400">
+                        <span class="block text-sm font-bold text-emerald-800">Método SCRA / Árbol</span>
+                        <span class="text-xs text-emerald-600">Investigación científica de causas.</span>
+                    </div>
+                    <div class="bg-emerald-50 p-3 rounded-lg border-l-4 border-emerald-400">
+                        <span class="block text-sm font-bold text-emerald-800">Especialidades (NTPs)</span>
+                        <span class="text-xs text-emerald-600">Seguridad, Higiene, Ergonomía y Psicosociología.</span>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-slate-500 italic border-t pt-4">"Aporta el rigor técnico y la evidencia material al dictamen."</p>
+            </div>
+
+        </div>
+
+        <footer class="mt-16 bg-slate-800 text-white p-8 rounded-2xl text-center">
+            <h3 class="text-xl font-bold mb-4">La Clave: El Cruce de Pilares</h3>
+            <p class="text-slate-300 max-w-3xl mx-auto">
+                Un peritaje excelente no solo cita la norma (1) o usa un método técnico (3), sino que lo hace dentro de los cauces procesales (2) para demostrar fehacientemente la relación de causalidad ante el Juez.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
