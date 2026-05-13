@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo 6: La Defensa del Informe Pericial en Sala</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --sketch-border: 3px dashed #5a6b8c;
@@ -21,7 +24,13 @@
             --shadow: 4px 4px 0px rgba(90, 107, 140, 0.15);
             --transition: all 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text);
@@ -32,97 +41,661 @@
             background-position: 0 0, 20px 20px;
             padding-bottom: 4rem;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
         header {
-            text-align: center; padding: 3rem 2rem; margin-bottom: 2rem;
-            border: var(--sketch-border); background: var(--card-bg);
-            border-radius: 8px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border: var(--sketch-border);
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
+
         header::before {
-            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px); z-index: 0;
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(90, 107, 140, 0.03) 10px, rgba(90, 107, 140, 0.03) 20px);
+            z-index: 0;
         }
-        header * { position: relative; z-index: 1; }
-        h1 { font-family: 'Kalam', cursive; font-size: 3.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.5px; }
-        .subtitle { font-family: 'Kalam', cursive; font-size: 1.8rem; color: var(--secondary); margin-bottom: 1.5rem; font-weight: 400; }
-        .intro-text { max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: var(--text-light); }
-        .badge { display: inline-block; background: var(--accent); color: white; padding: 0.4rem 1.2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; margin: 0.5rem; border: 2px dashed white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
-        .nav-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); background: rgba(255, 255, 255, 0.85); border-radius: 8px; position: sticky; top: 1rem; z-index: 100; box-shadow: var(--shadow); }
-        .nav-btn { background: white; border: 2px solid var(--secondary); padding: 0.7rem 1.4rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.1rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2); }
-        .nav-btn:hover, .nav-btn.active { background: var(--secondary); color: white; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3); }
-        section { margin-bottom: 2.5rem; border: var(--sketch-border); background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow); display: none; animation: fadeIn 0.4s ease; }
-        section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        h2 { font-family: 'Kalam', cursive; font-size: 2.4rem; color: var(--primary); margin: 0 0 1.5rem 0; padding-bottom: 0.8rem; border-bottom: 2px dashed var(--secondary); font-weight: 700; }
-        h3 { font-family: 'Kalam', cursive; font-size: 1.9rem; color: var(--secondary); margin: 1.8rem 0 1rem; font-weight: 600; }
-        p { margin-bottom: 1.2rem; font-size: 1.05rem; }
-        .definition-card { border-left: 4px solid var(--accent); background: rgba(230, 126, 90, 0.08); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; position: relative; }
-        .definition-card::before { content: "💡"; position: absolute; left: -15px; top: -10px; background: var(--accent); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; border: 2px solid white; box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
-        .definition-card strong { color: var(--primary); font-weight: 600; }
-        .info-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.8rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
-        .info-table th { background: var(--primary); color: white; font-family: 'Kalam', cursive; font-size: 1.3rem; padding: 1.1rem 1.4rem; text-align: left; font-weight: 600; }
-        .info-table td { padding: 1rem 1.4rem; border-bottom: 1px dashed var(--sketch-border-light); }
-        .info-table tr:last-child td { border-bottom: none; }
-        .info-table tr:nth-child(even) { background: rgba(90, 107, 140, 0.04); }
-        .info-table tr:hover { background: rgba(107, 141, 190, 0.08); }
-        .accordion { margin: 1.5rem 0; border: var(--sketch-border-light); border-radius: 8px; overflow: hidden; }
-        .accordion-header { background: var(--secondary); color: white; padding: 1.1rem 1.5rem; font-family: 'Kalam', cursive; font-size: 1.4rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
-        .accordion-header:hover { background: var(--primary); }
-        .accordion-header::after { content: "+"; font-size: 1.8rem; font-weight: 300; }
-        .accordion-header.active::after { content: "−"; }
-        .accordion-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: rgba(255, 255, 255, 0.9); }
-        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
-        .glossary-term { border-bottom: 2px dashed var(--accent); cursor: help; position: relative; font-weight: 500; color: var(--primary); }
-        .glossary-term:hover::after { content: attr(data-definition); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 0.95rem; width: 280px; text-align: center; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 2px dashed white; font-family: 'Inter', sans-serif; line-height: 1.4; }
-        .quiz-container { background: rgba(107, 141, 190, 0.08); border: var(--sketch-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
-        .quiz-question { font-weight: 600; margin-bottom: 1.2rem; font-size: 1.15rem; color: var(--primary); }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
-        .quiz-option { padding: 0.9rem 1.4rem; background: white; border: 2px solid var(--secondary); border-radius: 8px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.8rem; }
-        .quiz-option:hover { background: rgba(107, 141, 190, 0.1); transform: translateX(3px); }
-        .quiz-option.selected { background: var(--secondary); color: white; border-color: var(--primary); }
-        .quiz-option.correct { background: var(--success); color: white; border-color: #219653; }
-        .quiz-option.incorrect { background: #e74c3c; color: white; border-color: #c0392b; }
-        .quiz-feedback { margin-top: 1.2rem; padding: 1rem; border-radius: 8px; font-weight: 500; display: none; }
-        .quiz-feedback.correct-view { background: rgba(39, 174, 96, 0.15); color: #27ae60; display: block; border-left: 4px solid var(--success); }
-        .quiz-feedback.incorrect-view { background: rgba(231, 76, 60, 0.15); color: #c0392b; display: block; border-left: 4px solid #e74c3c; }
-        .quiz-btn { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: var(--transition); box-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
-        .quiz-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px rgba(0,0,0,0.15); }
-        .quiz-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; box-shadow: none; }
-        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .key-point { background: white; border: var(--sketch-border-light); border-radius: 12px; padding: 1.5rem; text-align: center; box-shadow: var(--shadow); transition: var(--transition); }
-        .key-point:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2); }
-        .key-point-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary); }
-        .key-point h4 { font-family: 'Kalam', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; font-weight: 600; }
-        .progress-container { margin: 2rem 0; padding: 1.5rem; border: var(--sketch-border-light); border-radius: 12px; background: rgba(255, 255, 255, 0.9); }
-        .progress-title { font-family: 'Kalam', cursive; font-size: 1.6rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; }
-        .progress-bar { height: 12px; background: #e0e6f2; border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; border: 1px dashed var(--secondary); }
-        .progress-fill { height: 100%; background: var(--accent); border-radius: 10px; width: 0%; transition: width 0.4s ease; }
-        .progress-text { text-align: right; font-weight: 500; color: var(--text-light); font-size: 0.95rem; }
-        footer { text-align: center; padding: 2rem; margin-top: 2rem; border-top: var(--sketch-border); color: var(--text-light); font-size: 0.95rem; }
-        .module-nav { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
-        .module-btn { background: white; border: var(--sketch-border); padding: 1rem 2rem; border-radius: 30px; font-family: 'Kalam', cursive; font-size: 1.2rem; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 600; box-shadow: var(--shadow); flex: 1; max-width: 200px; }
-        .module-btn:hover { background: var(--secondary); color: white; transform: translate(-3px, -3px); box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25); }
-        .module-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .sketch-box { position: relative; border: var(--sketch-border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; background: white; box-shadow: var(--shadow); }
-        .highlight { background: rgba(74, 111, 165, 0.08); border-left: 4px solid var(--primary); padding: 1.3rem 1.8rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
-        .highlight strong { color: var(--primary); }
-        .example-box { background: rgba(230, 126, 90, 0.1); border: 2px dashed var(--accent); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
-        .example-box::before { content: "Ejemplo ilustrativo"; position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 0.2rem 1rem; border-radius: 20px; font-family: 'Kalam', cursive; font-size: 0.95rem; font-weight: 600; }
-        .section-indicator { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem 0; }
-        .indicator-dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d9e6; cursor: pointer; transition: var(--transition); border: 2px solid var(--secondary); }
-        .indicator-dot.active { background: var(--accent); transform: scale(1.2); }
-        .indicator-dot:hover { background: var(--secondary); }
+
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Kalam', cursive;
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            border: 2px dashed white;
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: var(--sketch-border-light);
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 8px;
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            padding: 0.7rem 1.4rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.1rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 2px 2px 0px rgba(90, 107, 140, 0.2);
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px rgba(90, 107, 140, 0.3);
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+            border: var(--sketch-border);
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Kalam', cursive;
+            font-size: 2.4rem;
+            color: var(--primary);
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px dashed var(--secondary);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.9rem;
+            color: var(--secondary);
+            margin: 1.8rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .definition-card {
+            border-left: 4px solid var(--accent);
+            background: rgba(230, 126, 90, 0.08);
+            padding: 1.3rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .definition-card::before {
+            content: "💡";
+            position: absolute;
+            left: -15px;
+            top: -10px;
+            background: var(--accent);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            border: 2px solid white;
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .definition-card strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.8rem 0;
+            border: var(--sketch-border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .info-table th {
+            background: var(--primary);
+            color: white;
+            font-family: 'Kalam', cursive;
+            font-size: 1.3rem;
+            padding: 1.1rem 1.4rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .info-table td {
+            padding: 1rem 1.4rem;
+            border-bottom: 1px dashed var(--sketch-border-light);
+        }
+
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table tr:nth-child(even) {
+            background: rgba(90, 107, 140, 0.04);
+        }
+
+        .info-table tr:hover {
+            background: rgba(107, 141, 190, 0.08);
+        }
+
+        .accordion {
+            margin: 1.5rem 0;
+            border: var(--sketch-border-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--secondary);
+            color: white;
+            padding: 1.1rem 1.5rem;
+            font-family: 'Kalam', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary);
+        }
+
+        .accordion-header::after {
+            content: "+";
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+
+        .accordion-header.active::after {
+            content: "−";
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+
+        .glossary-term {
+            border-bottom: 2px dashed var(--accent);
+            cursor: help;
+            position: relative;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .glossary-term:hover::after {
+            content: attr(data-definition);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            width: 280px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 2px dashed white;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+        }
+
+        .quiz-container {
+            background: rgba(107, 141, 190, 0.08);
+            border: var(--sketch-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            padding: 0.9rem 1.4rem;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(107, 141, 190, 0.1);
+            transform: translateX(3px);
+        }
+
+        .quiz-option.selected {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+            border-color: #219653;
+        }
+
+        .quiz-option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .quiz-feedback {
+            margin-top: 1.2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.correct-view {
+            background: rgba(39, 174, 96, 0.15);
+            color: #27ae60;
+            display: block;
+            border-left: 4px solid var(--success);
+        }
+
+        .quiz-feedback.incorrect-view {
+            background: rgba(231, 76, 60, 0.15);
+            color: #c0392b;
+            display: block;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .quiz-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: white;
+            border: var(--sketch-border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .key-point:hover {
+            transform: translateY(-4px);
+            box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.2);
+        }
+
+        .key-point-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .key-point h4 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: var(--sketch-border-light);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .progress-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #e0e6f2;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.8rem;
+            border: 1px dashed var(--secondary);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            text-align: right;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: var(--sketch-border);
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .module-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .module-btn {
+            background: white;
+            border: var(--sketch-border);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .module-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px rgba(90, 107, 140, 0.25);
+        }
+
+        .module-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .sketch-box {
+            position: relative;
+            border: var(--sketch-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .highlight {
+            background: rgba(74, 111, 165, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 1.3rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight strong {
+            color: var(--primary);
+        }
+
+        .example-box {
+            background: rgba(230, 126, 90, 0.1);
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .example-box::before {
+            content: "Ejemplo ilustrativo";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-family: 'Kalam', cursive;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .section-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d9e6;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+        }
+
+        .indicator-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .indicator-dot:hover {
+            background: var(--secondary);
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: 2.6rem; } .subtitle { font-size: 1.5rem; } .nav-container { flex-direction: column; align-items: center; } .nav-btn { width: 100%; max-width: 300px; } section { padding: 1.5rem; } h2 { font-size: 2.1rem; } h3 { font-size: 1.7rem; } .info-table { font-size: 0.95rem; } .info-table th, .info-table td { padding: 0.8rem 1rem; }
+            h1 {
+                font-size: 2.6rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2.1rem;
+            }
+
+            h3 {
+                font-size: 1.7rem;
+            }
+
+            .info-table {
+                font-size: 0.95rem;
+            }
+
+            .info-table th,
+            .info-table td {
+                padding: 0.8rem 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>La Defensa del Informe Pericial en Sala</h1>
             <div class="subtitle">Módulo 6</div>
-            <p class="intro-text">Aprende a defender tu informe pericial en sede judicial con claridad, objetividad y seguridad. Descubrirás técnicas de oratoria forense, gestión del lenguaje no verbal, estrategias de respuesta ante interrogatorios complejos y criterios de decoro profesional.</p>
+            <p class="intro-text">Aprende a defender tu informe pericial en sede judicial con claridad, objetividad y
+                seguridad. Descubrirás técnicas de oratoria forense, gestión del lenguaje no verbal, estrategias de
+                respuesta ante interrogatorios complejos y criterios de decoro profesional.</p>
             <div>
                 <span class="badge">⏱️ Duración: 30 horas</span>
             </div>
@@ -141,7 +714,9 @@
 
         <div class="progress-container">
             <div class="progress-title">Tu progreso en el módulo</div>
-            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
             <div class="progress-text"><span id="progressPercent">0</span>% completado</div>
         </div>
 
@@ -159,10 +734,15 @@
         <!-- INTRODUCCIÓN -->
         <section id="intro" class="active">
             <h2>¡Bienvenido al Módulo 6!</h2>
-            <p>En los módulos anteriores aprendiste a investigar riesgos, evaluar exposiciones y redactar informes periciales con rigor técnico. Ahora daremos el paso final: <strong>defender tu trabajo en sala</strong>. Aprenderás a comunicar conclusiones técnicas de forma clara, objetiva y persuasiva ante un órgano judicial.</p>
-            
+            <p>En los módulos anteriores aprendiste a investigar riesgos, evaluar exposiciones y redactar informes
+                periciales con rigor técnico. Ahora daremos el paso final: <strong>defender tu trabajo en sala</strong>.
+                Aprenderás a comunicar conclusiones técnicas de forma clara, objetiva y persuasiva ante un órgano
+                judicial.</p>
+
             <div class="definition-card">
-                <strong>Objetivo del módulo:</strong> Desarrollar habilidades comunicativas para ser capaz de defender el informe pericial en el acto judicial de un modo veraz, objetivo y seguro, garantizando que el rigor técnico del informe escrito se traduzca en eficacia probatoria.
+                <strong>Objetivo del módulo:</strong> Desarrollar habilidades comunicativas para ser capaz de defender
+                el informe pericial en el acto judicial de un modo veraz, objetivo y seguro, garantizando que el rigor
+                técnico del informe escrito se traduzca en eficacia probatoria.
             </div>
 
             <h3>¿Qué aprenderás en este módulo?</h3>
@@ -190,47 +770,68 @@
                 <div class="key-point">
                     <div class="key-point-icon">❓</div>
                     <h4>Gestión de interrogatorios</h4>
-                    <p>Estrategias para responder preguntas complejas, cebo o de doble opción con asertividad técnica</p>
+                    <p>Estrategias para responder preguntas complejas, cebo o de doble opción con asertividad técnica
+                    </p>
                 </div>
                 <div class="key-point">
                     <div class="key-point-icon">⚖️</div>
                     <h4>Decoro profesional</h4>
-                    <p>Ética en la exposición oral, reconocimiento de incertidumbre y mantenimiento de la objetividad</p>
+                    <p>Ética en la exposición oral, reconocimiento de incertidumbre y mantenimiento de la objetividad
+                    </p>
                 </div>
             </div>
 
             <div class="highlight">
-                <strong>Nota para estudiantes:</strong> La defensa en sala no es un debate para "ganar". Es una oportunidad para aportar claridad técnica al juez. Tu objetivo no es convencer a la contraparte, sino facilitar que el órgano judicial comprenda la base científica de tus conclusiones.
+                <strong>Nota para estudiantes:</strong> La defensa en sala no es un debate para "ganar". Es una
+                oportunidad para aportar claridad técnica al juez. Tu objetivo no es convencer a la contraparte, sino
+                facilitar que el órgano judicial comprenda la base científica de tus conclusiones.
             </div>
         </section>
 
         <!-- ORATORIA FORENSE -->
         <section id="oratory">
             <h2>El Perito como Orador: Principios de Oratoria Forense</h2>
-            <p>La comparecencia judicial del perito constituye la fase final del proceso pericial, donde la solvencia técnica del informe debe validarse mediante una exposición oral efectiva. La función del perito no consiste en declarar sobre hechos percibidos directamente, sino en transmitir conclusiones derivadas de máximas de experiencia técnica aplicadas al caso concreto.</p>
-            
+            <p>La comparecencia judicial del perito constituye la fase final del proceso pericial, donde la solvencia
+                técnica del informe debe validarse mediante una exposición oral efectiva. La función del perito no
+                consiste en declarar sobre hechos percibidos directamente, sino en transmitir conclusiones derivadas de
+                máximas de experiencia técnica aplicadas al caso concreto.</p>
+
             <div class="definition-card">
-                <strong>Principio rector:</strong> La integración de las conclusiones técnicas en la motivación de la sentencia depende directamente de la capacidad comunicativa del profesional. Un informe riguroso puede perder eficacia probatoria si no se comunica con claridad en sala.
+                <strong>Principio rector:</strong> La integración de las conclusiones técnicas en la motivación de la
+                sentencia depende directamente de la capacidad comunicativa del profesional. Un informe riguroso puede
+                perder eficacia probatoria si no se comunica con claridad en sala.
             </div>
 
             <h3>Principios de la Oratoria Forense Aplicada a la PRL</h3>
             <table class="info-table">
-                <thead><tr><th>Principio</th><th>Aplicación Práctica</th><th>Finalidad</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Principio</th>
+                        <th>Aplicación Práctica</th>
+                        <th>Finalidad</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Claridad y didáctica</strong></td>
-                        <td>Utilizar analogías para explicar conceptos como "atenuación acústica", "fracción respirable" o "carga biomecánica".</td>
-                        <td>Facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido técnico.</td>
+                        <td>Utilizar analogías para explicar conceptos como "atenuación acústica", "fracción respirable"
+                            o "carga biomecánica".</td>
+                        <td>Facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido
+                            técnico.</td>
                     </tr>
                     <tr>
                         <td><strong>Precisión terminológica</strong></td>
-                        <td>Especificar el tipo de deficiencia (organizativa, técnica, humana) y citar el precepto legal o norma técnica (NTP) que la sustenta.</td>
-                        <td>Evitar ambigüedades que puedan ser aprovechadas en el contrainterrogatorio para cuestionar la metodología.</td>
+                        <td>Especificar el tipo de deficiencia (organizativa, técnica, humana) y citar el precepto legal
+                            o norma técnica (NTP) que la sustenta.</td>
+                        <td>Evitar ambigüedades que puedan ser aprovechadas en el contrainterrogatorio para cuestionar
+                            la metodología.</td>
                     </tr>
                     <tr>
                         <td><strong>Imparcialidad actitudinal</strong></td>
-                        <td>Reconocer limitaciones metodológicas o puntos donde el riesgo era bajo, incluso en informes de parte.</td>
-                        <td>Reforzar la credibilidad global del dictamen al demostrar objetividad y ausencia de sesgo partidista.</td>
+                        <td>Reconocer limitaciones metodológicas o puntos donde el riesgo era bajo, incluso en informes
+                            de parte.</td>
+                        <td>Reforzar la credibilidad global del dictamen al demostrar objetividad y ausencia de sesgo
+                            partidista.</td>
                     </tr>
                 </tbody>
             </table>
@@ -239,15 +840,18 @@
             <div class="accordion">
                 <div class="accordion-header">🏛️ Protocolo de comparecencia</div>
                 <div class="accordion-content">
-                    <p><strong>Permanencia fuera de la sala:</strong> Esperar hasta el momento de la declaración para evitar la contaminación del testimonio por declaraciones previas.</p>
-                    <p><strong>Respeto a turnos:</strong> Estricto cumplimiento de los turnos de palabra y a las indicaciones del órgano judicial.</p>
+                    <p><strong>Permanencia fuera de la sala:</strong> Esperar hasta el momento de la declaración para
+                        evitar la contaminación del testimonio por declaraciones previas.</p>
+                    <p><strong>Respeto a turnos:</strong> Estricto cumplimiento de los turnos de palabra y a las
+                        indicaciones del órgano judicial.</p>
                     <p><strong>Presentación formal:</strong> Vestimenta acorde con la solemnidad del acto procesal.</p>
                 </div>
             </div>
             <div class="accordion">
                 <div class="accordion-header">⚖️ El juramento o promesa</div>
                 <div class="accordion-content">
-                    <p>Acto con consecuencias penales directas: falso testimonio o falta de objetividad pueden derivar en responsabilidad penal.</p>
+                    <p>Acto con consecuencias penales directas: falso testimonio o falta de objetividad pueden derivar
+                        en responsabilidad penal.</p>
                     <p>Entonación firme y clara como primera proyección de integridad profesional.</p>
                     <p>Comprensión del alcance jurídico de la declaración bajo juramento.</p>
                 </div>
@@ -255,25 +859,42 @@
             <div class="accordion">
                 <div class="accordion-header">👁️ Disposición espacial y gestión de la atención</div>
                 <div class="accordion-content">
-                    <p><strong>Distribución de la mirada:</strong> Contacto visual equilibrado entre las partes intervinientes y el órgano judicial.</p>
-                    <p><strong>Orientación corporal:</strong> Dirigir el torso hacia el estrado al formular respuestas, identificando al Juez o Magistrado como destinatario final de la exposición.</p>
-                    <p><strong>Acceso a documentación:</strong> Mantener una postura que permita el acceso rápido a la documentación de apoyo sin generar interrupciones prolongadas.</p>
+                    <p><strong>Distribución de la mirada:</strong> Contacto visual equilibrado entre las partes
+                        intervinientes y el órgano judicial.</p>
+                    <p><strong>Orientación corporal:</strong> Dirigir el torso hacia el estrado al formular respuestas,
+                        identificando al Juez o Magistrado como destinatario final de la exposición.</p>
+                    <p><strong>Acceso a documentación:</strong> Mantener una postura que permita el acceso rápido a la
+                        documentación de apoyo sin generar interrupciones prolongadas.</p>
                 </div>
             </div>
 
             <div class="example-box">
-                <p><strong>Ejemplo de analogía didáctica:</strong> Para explicar el principio de protección colectiva vs. individual, el perito puede comparar: "Las barandillas fijas en una pasarela son como el cinturón de seguridad del coche: protegen a todos sin depender de que cada persona recuerde activarlas. Los arneses personales, en cambio, son como el airbag: requieren que el usuario los active correctamente para funcionar".</p>
+                <p><strong>Ejemplo de analogía didáctica:</strong> Para explicar el principio de protección colectiva
+                    vs. individual, el perito puede comparar: "Las barandillas fijas en una pasarela son como el
+                    cinturón de seguridad del coche: protegen a todos sin depender de que cada persona recuerde
+                    activarlas. Los arneses personales, en cambio, son como el airbag: requieren que el usuario los
+                    active correctamente para funcionar".</p>
             </div>
         </section>
 
         <!-- LENGUAJE CORPORAL -->
         <section id="nonverbal">
             <h2>El Lenguaje del Cuerpo: Comunicación No Verbal en Sala</h2>
-            <p>La comunicación humana integra componentes verbales, paraverbales y no verbales. En contextos de contradicción procesal, la coherencia entre estos niveles determina la percepción de credibilidad por parte del receptor. La gestualidad del perito debe proyectar "autoridad serena", combinando seguridad técnica con respeto institucional.</p>
-            
+            <p>La comunicación humana integra componentes verbales, paraverbales y no verbales. En contextos de
+                contradicción procesal, la coherencia entre estos niveles determina la percepción de credibilidad por
+                parte del receptor. La gestualidad del perito debe proyectar "autoridad serena", combinando seguridad
+                técnica con respeto institucional.</p>
+
             <h3>Elementos de la comunicación no verbal y su gestión</h3>
             <table class="info-table">
-                <thead><tr><th>Elemento</th><th>Manifestación Adecuada</th><th>Manifestación a Evitar</th><th>Efecto en la Percepción Judicial</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Manifestación Adecuada</th>
+                        <th>Manifestación a Evitar</th>
+                        <th>Efecto en la Percepción Judicial</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Postura</strong></td>
@@ -307,72 +928,97 @@
                 <div class="key-point">
                     <div class="key-point-icon">🧘</div>
                     <h4>Respiración consciente</h4>
-                    <p>Practicar respiración diafragmática antes de comparecer para reducir tensión y estabilizar la voz.</p>
+                    <p>Practicar respiración diafragmática antes de comparecer para reducir tensión y estabilizar la
+                        voz.</p>
                 </div>
                 <div class="key-point">
                     <div class="key-point-icon">✋</div>
                     <h4>Gestos de apertura</h4>
-                    <p>Mantener las manos visibles sobre la mesa o en posición descriptiva; evita cruzar brazos que pueden interpretarse como actitud defensiva.</p>
+                    <p>Mantener las manos visibles sobre la mesa o en posición descriptiva; evita cruzar brazos que
+                        pueden interpretarse como actitud defensiva.</p>
                 </div>
                 <div class="key-point">
                     <div class="key-point-icon">👁️</div>
                     <h4>Escaneo visual estratégico</h4>
-                    <p>Distribuir la mirada entre juez, letrados y público de forma equilibrada; fijar la vista en el juez al formular conclusiones clave.</p>
+                    <p>Distribuir la mirada entre juez, letrados y público de forma equilibrada; fijar la vista en el
+                        juez al formular conclusiones clave.</p>
                 </div>
                 <div class="key-point">
                     <div class="key-point-icon">⏱️</div>
                     <h4>Pausa reflexiva</h4>
-                    <p>Ante preguntas complejas, tomar 2 segundos de silencio antes de responder para demostrar control y evitar respuestas impulsivas.</p>
+                    <p>Ante preguntas complejas, tomar 2 segundos de silencio antes de responder para demostrar control
+                        y evitar respuestas impulsivas.</p>
                 </div>
             </div>
 
             <div class="highlight">
-                <strong>Recuerda:</strong> La comunicación no verbal no se "actúa". Se entrena mediante preparación y autoconocimiento. La coherencia entre lo que dices y cómo lo dices es lo que genera credibilidad ante el órgano judicial.
+                <strong>Recuerda:</strong> La comunicación no verbal no se "actúa". Se entrena mediante preparación y
+                autoconocimiento. La coherencia entre lo que dices y cómo lo dices es lo que genera credibilidad ante el
+                órgano judicial.
             </div>
         </section>
 
         <!-- USO DE LA VOZ -->
         <section id="voice">
             <h2>La Voz como Instrumento de Persuasión Técnica</h2>
-            <p>El componente paraverbal modula la recepción del contenido técnico y afecta directamente a la capacidad de retención de la información por parte del órgano judicial. Una voz bien gestionada facilita la comprensión de conceptos complejos y refuerza la percepción de competencia profesional.</p>
-            
+            <p>El componente paraverbal modula la recepción del contenido técnico y afecta directamente a la capacidad
+                de retención de la información por parte del órgano judicial. Una voz bien gestionada facilita la
+                comprensión de conceptos complejos y refuerza la percepción de competencia profesional.</p>
+
             <h3>Parámetros vocales y su aplicación estratégica</h3>
-            
+
             <div class="accordion">
                 <div class="accordion-header">🔊 Volumen y proyección</div>
                 <div class="accordion-content">
-                    <p><strong>Técnica:</strong> Uso de respiración diafragmática para generar voz profunda y audible en salas con acústica deficiente.</p>
-                    <p><strong>Estrategia:</strong> Volumen bajo asociado a falta de convencimiento sobre las propias conclusiones. Evitar elevaciones bruscas de tono que puedan interpretarse como pérdida de control emocional.</p>
-                    <p><strong>Práctica:</strong> Proyectar la voz hacia el estrado, no hacia el micrófono; mantener volumen constante incluso al leer citas o datos numéricos.</p>
+                    <p><strong>Técnica:</strong> Uso de respiración diafragmática para generar voz profunda y audible en
+                        salas con acústica deficiente.</p>
+                    <p><strong>Estrategia:</strong> Volumen bajo asociado a falta de convencimiento sobre las propias
+                        conclusiones. Evitar elevaciones bruscas de tono que puedan interpretarse como pérdida de
+                        control emocional.</p>
+                    <p><strong>Práctica:</strong> Proyectar la voz hacia el estrado, no hacia el micrófono; mantener
+                        volumen constante incluso al leer citas o datos numéricos.</p>
                 </div>
             </div>
-            
+
             <div class="accordion">
                 <div class="accordion-header">⏱️ Velocidad de elocución</div>
                 <div class="accordion-content">
-                    <p><strong>Reducción deliberada:</strong> Disminuir la velocidad habitual en un 20% para facilitar el procesamiento de información técnica compleja por parte del órgano judicial.</p>
-                    <p><strong>Pausas estratégicas:</strong> Insertar pausas de 1-2 segundos tras conceptos clave para permitir la toma de notas por parte del juez y letrados.</p>
-                    <p><strong>Aceleración controlada:</strong> Aumentar ligeramente el ritmo en segmentos descriptivos no esenciales para mantener la atención y evitar monotonía.</p>
+                    <p><strong>Reducción deliberada:</strong> Disminuir la velocidad habitual en un 20% para facilitar
+                        el procesamiento de información técnica compleja por parte del órgano judicial.</p>
+                    <p><strong>Pausas estratégicas:</strong> Insertar pausas de 1-2 segundos tras conceptos clave para
+                        permitir la toma de notas por parte del juez y letrados.</p>
+                    <p><strong>Aceleración controlada:</strong> Aumentar ligeramente el ritmo en segmentos descriptivos
+                        no esenciales para mantener la atención y evitar monotonía.</p>
                 </div>
             </div>
-            
+
             <div class="accordion">
                 <div class="accordion-header">🤫 Uso de la pausa silenciosa</div>
                 <div class="accordion-content">
-                    <p><strong>Función de control:</strong> Pausa de dos segundos tras preguntas agresivas o complejas para demostrar control reflexivo y recuperar el centro de gravedad comunicativo.</p>
-                    <p><strong>Evitar silencios prolongados:</strong> Silencios superiores a 4 segundos pueden interpretarse como falta de preparación o duda sustantiva.</p>
-                    <p><strong>Pausa de énfasis:</strong> Breve silencio antes de formular una conclusión clave para marcar su importancia y facilitar su retención.</p>
+                    <p><strong>Función de control:</strong> Pausa de dos segundos tras preguntas agresivas o complejas
+                        para demostrar control reflexivo y recuperar el centro de gravedad comunicativo.</p>
+                    <p><strong>Evitar silencios prolongados:</strong> Silencios superiores a 4 segundos pueden
+                        interpretarse como falta de preparación o duda sustantiva.</p>
+                    <p><strong>Pausa de énfasis:</strong> Breve silencio antes de formular una conclusión clave para
+                        marcar su importancia y facilitar su retención.</p>
                 </div>
             </div>
 
             <h3 style="margin-top: 2rem;">Ejercicios prácticos de entrenamiento vocal</h3>
             <table class="info-table">
-                <thead><tr><th>Ejercicio</th><th>Objetivo</th><th>Aplicación en sala</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Ejercicio</th>
+                        <th>Objetivo</th>
+                        <th>Aplicación en sala</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Lectura en voz alta con cronómetro</strong></td>
                         <td>Controlar velocidad y detectar aceleración por nerviosismo.</td>
-                        <td>Practicar la exposición de conclusiones clave a ritmo constante, independientemente de la presión del interrogatorio.</td>
+                        <td>Practicar la exposición de conclusiones clave a ritmo constante, independientemente de la
+                            presión del interrogatorio.</td>
                     </tr>
                     <tr>
                         <td><strong>Grabación y autoevaluación</strong></td>
@@ -382,145 +1028,213 @@
                     <tr>
                         <td><strong>Simulación de contrainterrogatorio</strong></td>
                         <td>Entrenar respuesta bajo presión manteniendo claridad vocal.</td>
-                        <td>Desarrollar resiliencia comunicativa para mantener calidad expositiva incluso ante preguntas desafiantes.</td>
+                        <td>Desarrollar resiliencia comunicativa para mantener calidad expositiva incluso ante preguntas
+                            desafiantes.</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="definition-card">
-                <strong>Principio de economía vocal:</strong> No es necesario hablar mucho para ser persuasivo. La precisión, la claridad y la pausa estratégica tienen más impacto probatorio que la verbosidad. Cada palabra debe aportar valor técnico o jurídico al razonamiento del órgano judicial.
+                <strong>Principio de economía vocal:</strong> No es necesario hablar mucho para ser persuasivo. La
+                precisión, la claridad y la pausa estratégica tienen más impacto probatorio que la verbosidad. Cada
+                palabra debe aportar valor técnico o jurídico al razonamiento del órgano judicial.
             </div>
         </section>
 
         <!-- PREPARACIÓN -->
         <section id="preparation">
             <h2>Preparación de la Intervención y Tipos de Discurso</h2>
-            <p>La eficacia de la defensa oral depende en gran medida de la preparación previa. La localización inmediata de datos, la anticipación de objeciones y la estructuración lógica de las respuestas constituyen factores determinantes para una comparecencia exitosa.</p>
-            
+            <p>La eficacia de la defensa oral depende en gran medida de la preparación previa. La localización inmediata
+                de datos, la anticipación de objeciones y la estructuración lógica de las respuestas constituyen
+                factores determinantes para una comparecencia exitosa.</p>
+
             <h3>Estrategia de Revisión Exhaustiva Previa a la Comparecencia</h3>
             <table class="info-table">
-                <thead><tr><th>Nivel de Análisis</th><th>Elemento a Revisar</th><th>Consecuencia de Omisión</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Nivel de Análisis</th>
+                        <th>Elemento a Revisar</th>
+                        <th>Consecuencia de Omisión</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Técnico</strong></td>
-                        <td>Cálculos, mediciones, equipos de medida utilizados, calibraciones, métodos de evaluación aplicados.</td>
+                        <td>Cálculos, mediciones, equipos de medida utilizados, calibraciones, métodos de evaluación
+                            aplicados.</td>
                         <td>Desacreditación por error material o metodológico detectado en contrainterrogatorio.</td>
                     </tr>
                     <tr>
                         <td><strong>Normativo</strong></td>
-                        <td>Vigencia de leyes, reglamentos y normas técnicas citadas; correcta interpretación de preceptos.</td>
-                        <td>Invalidez del informe por basarse en legislación derogada o interpretación errónea de obligaciones.</td>
+                        <td>Vigencia de leyes, reglamentos y normas técnicas citadas; correcta interpretación de
+                            preceptos.</td>
+                        <td>Invalidez del informe por basarse en legislación derogada o interpretación errónea de
+                            obligaciones.</td>
                     </tr>
                     <tr>
                         <td><strong>Fáctico</strong></td>
-                        <td>Coherencia entre descripciones escritas, fotografías, planos y declaraciones de testigos.</td>
-                        <td>Posibilidad de que la contraparte alegue incongruencias que debiliten la credibilidad global.</td>
+                        <td>Coherencia entre descripciones escritas, fotografías, planos y declaraciones de testigos.
+                        </td>
+                        <td>Posibilidad de que la contraparte alegue incongruencias que debiliten la credibilidad
+                            global.</td>
                     </tr>
                     <tr>
                         <td><strong>Contradictorio</strong></td>
-                        <td>Puntos fuertes y débiles del informe pericial de la parte contraria; divergencias metodológicas.</td>
-                        <td>Incapacidad para rebatir críticas válidas o para destacar fortalezas propias de forma estratégica.</td>
+                        <td>Puntos fuertes y débiles del informe pericial de la parte contraria; divergencias
+                            metodológicas.</td>
+                        <td>Incapacidad para rebatir críticas válidas o para destacar fortalezas propias de forma
+                            estratégica.</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="margin-top: 2rem;">Procedimiento de preparación documental</h3>
             <div class="sketch-box">
-                <p><strong>Paso 1:</strong> Elaboración de un índice temático del propio informe con referencias cruzadas a páginas, anexos y tablas.</p>
-                <p><strong>Paso 2:</strong> Identificación de los tres a cinco puntos nucleares del dictamen que deben quedar inequívocamente establecidos.</p>
-                <p><strong>Paso 3:</strong> Anticipación de preguntas previsibles por parte de la contraparte y formulación de respuestas estructuradas.</p>
-                <p><strong>Paso 4:</strong> Revisión de la jurisprudencia relevante sobre cuestiones técnicas controvertidas en el ámbito de la prevención de riesgos laborales.</p>
-                <p><strong>Paso 5:</strong> Preparación de fichas resumen con datos clave (valores límite, artículos normativos, referencias metodológicas) para consulta rápida en sala.</p>
+                <p><strong>Paso 1:</strong> Elaboración de un índice temático del propio informe con referencias
+                    cruzadas a páginas, anexos y tablas.</p>
+                <p><strong>Paso 2:</strong> Identificación de los tres a cinco puntos nucleares del dictamen que deben
+                    quedar inequívocamente establecidos.</p>
+                <p><strong>Paso 3:</strong> Anticipación de preguntas previsibles por parte de la contraparte y
+                    formulación de respuestas estructuradas.</p>
+                <p><strong>Paso 4:</strong> Revisión de la jurisprudencia relevante sobre cuestiones técnicas
+                    controvertidas en el ámbito de la prevención de riesgos laborales.</p>
+                <p><strong>Paso 5:</strong> Preparación de fichas resumen con datos clave (valores límite, artículos
+                    normativos, referencias metodológicas) para consulta rápida en sala.</p>
             </div>
 
             <h3 style="margin-top: 2rem;">Estructura y Estilo del Discurso según el Momento Procesal</h3>
             <table class="info-table">
-                <thead><tr><th>Tipo de Discurso</th><th>Momento de Uso</th><th>Características Principales</th><th>Ejemplo de Estructura</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Tipo de Discurso</th>
+                        <th>Momento de Uso</th>
+                        <th>Características Principales</th>
+                        <th>Ejemplo de Estructura</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Expositivo (Ratificación)</strong></td>
                         <td>Inicio de la intervención, al ser preguntado por la ratificación del informe.</td>
                         <td>Formal, breve, afirmativo. Confirmación literal de la autoría y contenido.</td>
-                        <td>"Se ratifica en todos y cada uno de los extremos del informe presentado, manteniendo íntegramente sus conclusiones técnicas."</td>
+                        <td>"Se ratifica en todos y cada uno de los extremos del informe presentado, manteniendo
+                            íntegramente sus conclusiones técnicas."</td>
                     </tr>
                     <tr>
                         <td><strong>Descriptivo (Aclaración de Hechos)</strong></td>
-                        <td>Cuando el órgano judicial solicita explicación sobre la dinámica de un accidente o la aplicación de una medida preventiva.</td>
+                        <td>Cuando el órgano judicial solicita explicación sobre la dinámica de un accidente o la
+                            aplicación de una medida preventiva.</td>
                         <td>Cronológico o espacial, objetivo, apoyado en evidencias documentales.</td>
-                        <td>Descripción secuencial: condiciones previas → evento desencadenante → factores concurrentes → resultado dañoso.</td>
+                        <td>Descripción secuencial: condiciones previas → evento desencadenante → factores concurrentes
+                            → resultado dañoso.</td>
                     </tr>
                     <tr>
                         <td><strong>Argumentativo (Defensa de Conclusiones)</strong></td>
-                        <td>Durante el contrainterrogatorio o al fundamentar la relación causal entre deficiencias preventivas y daños.</td>
-                        <td>Lógico-deductivo, basado en premisas técnicas y normativas, evitando opiniones subjetivas.</td>
-                        <td>Premisa normativa → aplicación al caso → contraste con evidencias → conclusión técnica vinculada al nexo causal.</td>
+                        <td>Durante el contrainterrogatorio o al fundamentar la relación causal entre deficiencias
+                            preventivas y daños.</td>
+                        <td>Lógico-deductivo, basado en premisas técnicas y normativas, evitando opiniones subjetivas.
+                        </td>
+                        <td>Premisa normativa → aplicación al caso → contraste con evidencias → conclusión técnica
+                            vinculada al nexo causal.</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="highlight">
-                <strong>Criterios transversales de redacción oral:</strong> Sustituir expresiones subjetivas ("yo creo", "me parece") por formulaciones técnicas ("según la medición efectuada", "de acuerdo con el criterio del INSST"). Usar conectores lógicos explícitos ("por consiguiente", "en consecuencia") para hacer visible la estructura argumental. Repetir estratégicamente conceptos clave para reforzar su retención por parte del órgano judicial.
+                <strong>Criterios transversales de redacción oral:</strong> Sustituir expresiones subjetivas ("yo creo",
+                "me parece") por formulaciones técnicas ("según la medición efectuada", "de acuerdo con el criterio del
+                INSST"). Usar conectores lógicos explícitos ("por consiguiente", "en consecuencia") para hacer visible
+                la estructura argumental. Repetir estratégicamente conceptos clave para reforzar su retención por parte
+                del órgano judicial.
             </div>
         </section>
 
         <!-- INTERROGATORIOS -->
         <section id="interrogation">
             <h2>Estrategias para la Interacción en el Interrogatorio</h2>
-            <p>El interrogatorio judicial constituye un ejercicio dialéctico estructurado donde el perito debe mantener la coherencia técnica frente a estrategias de cuestionamiento orientadas a debilitar la credibilidad del dictamen. La clave no está en "ganar" el debate, sino en aportar claridad técnica al órgano judicial.</p>
-            
+            <p>El interrogatorio judicial constituye un ejercicio dialéctico estructurado donde el perito debe mantener
+                la coherencia técnica frente a estrategias de cuestionamiento orientadas a debilitar la credibilidad del
+                dictamen. La clave no está en "ganar" el debate, sino en aportar claridad técnica al órgano judicial.
+            </p>
+
             <h3>Dinámica de los Interrogatorios por Parte Procesal</h3>
-            
+
             <div class="accordion">
                 <div class="accordion-header">⚖️ Interrogatorio de la parte propia</div>
                 <div class="accordion-content">
-                    <p><strong>Objetivo:</strong> Resaltar fortalezas metodológicas y conclusiones favorables a la tesis defendida.</p>
-                    <p><strong>Estrategia del perito:</strong> Aprovechar para asentar los pilares de la argumentación técnica con claridad y sin ambigüedades.</p>
-                    <p><strong>Riesgo a evitar:</strong> Relajación excesiva que derive en respuestas imprecisas o en la omisión de matices relevantes.</p>
+                    <p><strong>Objetivo:</strong> Resaltar fortalezas metodológicas y conclusiones favorables a la tesis
+                        defendida.</p>
+                    <p><strong>Estrategia del perito:</strong> Aprovechar para asentar los pilares de la argumentación
+                        técnica con claridad y sin ambigüedades.</p>
+                    <p><strong>Riesgo a evitar:</strong> Relajación excesiva que derive en respuestas imprecisas o en la
+                        omisión de matices relevantes.</p>
                 </div>
             </div>
-            
+
             <div class="accordion">
                 <div class="accordion-header">🎯 Contrainterrogatorio de la parte contraria</div>
                 <div class="accordion-content">
-                    <p><strong>Objetivo:</strong> Cuestionar la metodología, la objetividad o la aplicabilidad de las conclusiones del informe.</p>
-                    <p><strong>Estrategia del perito:</strong> Mantener la asertividad técnica, reconociendo limitaciones cuando existan y rebatiendo críticas infundadas con argumentos normativos o metodológicos.</p>
-                    <p><strong>Fórmula de respuesta tipo:</strong> "Entiendo su planteamiento, pero técnicamente el método aplicado es el estandarizado por el INSST para este tipo de riesgos, según se detalla en el apartado X del informe".</p>
+                    <p><strong>Objetivo:</strong> Cuestionar la metodología, la objetividad o la aplicabilidad de las
+                        conclusiones del informe.</p>
+                    <p><strong>Estrategia del perito:</strong> Mantener la asertividad técnica, reconociendo
+                        limitaciones cuando existan y rebatiendo críticas infundadas con argumentos normativos o
+                        metodológicos.</p>
+                    <p><strong>Fórmula de respuesta tipo:</strong> "Entiendo su planteamiento, pero técnicamente el
+                        método aplicado es el estandarizado por el INSST para este tipo de riesgos, según se detalla en
+                        el apartado X del informe".</p>
                 </div>
             </div>
 
             <h3 style="margin-top: 2rem;">Gestión de Preguntas de Alta Complejidad o Estrategia Dialéctica</h3>
             <table class="info-table">
-                <thead><tr><th>Tipo de Pregunta</th><th>Característica</th><th>Estrategia de Respuesta</th><th>Ejemplo de Formulación</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Tipo de Pregunta</th>
+                        <th>Característica</th>
+                        <th>Estrategia de Respuesta</th>
+                        <th>Ejemplo de Formulación</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Pregunta "cebo"</strong></td>
                         <td>Incluye una afirmación fáctica incorrecta para verificar si el perito la corrige.</td>
                         <td>Corregir inmediatamente el error con precisión técnica y sin confrontación emocional.</td>
-                        <td>"Permítame precisar: la medición se realizó con un sonómetro clase 1, calibrado según la norma UNE-EN 61672, no con el equipo que usted menciona."</td>
+                        <td>"Permítame precisar: la medición se realizó con un sonómetro clase 1, calibrado según la
+                            norma UNE-EN 61672, no con el equipo que usted menciona."</td>
                     </tr>
                     <tr>
                         <td><strong>Pregunta de doble opción</strong></td>
                         <td>Presenta dos alternativas excluyentes cuando la realidad técnica es multifactorial.</td>
                         <td>Rechazar la dicotomía y exponer la concurrencia de causas con jerarquización técnica.</td>
-                        <td>"El accidente fue resultado de la concurrencia de factores organizativos y técnicos; ambos eran necesarios para el resultado dañoso, aunque la ausencia de protección colectiva constituye la deficiencia principal."</td>
+                        <td>"El accidente fue resultado de la concurrencia de factores organizativos y técnicos; ambos
+                            eran necesarios para el resultado dañoso, aunque la ausencia de protección colectiva
+                            constituye la deficiencia principal."</td>
                     </tr>
                     <tr>
                         <td><strong>Pregunta sobre hipótesis no verificables</strong></td>
                         <td>Solicita valoración de escenarios alternativos no documentados en el caso.</td>
-                        <td>Delimitar el ámbito del análisis pericial a los hechos acreditados y evitar la especulación.</td>
-                        <td>"Mi informe analiza los hechos concurrentes acreditados; basar conclusiones en escenarios hipotéticos no verificables restaría rigor al análisis técnico exigido en sede judicial."</td>
+                        <td>Delimitar el ámbito del análisis pericial a los hechos acreditados y evitar la especulación.
+                        </td>
+                        <td>"Mi informe analiza los hechos concurrentes acreditados; basar conclusiones en escenarios
+                            hipotéticos no verificables restaría rigor al análisis técnico exigido en sede judicial."
+                        </td>
                     </tr>
                     <tr>
                         <td><strong>Pregunta sobre responsabilidad jurídica</strong></td>
                         <td>Solicita una calificación jurídica que excede la función técnica del perito.</td>
-                        <td>Reconducir la respuesta al ámbito técnico, identificando deficiencias preventivas sin emitir juicios de imputación jurídica.</td>
-                        <td>"Técnicamente, se detectó una ausencia de medidas de protección colectiva que incumple el artículo 16 de la LPRL; la calificación de responsabilidad corresponde al órgano judicial."</td>
+                        <td>Reconducir la respuesta al ámbito técnico, identificando deficiencias preventivas sin emitir
+                            juicios de imputación jurídica.</td>
+                        <td>"Técnicamente, se detectó una ausencia de medidas de protección colectiva que incumple el
+                            artículo 16 de la LPRL; la calificación de responsabilidad corresponde al órgano judicial."
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="margin-top: 2rem;">Interacción Directa con el Órgano Judicial</h3>
-            <p>Las preguntas del Juez o Magistrado suelen centrarse en el nexo causal entre deficiencias preventivas y daños producidos. Son las más determinantes para la valoración probatoria.</p>
+            <p>Las preguntas del Juez o Magistrado suelen centrarse en el nexo causal entre deficiencias preventivas y
+                daños producidos. Son las más determinantes para la valoración probatoria.</p>
             <div class="key-points">
                 <div class="key-point">
                     <div class="key-point-icon">🎯</div>
@@ -530,7 +1244,8 @@
                 <div class="key-point">
                     <div class="key-point-icon">📎</div>
                     <h4>Referencias concretas</h4>
-                    <p>Vincular la exposición oral con la documentación escrita: "como se detalla en el gráfico 3 del anexo B".</p>
+                    <p>Vincular la exposición oral con la documentación escrita: "como se detalla en el gráfico 3 del
+                        anexo B".</p>
                 </div>
                 <div class="key-point">
                     <div class="key-point-icon">🤝</div>
@@ -541,141 +1256,218 @@
 
             <div class="example-box">
                 <p><strong>Ejemplo de respuesta a pregunta judicial sobre nexo causal:</strong></p>
-                <p><strong>Pregunta del juez:</strong> "¿Podría explicarme por qué considera que la ausencia de barandillas fue causa determinante de la caída, y no la imprudencia del trabajador?"</p>
-                <p><strong>Respuesta pericial:</strong> "Señoría, técnicamente, la normativa exige protección colectiva a partir de 2 metros de altura (RD 486/1997). En este caso, la pasarela medía 4 metros y carecía de barandillas. Aunque el trabajador no utilizó el arnés proporcionado, la jurisprudencia establece que la imprudencia profesional no exime de responsabilidad empresarial cuando coexiste con deficiencias estructurales en la prevención. La ausencia de protección colectiva eliminó la última barrera de seguridad, haciendo inevitable la caída ante cualquier error humano previsible. Por tanto, ambas circunstancias concurrieron, pero la deficiencia estructural constituye la causa principal."</p>
+                <p><strong>Pregunta del juez:</strong> "¿Podría explicarme por qué considera que la ausencia de
+                    barandillas fue causa determinante de la caída, y no la imprudencia del trabajador?"</p>
+                <p><strong>Respuesta pericial:</strong> "Señoría, técnicamente, la normativa exige protección colectiva
+                    a partir de 2 metros de altura (RD 486/1997). En este caso, la pasarela medía 4 metros y carecía de
+                    barandillas. Aunque el trabajador no utilizó el arnés proporcionado, la jurisprudencia establece que
+                    la imprudencia profesional no exime de responsabilidad empresarial cuando coexiste con deficiencias
+                    estructurales en la prevención. La ausencia de protección colectiva eliminó la última barrera de
+                    seguridad, haciendo inevitable la caída ante cualquier error humano previsible. Por tanto, ambas
+                    circunstancias concurrieron, pero la deficiencia estructural constituye la causa principal."</p>
             </div>
         </section>
 
         <!-- DECORO PROFESIONAL -->
         <section id="ethics">
             <h2>Decoro Profesional y Seguridad en la Argumentación</h2>
-            <p>El decoro profesional constituye la manifestación externa del respeto por la metodología científica y por la función jurisdiccional. Su observancia refuerza la percepción de objetividad y contribuye a la eficacia probatoria del dictamen.</p>
-            
+            <p>El decoro profesional constituye la manifestación externa del respeto por la metodología científica y por
+                la función jurisdiccional. Su observancia refuerza la percepción de objetividad y contribuye a la
+                eficacia probatoria del dictamen.</p>
+
             <h3>Ética en la Exposición Oral</h3>
-            
+
             <div class="accordion">
                 <div class="accordion-header">🔍 Reconocimiento de incertidumbre metodológica</div>
                 <div class="accordion-content">
-                    <p><strong>Principio:</strong> Admisión de márgenes de error inherentes a mediciones o evaluaciones cuando existan.</p>
-                    <p><strong>Ejemplo:</strong> "La medición de ruido presenta un margen de incertidumbre del 5%, conforme a las especificaciones del equipo utilizado".</p>
-                    <p><strong>Efecto:</strong> Refuerzo de la credibilidad al demostrar rigor científico frente a afirmaciones de precisión absoluta incompatibles con la práctica profesional.</p>
-                </div>
-            </div>
-            
-            <div class="accordion">
-                <div class="accordion-header">📋 Gestión de la documentación en sala</div>
-                <div class="accordion-content">
-                    <p><strong>Consulta estratégica:</strong> Consultar notas o el informe únicamente para aportar datos exactos (valores numéricos, referencias normativas).</p>
-                    <p><strong>Evitar lectura continuada:</strong> La lectura prolongada puede interpretarse como falta de dominio del contenido.</p>
-                    <p><strong>Fichas resumen:</strong> Preparar tarjetas con puntos clave para agilizar la localización de información sin interrumpir el flujo expositivo.</p>
-                </div>
-            </div>
-            
-            <div class="accordion">
-                <div class="accordion-header">⚖️ Mantenimiento de la objetividad ante presiones procesales</div>
-                <div class="accordion-content">
-                    <p><strong>Resistencia a la tentación:</strong> No exagerar conclusiones ni minimizar limitaciones por lealtad a la parte que solicita el informe.</p>
-                    <p><strong>Priorización:</strong> La coherencia metodológica sobre el resultado procesal inmediato.</p>
-                    <p><strong>Recordatorio:</strong> El perito auxilia al juez, no representa a una parte. Su credibilidad depende de su imparcialidad técnica.</p>
+                    <p><strong>Principio:</strong> Admisión de márgenes de error inherentes a mediciones o evaluaciones
+                        cuando existan.</p>
+                    <p><strong>Ejemplo:</strong> "La medición de ruido presenta un margen de incertidumbre del 5%,
+                        conforme a las especificaciones del equipo utilizado".</p>
+                    <p><strong>Efecto:</strong> Refuerzo de la credibilidad al demostrar rigor científico frente a
+                        afirmaciones de precisión absoluta incompatibles con la práctica profesional.</p>
                 </div>
             </div>
 
-            <h3 style="margin-top: 2rem;">Consecuencias de la Actuación Pericial en los Diferentes Órdenes Jurisdiccionales</h3>
+            <div class="accordion">
+                <div class="accordion-header">📋 Gestión de la documentación en sala</div>
+                <div class="accordion-content">
+                    <p><strong>Consulta estratégica:</strong> Consultar notas o el informe únicamente para aportar datos
+                        exactos (valores numéricos, referencias normativas).</p>
+                    <p><strong>Evitar lectura continuada:</strong> La lectura prolongada puede interpretarse como falta
+                        de dominio del contenido.</p>
+                    <p><strong>Fichas resumen:</strong> Preparar tarjetas con puntos clave para agilizar la localización
+                        de información sin interrumpir el flujo expositivo.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">⚖️ Mantenimiento de la objetividad ante presiones procesales</div>
+                <div class="accordion-content">
+                    <p><strong>Resistencia a la tentación:</strong> No exagerar conclusiones ni minimizar limitaciones
+                        por lealtad a la parte que solicita el informe.</p>
+                    <p><strong>Priorización:</strong> La coherencia metodológica sobre el resultado procesal inmediato.
+                    </p>
+                    <p><strong>Recordatorio:</strong> El perito auxilia al juez, no representa a una parte. Su
+                        credibilidad depende de su imparcialidad técnica.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Consecuencias de la Actuación Pericial en los Diferentes Órdenes
+                Jurisdiccionales</h3>
             <table class="info-table">
-                <thead><tr><th>Orden Jurisdiccional</th><th>Ámbito de Incidencia del Dictamen Pericial</th><th>Impacto de una Defensa Oral Eficaz</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Orden Jurisdiccional</th>
+                        <th>Ámbito de Incidencia del Dictamen Pericial</th>
+                        <th>Impacto de una Defensa Oral Eficaz</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><strong>Social</strong></td>
-                        <td>Determinación de recargo de prestaciones por falta de medidas de seguridad (art. 164 LGSS).</td>
-                        <td>Clarificación del nexo causal entre deficiencias preventivas y accidente, facilitando la aplicación del recargo.</td>
+                        <td>Determinación de recargo de prestaciones por falta de medidas de seguridad (art. 164 LGSS).
+                        </td>
+                        <td>Clarificación del nexo causal entre deficiencias preventivas y accidente, facilitando la
+                            aplicación del recargo.</td>
                     </tr>
                     <tr>
                         <td><strong>Civil</strong></td>
-                        <td>Cálculo de indemnizaciones por daños y perjuicios derivados de accidentes laborales o enfermedades profesionales.</td>
-                        <td>Fundamentación técnica de la gravedad de las deficiencias y su contribución al daño, influyendo en la cuantificación.</td>
+                        <td>Cálculo de indemnizaciones por daños y perjuicios derivados de accidentes laborales o
+                            enfermedades profesionales.</td>
+                        <td>Fundamentación técnica de la gravedad de las deficiencias y su contribución al daño,
+                            influyendo en la cuantificación.</td>
                     </tr>
                     <tr>
                         <td><strong>Penal</strong></td>
-                        <td>Valoración de la imprudencia o negligencia en delitos contra la seguridad de los trabajadores (art. 316 CP).</td>
-                        <td>Aportación de criterios técnicos para distinguir entre riesgo asumible y riesgo inaceptable, determinante para la imputación.</td>
+                        <td>Valoración de la imprudencia o negligencia en delitos contra la seguridad de los
+                            trabajadores (art. 316 CP).</td>
+                        <td>Aportación de criterios técnicos para distinguir entre riesgo asumible y riesgo inaceptable,
+                            determinante para la imputación.</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="margin-top: 2rem;">Seguridad argumentativa como resultado del rigor previo</h3>
             <div class="definition-card">
-                <strong>Principio rector:</strong> La confianza en la exposición oral no deriva de la actitud asertiva aislada, sino del convencimiento basado en un trabajo técnico exhaustivo. La preparación documental, la coherencia metodológica y la honestidad en la exposición constituyen los pilares de una intervención judicial sólida.
+                <strong>Principio rector:</strong> La confianza en la exposición oral no deriva de la actitud asertiva
+                aislada, sino del convencimiento basado en un trabajo técnico exhaustivo. La preparación documental, la
+                coherencia metodológica y la honestidad en la exposición constituyen los pilares de una intervención
+                judicial sólida.
             </div>
-            <p>La satisfacción profesional del perito reside en haber aportado claridad técnica a un conflicto jurídico, facilitando la aplicación justa de la normativa de prevención de riesgos laborales.</p>
+            <p>La satisfacción profesional del perito reside en haber aportado claridad técnica a un conflicto jurídico,
+                facilitando la aplicación justa de la normativa de prevención de riesgos laborales.</p>
 
             <div class="highlight">
-                <strong>Reflexión final:</strong> La defensa del informe pericial en sala representa la convergencia entre competencia técnica y habilidad comunicativa. Su dominio requiere la integración de conocimientos normativos, metodológicos y retóricos, orientados a garantizar que la prevención de riesgos laborales se aplique con rigor en la resolución de conflictos judiciales.
+                <strong>Reflexión final:</strong> La defensa del informe pericial en sala representa la convergencia
+                entre competencia técnica y habilidad comunicativa. Su dominio requiere la integración de conocimientos
+                normativos, metodológicos y retóricos, orientados a garantizar que la prevención de riesgos laborales se
+                aplique con rigor en la resolución de conflictos judiciales.
             </div>
         </section>
 
         <!-- AUTOEVALUACIÓN -->
         <section id="quiz">
             <h2>Autoevaluación: Pon a prueba tus conocimientos</h2>
-            <p>Responde estas preguntas para verificar tu comprensión de las estrategias de defensa judicial. ¡Recuerda que es una herramienta formativa!</p>
-            
+            <p>Responde estas preguntas para verificar tu comprensión de las estrategias de defensa judicial. ¡Recuerda
+                que es una herramienta formativa!</p>
+
             <div class="quiz-container">
-                <div class="quiz-question">1. ¿Cuál es la finalidad principal de la oratoria forense aplicada a la peritación en PRL?</div>
+                <div class="quiz-question">1. ¿Cuál es la finalidad principal de la oratoria forense aplicada a la
+                    peritación en PRL?</div>
                 <div class="quiz-options">
-                    <div class="quiz-option" data-correct="false">A) Convencer a la contraparte de que sus argumentos son incorrectos</div>
-                    <div class="quiz-option" data-correct="true">B) Facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido técnico</div>
-                    <div class="quiz-option" data-correct="false">C) Demostrar superioridad técnica sobre otros peritos intervinientes</div>
-                    <div class="quiz-option" data-correct="false">D) Acortar la duración del acto judicial mediante respuestas breves</div>
+                    <div class="quiz-option" data-correct="false">A) Convencer a la contraparte de que sus argumentos
+                        son incorrectos</div>
+                    <div class="quiz-option" data-correct="true">B) Facilitar la comprensión del órgano judicial sin
+                        simplificar excesivamente el contenido técnico</div>
+                    <div class="quiz-option" data-correct="false">C) Demostrar superioridad técnica sobre otros peritos
+                        intervinientes</div>
+                    <div class="quiz-option" data-correct="false">D) Acortar la duración del acto judicial mediante
+                        respuestas breves</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback feedback-correct">¡Correcto! La oratoria forense en peritación tiene como finalidad facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido técnico. El objetivo es que el juez pueda integrar las conclusiones técnicas en su motivación, no "ganar" un debate.</div>
-                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. La finalidad de la oratoria forense en peritación es facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido técnico. El perito auxilia al juez, no debate con la contraparte.</div>
+                <div class="quiz-feedback feedback-correct">¡Correcto! La oratoria forense en peritación tiene como
+                    finalidad facilitar la comprensión del órgano judicial sin simplificar excesivamente el contenido
+                    técnico. El objetivo es que el juez pueda integrar las conclusiones técnicas en su motivación, no
+                    "ganar" un debate.</div>
+                <div class="quiz-feedback feedback-incorrect">No es la respuesta correcta. La finalidad de la oratoria
+                    forense en peritación es facilitar la comprensión del órgano judicial sin simplificar excesivamente
+                    el contenido técnico. El perito auxilia al juez, no debate con la contraparte.</div>
             </div>
-            
+
             <div class="quiz-container">
-                <div class="quiz-question">2. Ante una pregunta "cebo" que incluye una afirmación fáctica incorrecta, ¿cuál es la estrategia de respuesta adecuada?</div>
+                <div class="quiz-question">2. Ante una pregunta "cebo" que incluye una afirmación fáctica incorrecta,
+                    ¿cuál es la estrategia de respuesta adecuada?</div>
                 <div class="quiz-options">
-                    <div class="quiz-option" data-correct="false">A) Ignorar el error y responder únicamente a la parte correcta de la pregunta</div>
-                    <div class="quiz-option" data-correct="false">B) Señalar el error de forma confrontacional para desacreditar a quien pregunta</div>
-                    <div class="quiz-option" data-correct="true">C) Corregir inmediatamente el error con precisión técnica y sin confrontación emocional</div>
-                    <div class="quiz-option" data-correct="false">D) Solicitar al juez que desestime la pregunta por contener información errónea</div>
+                    <div class="quiz-option" data-correct="false">A) Ignorar el error y responder únicamente a la parte
+                        correcta de la pregunta</div>
+                    <div class="quiz-option" data-correct="false">B) Señalar el error de forma confrontacional para
+                        desacreditar a quien pregunta</div>
+                    <div class="quiz-option" data-correct="true">C) Corregir inmediatamente el error con precisión
+                        técnica y sin confrontación emocional</div>
+                    <div class="quiz-option" data-correct="false">D) Solicitar al juez que desestime la pregunta por
+                        contener información errónea</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Exacto! Ante una pregunta "cebo", la estrategia adecuada es corregir inmediatamente el error con precisión técnica y sin confrontación emocional. Esto demuestra dominio del tema, objetividad y respeto por la verdad técnica, reforzando la credibilidad del perito.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. La estrategia adecuada es corregir inmediatamente el error con precisión técnica y sin confrontación emocional. Ignorar el error o responder de forma confrontacional puede debilitar la percepción de objetividad y rigor técnico.</div>
+                <div class="quiz-feedback correct">¡Exacto! Ante una pregunta "cebo", la estrategia adecuada es corregir
+                    inmediatamente el error con precisión técnica y sin confrontación emocional. Esto demuestra dominio
+                    del tema, objetividad y respeto por la verdad técnica, reforzando la credibilidad del perito.</div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. La estrategia adecuada es corregir
+                    inmediatamente el error con precisión técnica y sin confrontación emocional. Ignorar el error o
+                    responder de forma confrontacional puede debilitar la percepción de objetividad y rigor técnico.
+                </div>
             </div>
-            
+
             <div class="quiz-container">
-                <div class="quiz-question">3. ¿Qué principio ético debe guiar la exposición oral del perito ante presiones procesales?</div>
+                <div class="quiz-question">3. ¿Qué principio ético debe guiar la exposición oral del perito ante
+                    presiones procesales?</div>
                 <div class="quiz-options">
-                    <div class="quiz-option" data-correct="false">A) Priorizar el resultado procesal favorable a la parte que lo designó</div>
-                    <div class="quiz-option" data-correct="true">B) Mantener la coherencia metodológica y la objetividad técnica por encima del resultado inmediato</div>
-                    <div class="quiz-option" data-correct="false">C) Adaptar las conclusiones a lo que el juez parece esperar escuchar</div>
-                    <div class="quiz-option" data-correct="false">D) Minimizar las limitaciones del análisis para proyectar mayor seguridad</div>
+                    <div class="quiz-option" data-correct="false">A) Priorizar el resultado procesal favorable a la
+                        parte que lo designó</div>
+                    <div class="quiz-option" data-correct="true">B) Mantener la coherencia metodológica y la objetividad
+                        técnica por encima del resultado inmediato</div>
+                    <div class="quiz-option" data-correct="false">C) Adaptar las conclusiones a lo que el juez parece
+                        esperar escuchar</div>
+                    <div class="quiz-option" data-correct="false">D) Minimizar las limitaciones del análisis para
+                        proyectar mayor seguridad</div>
                 </div>
                 <button class="quiz-btn">Verificar respuesta</button>
-                <div class="quiz-feedback correct">¡Muy bien! El principio rector es mantener la coherencia metodológica y la objetividad técnica por encima del resultado procesal inmediato. La credibilidad del perito depende de su imparcialidad técnica; su función es auxiliar al juez, no representar a una parte.</div>
-                <div class="quiz-feedback incorrect">No es la respuesta correcta. El principio ético fundamental es mantener la coherencia metodológica y la objetividad técnica por encima del resultado procesal. El perito auxilia al juez con conocimiento técnico; su credibilidad depende de su imparcialidad, no de "ganar" para una parte.</div>
+                <div class="quiz-feedback correct">¡Muy bien! El principio rector es mantener la coherencia metodológica
+                    y la objetividad técnica por encima del resultado procesal inmediato. La credibilidad del perito
+                    depende de su imparcialidad técnica; su función es auxiliar al juez, no representar a una parte.
+                </div>
+                <div class="quiz-feedback incorrect">No es la respuesta correcta. El principio ético fundamental es
+                    mantener la coherencia metodológica y la objetividad técnica por encima del resultado procesal. El
+                    perito auxilia al juez con conocimiento técnico; su credibilidad depende de su imparcialidad, no de
+                    "ganar" para una parte.</div>
             </div>
-            
+
             <div class="highlight" style="margin-top: 2rem;">
-                <strong>¡Felicidades por completar el Módulo 6 y todo el curso!</strong> Has adquirido las competencias para investigar riesgos, evaluar exposiciones, redactar informes periciales con rigor técnico y defender tus conclusiones en sede judicial con claridad y objetividad. Tu formación como perito judicial en prevención de riesgos laborales está completa. ¡Enhorabuena!
+                <strong>¡Felicidades por completar el Módulo 6 y todo el curso!</strong> Has adquirido las competencias
+                para investigar riesgos, evaluar exposiciones, redactar informes periciales con rigor técnico y defender
+                tus conclusiones en sede judicial con claridad y objetividad. Tu formación como perito judicial en
+                prevención de riesgos laborales está completa. ¡Enhorabuena!
             </div>
         </section>
 
         <div class="module-nav">
             <button class="module-btn" id="prevModule">← Módulo Anterior</button>
-            <button class="module-btn" id="completeCourse" style="background: var(--success); border-color: #219653;">✅ Curso Completado</button>
+            <button class="module-btn" id="completeCourse" style="background: var(--success); border-color: #219653;">✅
+                Curso Completado</button>
         </div>
 
         <footer>
             <p>Módulo 6: La Defensa del Informe Pericial en Sala · Formación Universitaria en PRL</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de primer año</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">Curso completo: 200 horas · 6 módulos · Especialidad: Perito Judicial en Prevención de Riesgos Laborales</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">Contenido basado exclusivamente
+                en fuentes oficiales y normativa vigente en España · Diseño pedagógico adaptado para estudiantes de
+                primer año</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">Curso completo: 200 horas · 6
+                módulos · Especialidad: Perito Judicial en Prevención de Riesgos Laborales</p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const navButtons = document.querySelectorAll('.nav-btn');
             const sections = document.querySelectorAll('section');
             const indicatorDots = document.querySelectorAll('.indicator-dot');
@@ -683,49 +1475,49 @@
             const progressPercent = document.getElementById('progressPercent');
             let currentSectionIndex = 0;
             const totalSections = sections.length;
-            
+
             function updateProgress() {
                 const progress = Math.round((currentSectionIndex / (totalSections - 1)) * 100);
                 progressFill.style.width = `${progress}%`;
                 progressPercent.textContent = progress;
             }
-            
+
             function showSection(sectionId) {
                 sections.forEach(section => section.classList.remove('active'));
                 document.getElementById(sectionId).classList.add('active');
                 navButtons.forEach(btn => {
                     btn.classList.remove('active');
-                    if(btn.dataset.section === sectionId) btn.classList.add('active');
+                    if (btn.dataset.section === sectionId) btn.classList.add('active');
                 });
                 indicatorDots.forEach(dot => {
                     dot.classList.remove('active');
-                    if(dot.dataset.section === sectionId) dot.classList.add('active');
+                    if (dot.dataset.section === sectionId) dot.classList.add('active');
                 });
                 currentSectionIndex = Array.from(sections).findIndex(s => s.id === sectionId);
                 updateProgress();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            
-            navButtons.forEach(button => button.addEventListener('click', function() { showSection(this.dataset.section); }));
-            indicatorDots.forEach(dot => dot.addEventListener('click', function() { showSection(this.dataset.section); }));
-            
+
+            navButtons.forEach(button => button.addEventListener('click', function () { showSection(this.dataset.section); }));
+            indicatorDots.forEach(dot => dot.addEventListener('click', function () { showSection(this.dataset.section); }));
+
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             accordionHeaders.forEach(header => {
-                header.addEventListener('click', function() {
+                header.addEventListener('click', function () {
                     this.classList.toggle('active');
                     this.nextElementSibling.classList.toggle('active');
                 });
             });
-            
+
             const quizContainers = document.querySelectorAll('.quiz-container');
             quizContainers.forEach(container => {
                 const options = container.querySelectorAll('.quiz-option');
                 const button = container.querySelector('.quiz-btn');
                 const feedbackCorrect = container.querySelector('.quiz-feedback.feedback-correct');
                 const feedbackIncorrect = container.querySelector('.quiz-feedback.feedback-incorrect');
-                
+
                 options.forEach(option => {
-                    option.addEventListener('click', function() {
+                    option.addEventListener('click', function () {
                         options.forEach(opt => opt.classList.remove('selected'));
                         this.classList.add('selected');
                         feedbackCorrect.classList.remove('correct-view');
@@ -733,18 +1525,18 @@
                         button.disabled = false;
                     });
                 });
-                
-                button.addEventListener('click', function() {
+
+                button.addEventListener('click', function () {
                     const selectedOption = container.querySelector('.quiz-option.selected');
-                    if(!selectedOption) return;
+                    if (!selectedOption) return;
                     const isCorrect = selectedOption.dataset.correct === 'true';
-                    if(isCorrect) {
+                    if (isCorrect) {
                         selectedOption.classList.add('correct');
                         feedbackCorrect.classList.add('correct-view');
                         feedbackIncorrect.classList.remove('incorrect-view');
                     } else {
                         selectedOption.classList.add('incorrect');
-                        options.forEach(opt => { if(opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                        options.forEach(opt => { if (opt.dataset.correct === 'true') opt.classList.add('correct'); });
                         feedbackCorrect.classList.remove('correct-view');
                         feedbackIncorrect.classList.add('incorrect-view');
                     }
@@ -752,25 +1544,26 @@
                     options.forEach(opt => opt.style.pointerEvents = 'none');
                 });
             });
-            
-            document.getElementById('prevModule').addEventListener('click', function() { window.location.href = 'modulo5.html'; });
-            document.getElementById('completeCourse').addEventListener('click', function() { 
-                alert('🎉 ¡Enhorabuena! Has completado el curso de Perito Judicial en Prevención de Riesgos Laborales (200 horas).\n\nTu formación está basada exclusivamente en fuentes oficiales y normativa vigente en España.'); 
+
+            document.getElementById('prevModule').addEventListener('click', function () { window.location.href = 'modulo5.html'; });
+            document.getElementById('completeCourse').addEventListener('click', function () {
+                alert('🎉 ¡Enhorabuena! Has completado el curso de Perito Judicial en Prevención de Riesgos Laborales (200 horas).\n\nTu formación está basada exclusivamente en fuentes oficiales y normativa vigente en España.');
                 window.location.href = 'index.html';
             });
-            
+
             const glossaryTerms = document.querySelectorAll('.glossary-term');
             glossaryTerms.forEach(term => {
-                term.addEventListener('click', function(e) {
-                    if(window.innerWidth < 768) {
+                term.addEventListener('click', function (e) {
+                    if (window.innerWidth < 768) {
                         e.preventDefault();
                         alert(`Definición: ${this.getAttribute('data-definition')}`);
                     }
                 });
             });
-            
+
             updateProgress();
         });
     </script>
 </body>
+
 </html>
