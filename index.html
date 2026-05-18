@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEAD0002 - Perito Judicial en PRL</title>
+    <link rel="icon" type="image/png" href="https://laner.es/wp-content/uploads/2026/02/4a2af585-f355-464f-a58b-c158e300bc06.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -562,6 +563,36 @@
         .block-content {
             padding: 1.5rem;
         }
+
+        .footer {
+            background: white;
+            border-top: 1px solid var(--slate-200);
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-image {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 0.75rem;
+            }
+            .footer-image {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -637,6 +668,12 @@
             <!-- Content will be loaded dynamically -->
         </main>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="pie.png" alt="Financiado por Lanbide, Gobierno Vasco y Fondo Social Europeo" class="footer-image">
+        </div>
+    </footer>
 
     <script>
         // Initialize Lucide icons
